@@ -49,8 +49,8 @@
   function filterByGameUpdate(actions,key,update){return list(actions).filter(function(action){return gameKey(action.game)===key&&version(action)===update;});}
   function tileMarkup(options){
     options=options||{};var attribute=options.attribute||'data-choose-group';if(ATTRIBUTES.indexOf(attribute)<0)throw Error('Unsupported catalogue tile attribute.');
-    var image=localImage(options.image),label=text(options.label),id=text(options.id),detail=text(options.detail);
-    return '<button type="button" class="host-catalog-tile'+(!image?' host-catalog-tile--text':'')+'" '+attribute+'="'+escape(id)+'"'+(options.disabled?' disabled aria-disabled="true"':'')+'><span class="host-catalog-tile__media">'+(image?'<img src="'+escape(image)+'" alt="" loading="lazy" decoding="async">':'<span class="host-catalog-tile__empty" aria-hidden="true"></span>')+'</span><span class="host-catalog-tile__label">'+escape(label)+'</span>'+(detail?'<span class="host-catalog-tile__detail">'+escape(detail)+'</span>':'')+'</button>';
+    var image=options.textOnly?'':localImage(options.image),label=text(options.label),id=text(options.id),detail=text(options.detail);
+    return '<button type="button" class="host-catalog-tile'+(!image?' host-catalog-tile--text':'')+'" '+attribute+'="'+escape(id)+'"'+(options.disabled?' disabled aria-disabled="true"':'')+'>'+(options.textOnly?'':'<span class="host-catalog-tile__media">'+(image?'<img src="'+escape(image)+'" alt="" loading="lazy" decoding="async">':'<span class="host-catalog-tile__empty" aria-hidden="true"></span>')+'</span>')+'<span class="host-catalog-tile__label">'+escape(label)+'</span>'+(detail?'<span class="host-catalog-tile__detail">'+escape(detail)+'</span>':'')+'</button>';
   }
   return {gameGroups:gameGroups,updates:updates,filterByGameUpdate:filterByGameUpdate,representativeImage:representativeImage,tileMarkup:tileMarkup,gameKey:gameKey,localImage:localImage,fallbackImage:fallbackImage};
 }));

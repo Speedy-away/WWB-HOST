@@ -202,7 +202,7 @@
       if (browser.platform && detectedLink) { detectedLink.href = '/hosts/' + browser.platform + '/'; detectedLink.textContent = 'Open ' + browser.device + ' host'; detectedLink.hidden = false; }
     }
     var source = doc.querySelector('#host-actions-data'); if (!source) return;
-    var catalog; try { catalog = JSON.parse(source.textContent); } catch (_) { return; }
+    var catalog; try { catalog = JSON.parse(source.textContent); win.WWB_HOST_CATALOG=catalog; } catch (_) { return; }
     var actions = catalog.actions || [], platform = catalog.platform;
     var fileListView=Boolean(catalog.fileListView);
     var gameScope = catalog.gameScope || '', gamesLanding = Boolean(catalog.gamesLanding)&&!fileListView;
@@ -213,9 +213,15 @@
     var firmwareSource = doc.querySelector('#host-firmware-source'), detection = detectBrowser(win.navigator.userAgent);
     var firmwareButtons = doc.querySelector('#host-firmware-buttons'), firmwareStatus = doc.querySelector('#host-firmware-status');
     var catalogGrid = Boolean(catalog.catalogGrid && win.HostCatalogGrid), catalogUI = win.HostCatalogGrid;
-    var catalogGame = '', catalogUpdate = '';
+    var catalogGame = gameScope==='gta5'||gameScope==='rdr2'?gameScope:'', catalogUpdate = '';
+    var consoleBrowser=Boolean(detection.platform),pageSize=12,renderLimit=pageSize,renderKey='',moreButton=null,searchTimer=null,allGameGroups=null;
+    var scopedCatalogue=scopeActions(actions,gameScope);
+
+    function windowed(rows){if(moreButton){moreButton.hidden=rows.length<=renderLimit;moreButton.textContent='Show more ('+Math.min(rows.length,renderLimit)+' of '+rows.length+')';}return consoleBrowser?rows.slice(0,renderLimit):rows;}
+    function catalogTile(options){if(consoleBrowser)options.textOnly=true;return catalogUI.tileMarkup(options);}
     var address = doc.querySelector('#host-console-address'), status = doc.querySelector('#host-status');
     var grid = doc.querySelector('#host-action-grid'), count = doc.querySelector('#host-action-count');
+    if(consoleBrowser&&grid&&doc.createElement){moreButton=doc.createElement('button');moreButton.type='button';moreButton.id='host-show-more';moreButton.hidden=true;moreButton.addEventListener('click',function(){renderLimit+=pageSize;render();});if(grid.parentNode)grid.parentNode.appendChild(moreButton);}
     var overlay = doc.querySelector('#host-version-overlay'), versionChoices = doc.querySelector('#host-version-choices'), versionDetail = doc.querySelector('#host-version-detail');
     var renderedGroups = [], activeGroup = null, selectedActionId = '', returnFocus = null;
     if (overlay) doc.body.appendChild(overlay);
@@ -301,7 +307,7 @@
         var originalHost = action.hostURL || action.launchURL || '';
         if (originalHost.indexOf('{address}') !== -1) originalHost = '';
         originalHost = navigationURL(originalHost);
-        var artwork = action.category==='loaders' ? '' : catalogGrid ? catalogUI.representativeImage([action]) : isMenu ? actionImage(action) : '', imageLabel = imageCaption(action), releaseLabel = action.resourceType === 'cheat-definitions' ? 'Trainer version' : 'Menu version';
+        var artwork = consoleBrowser || action.category==='loaders' ? '' : catalogGrid ? catalogUI.representativeImage([action]) : isMenu ? actionImage(action) : '', imageLabel = imageCaption(action), releaseLabel = action.resourceType === 'cheat-definitions' ? 'Trainer version' : 'Menu version';
         return '<article class="host-action' + (artwork ? ' host-action-with-art' : '') + '">' + (artwork ? '<figure class="host-action-art"><img src="' + escape(artwork) + '" alt="' + escape(action.imageAlt || action.label + ' · ' + imageLabel) + '" loading="lazy"></figure>' : '') + '<div class="host-action-content"><div class="host-action-title"><h3>' + escape(action.label) + '</h3>' + (action.game ? '<span>' + escape(action.game) + '</span>' : '') + '</div>' + (action.game ? '<dl class="host-version-facts"><div><dt>Game update</dt><dd>' + escape(action.gameVersion || 'Not provided') + '</dd></div><div><dt>' + releaseLabel + '</dt><dd>' + escape(action.menuVersion || 'Not provided') + '</dd></div></dl>' : '') + '<p class="host-action-meta">' + escape(meta) + '</p>' + (action.variantLabel || action.hostVariant ? '<p class="host-action-meta">' + escape(action.variantLabel || action.hostVariant) + '</p>' : '') + (action.titleIds && action.titleIds.length ? '<p class="host-action-meta">' + escape(action.titleIds.join(', ')) + '</p>' : '') + (action.supportArchiveURL ? '<p class="host-file-note">Plugin update file. First installation also needs its support files.</p>' : '') + '<div class="host-action-buttons">' +
           (download ? downloadLink(action,download,'Download') : '') +
           (label ? '<button type="button" class="host-launch" data-launch="' + escape(action.id) + '"' + (disabled ? ' disabled title="' + escape(!capability.available && isMenu ? capability.reason : 'Choose compatible firmware and a running console loader.') + '"' : '') + '>' + escape(label) + '</button>' : '') + '</div>' +
@@ -372,27 +378,27 @@
     function catalogMarkup(visible) {
       grid.classList.add('host-catalog-grid');
       if(category==='loaders')grid.classList.add('host-catalog-grid--loaders');else grid.classList.remove('host-catalog-grid--loaders');
-      var allGames=catalogUI.gameGroups(scopeActions(actions,gameScope).filter(function(a){return a.category==='mods';}));
+      var allGames=category==='mods'?(allGameGroups||(allGameGroups=catalogUI.gameGroups(scopedCatalogue.filter(function(a){return a.category==='mods';})))):[];
       if (!catalogGame && (gameScope==='gta5'||gameScope==='rdr2')) catalogGame=gameScope;
       var selected=allGames.filter(function(g){return g.key===catalogGame;})[0];
       if (category!=='mods') {
         renderedGroups=groupActions(visible);
         count.textContent=String(renderedGroups.length);
-        return renderedGroups.map(function(group){var first=group.actions[0];if(category==='loaders'&&first.browserHost)return catalogUI.tileMarkup({id:first.id,label:'Load',image:'',detail:group.label,attribute:'data-launch',disabled:detection.platform!==platform||!firmware.value||!firmwareMatches(first,firmware.value)});return catalogUI.tileMarkup({id:group.id,label:group.label,image:category==='loaders'?'':catalogUI.representativeImage(group.actions),detail:[first.format,first.version||first.menuVersion||''].filter(Boolean).join(' · '),attribute:'data-choose-group'});}).join('');
+        return windowed(renderedGroups).map(function(group){var first=group.actions[0];if(category==='loaders'&&first.browserHost)return catalogTile({id:first.id,label:'Load',image:'',detail:group.label,attribute:'data-launch',disabled:detection.platform!==platform||!firmware.value||!firmwareMatches(first,firmware.value)});return catalogTile({id:group.id,label:group.label,image:category==='loaders'?'':catalogUI.representativeImage(group.actions),detail:[first.format,first.version||first.menuVersion||''].filter(Boolean).join(' · '),attribute:'data-choose-group'});}).join('');
       }
       var groups=catalogUI.gameGroups(visible),path='<nav class="host-catalog-path" aria-label="Game mods">'+(gameScope?'<a href="/hosts/'+platform+'/?view=mods">Game mods</a>':'<button type="button" data-catalog-back="games">Game mods</button>')+(selected?'<span aria-hidden="true">/</span><button type="button" data-catalog-back="updates" translate="no">'+escape(selected.label)+'</button>':'')+(selected&&catalogUpdate?'<span aria-hidden="true">/</span><strong translate="no">'+escape(catalogUpdate==='unspecified'?'Not provided':catalogUpdate)+'</strong>':'')+'</nav>';
       if (!selected) {
         renderedGroups=[];count.textContent=String(groups.length);
-        return path+groups.map(function(group){return catalogUI.tileMarkup({id:group.key,label:group.label,image:group.image,detail:catalogUI.updates(group.actions).filter(function(v){return v!=='unspecified';}).join(' · '),attribute:'data-catalog-game'});}).join('');
+        return path+windowed(groups).map(function(group){return catalogTile({id:group.key,label:group.label,image:group.image,detail:catalogUI.updates(group.actions).filter(function(v){return v!=='unspecified';}).join(' · '),attribute:'data-catalog-game'});}).join('');
       }
       var gameActions=visible.filter(function(action){return catalogUI.gameKey(action.game)===selected.key;});
       if (!catalogUpdate) {
         var updates=catalogUI.updates(gameActions);renderedGroups=[];count.textContent=String(updates.length);
-        return path+updates.map(function(update){return catalogUI.tileMarkup({id:update,label:update==='unspecified'?'Not provided':update,image:selected.image,detail:selected.label,attribute:'data-catalog-update'});}).join('');
+        return path+windowed(updates).map(function(update){return catalogTile({id:update,label:update==='unspecified'?'Not provided':update,image:selected.image,detail:selected.label,attribute:'data-catalog-update'});}).join('');
       }
       var exact=catalogUI.filterByGameUpdate(gameActions,selected.key,catalogUpdate);
       renderedGroups=groupActions(exact);count.textContent=String(renderedGroups.length);
-      return path+renderedGroups.map(function(group){return catalogUI.tileMarkup({id:group.id,label:group.label,image:catalogUI.representativeImage(group.actions),detail:group.actions.map(function(a){return a.menuVersion||a.format;}).filter(function(v,i,all){return v&&all.indexOf(v)===i;}).join(' · '),attribute:'data-choose-group'});}).join('');
+      return path+windowed(renderedGroups).map(function(group){return catalogTile({id:group.id,label:group.label,image:catalogUI.representativeImage(group.actions),detail:group.actions.map(function(a){return a.menuVersion||a.format;}).filter(function(v,i,all){return v&&all.indexOf(v)===i;}).join(' · '),attribute:'data-choose-group'});}).join('');
     }
     function renderVersionChoices(group) {
       versionChoices.innerHTML = group.actions.map(function (action) { return '<button type="button" data-version-id="' + escape(action.id) + '" aria-label="' + escape(action.game ? variantLabel(action) : action.label) + '" aria-pressed="' + (action.id === selectedActionId ? 'true' : 'false') + '">'+(action.game?'<span>Game update <strong>' + escape(action.gameVersion || 'Not provided') + '</strong></span><span>' + (action.resourceType === 'cheat-definitions' ? 'Trainer version' : 'Menu version') + ' <strong>' + escape(action.menuVersion || 'Not provided') + '</strong></span>':'<strong>'+escape(action.label)+'</strong>')+'<small>' + escape([String(action.format || '').toUpperCase(),action.variantLabel || action.hostVariant,(action.titleIds || []).join(', ')].filter(Boolean).join(' · ')) + '</small></button>'; }).join('');
@@ -421,14 +427,15 @@
       overlay.hidden = false; doc.body.classList.add('host-dialog-open'); renderVariant(); refresh(overlay); versionChoices.querySelector('button').focus();
     }
     function render() {
+      var nextKey=[category,firmware.value,search.value,game.value,legacy.checked,catalogGame,catalogUpdate].join('|');if(nextKey!==renderKey){renderLimit=pageSize;renderKey=nextKey;}if(moreButton)moreButton.hidden=true;
       var firmwareNote = doc.querySelector('#host-firmware-note');
       if (firmwareNote) firmwareNote.hidden = firmware.value !== '14.00';
       if (grid) {
-      var visible = filterActions(scopeActions(actions,gameScope), category, (fileListView||catalogGrid)&&category!=='loaders'?'':firmware.value, search.value, category === 'mods' ? game.value : '', legacy.checked);
+      var visible = filterActions(scopedCatalogue, category, (fileListView||catalogGrid)&&category!=='loaders'?'':firmware.value, search.value, category === 'mods' ? game.value : '', legacy.checked);
       if((fileListView||catalogGrid)&&category==='loaders'&&!firmware.value)visible=[];
       doc.querySelector('#host-game-filter').hidden = catalogGrid || category !== 'mods' || gamesLanding || gameScope === 'gta5' || gameScope === 'rdr2';
       if (category === 'mods' && gamesLanding) grid.classList.add('host-game-collections'); else grid.classList.remove('host-game-collections');
-      renderedGroups = groupActions(visible);
+      renderedGroups = catalogGrid?[]:groupActions(visible);
       count.textContent = fileListView?String(visible.length):renderedGroups.length + ' cards · ' + visible.length + ' variants';
       if (catalogGrid) {
         grid.innerHTML=catalogMarkup(visible);
@@ -608,7 +615,7 @@
       if(!button || button===firmwareButtons)return;
       firmware.value=button.getAttribute('data-host-firmware'); firmwareSource.textContent='Firmware selection: manual'; syncFirmwareButtons(); remember(); render(); refresh(firmwareSource);
     });
-    if (search) search.addEventListener('input', render); if (game) game.addEventListener('change', render); if (legacy) legacy.addEventListener('change', render);
+    if (search) search.addEventListener('input', function(){if(!consoleBrowser){render();return;}if(searchTimer)(win.clearTimeout||clearTimeout)(searchTimer);searchTimer=(win.setTimeout||setTimeout)(function(){searchTimer=null;render();},120);}); if (game) game.addEventListener('change', render); if (legacy) legacy.addEventListener('change', render);
     function detectConsole(manualRequest) {
       invalidateChecks();
       detection = detectBrowser(win.navigator.userAgent);

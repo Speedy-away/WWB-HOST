@@ -225,5 +225,32 @@
       "downloads": "1c5a712c09a81d0b1a1e09fa05c284e528cd052f",
       "hosts/runtime": "d6f963d1df4bc8092a5ec4a58eef770ca3241fb3"
     }
+  },
+  "consolePerformance20261103": {
+    "updatedAt": "2026-11-03T21:25:34.459Z",
+    "status": "Verified locally; publishing",
+    "baseline": "bf348610c9ab6a6cf3819833d2eb5d6ebacb86d4",
+    "changes": [
+      "Console catalogue first batch:12 text entries; Show more keeps all entries reachable",
+      "Console trainer first batch:18 entries, no cover images",
+      "Static console artwork deferred; desktop artwork retained",
+      "Hidden animated background and unrelated main-site script removed from authored host deployment",
+      "Unused external font stylesheet removed",
+      "English refresh skips translation scans; language switching still restores source strings",
+      "Catalogue groups cached and redundant JSON parse/grouping removed",
+      "Console search debounced 120 ms"
+    ],
+    "regressionTests": 166,
+    "fixtureComparison": {
+      "entries": 100,
+      "consoleInitialTiles": 12,
+      "desktopTiles": 100,
+      "allEntriesReachable": true,
+      "consoleImageSourceAssignments": 0
+    },
+    "nativeRuntimeFilesChanged": 0,
+    "downloadFilesChanged": 0,
+    "hardwareMeasured": false,
+    "browserRenderVerified": false
   }
 }

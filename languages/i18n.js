@@ -315,6 +315,7 @@
   }
 
   function refresh(root) {
+    if(current===DEFAULT_LANG)return;
     var table = dicts[current] || {};
     applying = true;
     try {
