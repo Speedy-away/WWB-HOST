@@ -175,9 +175,15 @@
   "firmwareGoldhenCleanup": {
     "date": "2026-11-03T20:36:01.299Z",
     "report": "docs/qa/download-size-cleanup.json",
-    "status": "Validated, awaiting push",
+    "status": "Published and live verified",
     "legacySenderOriginalLinks": 23,
     "suppliedGoldhenSHA256": "39452f5e1c305ac9efcb4745eef7958b4db8c6d85299529f08700970b009ea4d",
-    "consolePayloadsExecuted": false
+    "consolePayloadsExecuted": false,
+    "checkedAt": "2026-11-03T20:43:16.733Z",
+    "mainRevision": "5255e8f961727f4ea1f82247405c3fd436e4beda",
+    "hostRevision": "e20e7bad3131d0bc732c3a9686388bc7b1bceedc",
+    "downloadBytesVerified": true,
+    "archivePresentRecords": 5994,
+    "archiveMissingRecords": 0
   }
 }
