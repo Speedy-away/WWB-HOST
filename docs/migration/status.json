@@ -358,12 +358,15 @@
   },
   "ps5RemainingOriginalHosts": {
     "updatedAt": "2026-11-03T22:20:45.175Z",
-    "status": "Validated; publishing pending",
+    "status": "Published and live verified",
     "report": "docs/qa/ps5-original-hosts.json",
     "firmwareChoices": 61,
     "selectionOnly": true,
     "testsPassed": 49,
     "hardwareTested": false,
-    "originalHostControl": "UMTX2 retains its own Start control; Relapse starts automatically."
+    "originalHostControl": "UMTX2 retains its own Start control; Relapse starts automatically.",
+    "checkedAt": "2026-11-03T22:27:43.896Z",
+    "revision": "0488479b84f9ca3ffe1c12c0a9fc44a23d7e67e4",
+    "deployment": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41730210213"
   }
 }

@@ -1,6 +1,6 @@
 {
   "updatedAt": "2026-11-03T22:17:28.394Z",
-  "status": "Validated; publishing pending",
+  "status": "Published and live verified",
   "hosts": [
     {
       "id": "ps5-umtx2",
@@ -180,5 +180,19 @@
     "hardwareTested": false,
     "sharedCatalogueFiles": 4,
     "runtimeDocumentsOptimized": 213
-  }
+  },
+  "live": {
+    "checkedAt": "2026-11-03T22:27:43.896Z",
+    "status": "Published and live verified",
+    "revision": "0488479b84f9ca3ffe1c12c0a9fc44a23d7e67e4",
+    "firmwareChoices": 61,
+    "allButtonsHaveRoutes": true,
+    "unsupportedChoicesAbsent": true,
+    "relapse1360": true,
+    "umtx2550": true,
+    "selectionOnlyUntilLoad": true,
+    "payloadsExecuted": false,
+    "hardwareTested": false
+  },
+  "deployment": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41730210213"
 }
