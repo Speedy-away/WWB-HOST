@@ -1,6 +1,6 @@
 {
   "updatedAt": "2026-11-03T23:39:22.229Z",
-  "status": "Validated before push",
+  "status": "Validated including canonical Pages rename",
   "scope": "Every active PS4/PS5 browser Load including GoldHEN, exact firmware options, and three retained native bookmark controls",
   "loadActions": 8,
   "firmwareRouteCases": 99,
@@ -9,14 +9,14 @@
     "ps5": 62
   },
   "tests": {
-    "passed": 121,
+    "passed": 123,
     "failed": 0
   },
   "build": {
     "revision": "main",
-    "base": "/WWB-HOST",
+    "base": "/wwb-host",
     "origin": "https://speedy-away.github.io",
-    "bytes": 863185798,
+    "bytes": 863185967,
     "budget": 922746880,
     "files": 6177,
     "offloadedFiles": 281,
@@ -33,7 +33,7 @@
   },
   "verification": {
     "status": "passed",
-    "bytes": 863185798,
+    "bytes": 863185967,
     "pagesLinks": 3816,
     "nativeScriptsUnchanged": 898,
     "cachedResourcesRetained": 1536,
@@ -52,7 +52,8 @@
     "Pin all active runtime inputs to Pages instead of allowing payload offloading",
     "Disable browser Load and mark it busy during the handoff; preserve repeat-click protection after a navigation error",
     "Read back one-use session requests and UMTX2 autorun choice before navigating; surface storage refusal",
-    "Retained PS4 and PS5 bookmark Load controls require a real press and ignore duplicate clicks"
+    "Retained PS4 and PS5 bookmark Load controls require a real press and ignore duplicate clicks",
+    "Match GitHub Pages canonical lowercase /wwb-host/ after repository rename; retain legacy and local validator support"
   ],
   "onSitePayload": {
     "path": "hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/ps5/UMTX/payloads/OnionHENk1.11.elf",
@@ -64,5 +65,6 @@
   "limits": [
     "Automated handoff/error/progress wiring and byte checks only; physical PS4/PS5 hardware execution not tested",
     "No original exploit scripts, native payloads or old archive versions were changed"
-  ]
+  ],
+  "canonicalSite": "https://speedy-away.github.io/wwb-host/"
 }

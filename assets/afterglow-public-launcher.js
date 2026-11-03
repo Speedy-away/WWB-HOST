@@ -2,7 +2,7 @@
 (function(root,factory){var api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else{root.AfterglowPublicLauncher=api;api.install(root.document,root);}}(typeof window!=='undefined'?window:this,function(){
   'use strict';
   function destination(entry,location){
-    if(typeof entry!=='string'||!/^\/(?:WWB-HOST\/)?hosts\/runtime\/ps4-afterglow-[a-f0-9]{12}\/web\/index\.html$/.test(entry))throw Error('The isolated Afterglow landing is unavailable.');
+    if(typeof entry!=='string'||!/^\/(?:(?:WWB-HOST|wwb-host)\/)?hosts\/runtime\/ps4-afterglow-[a-f0-9]{12}\/web\/index\.html$/.test(entry))throw Error('The isolated Afterglow landing is unavailable.');
     var url=new URL(entry,location.href);
     if(!/^https?:$/.test(url.protocol)||url.origin!==location.origin||url.username||url.password||url.search||url.hash)throw Error('The isolated Afterglow landing must stay on this host.');
     return url.href;

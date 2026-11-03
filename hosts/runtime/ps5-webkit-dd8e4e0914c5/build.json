@@ -447,8 +447,8 @@
   "files": [
     {
       "path": "guard.js",
-      "bytes": 5444,
-      "sha256": "dc75687deab4c63f10d366d9a91bc6e20faebfb3e264c3f0ba065fe615c3136c"
+      "bytes": 5470,
+      "sha256": "eb5f0792ba06546cf44ab6fcc3e35be0e5125737fe573b24fc5b39b46203c60c"
     },
     {
       "path": "index.html",

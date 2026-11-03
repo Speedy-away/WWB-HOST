@@ -307,7 +307,7 @@
     {
       "path": "web/cache.appcache",
       "bytes": 1502,
-      "sha256": "6d4e599f5cb43e69a96f9ba040582348ab0aeeecc25ab6aefe63a44041021f53"
+      "sha256": "bf219b739bedd182240e13c752b93f74f7a651bad0715e5b6a325ab673a02bd2"
     },
     {
       "path": "web/core.js",
@@ -431,8 +431,8 @@
     },
     {
       "path": "web/site-load-receipt.js",
-      "bytes": 1618,
-      "sha256": "bcd45daac36cd8cfe3f288caba8ce63c8e9f261ea57723735405467a867d1698"
+      "bytes": 1644,
+      "sha256": "cfe1f0f90117fdf2daf36b3e7fc26845939fd78d454cd9c23087793ef8c18011"
     }
   ],
   "limitations": [
