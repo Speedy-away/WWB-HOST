@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-11-03T19:53:01.125Z",
+  "updatedAt": "2026-11-03T20:12:24.180Z",
   "repository": "Speedy-away/WWB-HOST",
   "site": "https://speedy-away.github.io/WWB-HOST/",
   "mainSite": "https://whatwhatboy.com/",
-  "status": "Illustrated home published; original offline-cache dependencies retained by the verified Pages publisher.",
+  "status": "Illustrated home and main-site handoff published; 1,553 URLs verified. Deploying seven exact manifest aliases to correct GitHub Pages cache MIME types.",
   "sourceSnapshot": "docs/migration/source-preservation.json",
   "rootHome": "index.html",
   "karo": {
@@ -30,7 +30,9 @@
     "archiveUploadPending": false,
     "homepageCommitPending": false,
     "homeDeployment": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41705919245",
-    "cacheFix": "Keep every existing CACHE resource on the Pages origin; offload only files that original caches do not require."
+    "cacheFix": "Keep every existing CACHE resource on the Pages origin; offload only files that original caches do not require.",
+    "cacheMimeAliasPending": true,
+    "productionCommit": "4639d34aedb8aa2c50221d1bababab4ac4433d90"
   },
   "constraints": [
     "Preserve every older version.",
@@ -39,9 +41,9 @@
     "Use the project-prefix publisher and bounded archive pushes."
   ],
   "next": [
-    "Verify the cache-preserving Pages deployment.",
-    "Finish the main-site link deployment.",
-    "Check live Load and Download URLs without executing native code."
+    "Wait for the cache MIME alias deployment.",
+    "Verify original .cache bytes, deployed .manifest aliases and correct MIME headers.",
+    "Update final publication and handoff reports."
   ],
   "home": {
     "file": "index.html",
@@ -60,11 +62,12 @@
     "readyZIPs": 165
   },
   "verification": {
-    "localBuild": "tmp/pages-cache-preserved",
-    "cachedResourcesRetained": 1071,
+    "publicLoadDownloadURLs": 1553,
+    "exactArabicBuilds": 3,
     "nativeScriptsUnchanged": 848,
-    "linkIssues": 0,
-    "fixtureTests": "1 passed",
+    "existingCacheResourcesOnSameOrigin": 1491,
+    "manifestAliases": 7,
+    "fixtureTests": 3,
     "hardwareExecutionVerified": false
   },
   "senderReleaseDelivery": {
