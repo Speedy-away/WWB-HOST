@@ -851,7 +851,7 @@
   },
   "consoleLoadAudit20261103": {
     "updatedAt": "2026-11-03T23:39:22.229Z",
-    "status": "Validated including canonical Pages rename",
+    "status": "Published and live verified",
     "scope": "Every active PS4/PS5 browser Load including GoldHEN, exact firmware options, and three retained native bookmark controls",
     "loadActions": 8,
     "firmwareRouteCases": 99,
@@ -860,14 +860,14 @@
       "ps5": 62
     },
     "tests": {
-      "passed": 130,
+      "passed": 137,
       "failed": 0
     },
     "build": {
       "revision": "main",
       "base": "/wwb-host",
       "origin": "https://speedy-away.github.io",
-      "bytes": 863185967,
+      "bytes": 863187551,
       "budget": 922746880,
       "files": 6177,
       "offloadedFiles": 281,
@@ -884,7 +884,7 @@
     },
     "verification": {
       "status": "passed",
-      "bytes": 863185967,
+      "bytes": 863187551,
       "pagesLinks": 3816,
       "nativeScriptsUnchanged": 898,
       "cachedResourcesRetained": 1536,
@@ -919,6 +919,18 @@
       "No original exploit scripts, native payloads or old archive versions were changed"
     ],
     "canonicalSite": "https://speedy-away.github.io/wwb-host/",
+    "publishedCommit": "d37a2b00d588aa19a2fb4f51651b36341c6dd39a",
+    "workflow": "https://github.com/Speedy-away/wwb-host/actions/runs/41741965896",
+    "live": {
+      "status": "passed",
+      "verifiedAt": "2026-11-03T23:51:04.304Z",
+      "site": "https://speedy-away.github.io/wwb-host/",
+      "commit": "d37a2b00d588aa19a2fb4f51651b36341c6dd39a",
+      "activeBrowserLoadActions": 8,
+      "firmwareRouteCases": 99,
+      "runtimeFilesFetchedAndMatched": 259,
+      "physicalConsoleExecution": false
+    },
     "report": "docs/qa/console-load-audit.json"
   },
   "canonicalPagesSite": {
