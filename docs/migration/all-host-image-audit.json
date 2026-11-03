@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-03T21:07:18.028Z",
+  "checkedAt": "2026-11-03T21:12:59.633Z",
   "pages": 25,
   "imageFiles": 87,
   "missingImages": [],
@@ -530,5 +530,8 @@
       "sha256": "1257c022f4e7958041d939130ddad03efca80e9de6af17884be2b8dfd6e1c7e1",
       "type": "jpeg"
     }
-  ]
+  ],
+  "publicImageURLs": 152,
+  "trainerCovers": 74,
+  "validation": "Page raster/SVG assets checked; both menu WebP previews opened with the image tool; 74 trainer covers verified against pinned sizes and SHA-256; all 152 deployed image URLs returned image content."
 }

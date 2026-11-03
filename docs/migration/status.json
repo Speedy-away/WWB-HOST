@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-03T20:36:35.258Z",
+  "updatedAt": "2026-11-03T21:12:59.633Z",
   "repository": "Speedy-away/WWB-HOST",
   "site": "https://speedy-away.github.io/WWB-HOST/",
   "mainSite": "https://whatwhatboy.com/",
@@ -33,8 +33,8 @@
     "homeDeployment": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41705919245",
     "cacheFix": "Keep every existing CACHE resource on the Pages origin; offload only files that original caches do not require.",
     "cacheMimeAliasPending": false,
-    "productionCommit": "468339255178965af15d2cc484550eb0917a8419",
-    "productionDeployment": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41712758658",
+    "productionCommit": "166665902edfd386daf0fb249473648c0d382035",
+    "productionDeployment": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41718999722",
     "mainCommit": "fe5386a1738bc9d3d40a9c77c81313fb2d9a4d11",
     "mainLinkVerified": true
   },
@@ -197,7 +197,7 @@
     "focusedTests": 54
   },
   "allPagesAudit20261103": {
-    "status": "150 tests passing; publishing verified fixes",
+    "status": "passed",
     "pages": 25,
     "images": 87,
     "missingImages": 0,
@@ -211,6 +211,19 @@
       "Private migration evidence resolution in provenance tests"
     ],
     "hardwareExecutionVerified": false,
-    "browserRenderVerified": false
+    "browserRenderVerified": false,
+    "checkedAt": "2026-11-03T21:12:59.633Z",
+    "revision": "166665902edfd386daf0fb249473648c0d382035",
+    "deployment": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41718999722",
+    "publicImageURLs": 152,
+    "authoredActionURLs": 230,
+    "legacyLoadDownloadURLs": 1553,
+    "failures": [],
+    "checkerCorrection": "Six homepage-relative image references were initially parsed as domain-root paths. Their actual declared src values were resolved against the deployed project URL and rechecked successfully.",
+    "report": "docs/migration/all-host-live-audit.json",
+    "immutableTrees": {
+      "downloads": "1c5a712c09a81d0b1a1e09fa05c284e528cd052f",
+      "hosts/runtime": "d6f963d1df4bc8092a5ec4a58eef770ca3241fb3"
+    }
   }
 }

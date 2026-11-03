@@ -17,3 +17,5 @@ Build: `node scripts/host-project-pages.cjs tmp/pages-preview` then `node script
 Pages serves seven original `.cache` manifests through byte-identical `.manifest` aliases with the required `text/cache-manifest` MIME type. Original files and ready ZIPs remain unchanged. When self-hosting those original ZIPs, configure `.cache` files as `text/cache-manifest`.
 
 The 24 authored host pages share `assets/host-pages.css` and image headings. Run `node scripts/style-host-pages.cjs` after changing page generators; the Pages publisher also applies this theme during deployment. Native runtimes and ready downloads keep their original bytes.
+
+Original-source provenance tests use retained migration evidence from `WHATSITE_PROVENANCE_ROOT` (default: the sibling `whatsite` workspace). Public runtime and download file checks always use this repository. No native payload is executed by these tests.
