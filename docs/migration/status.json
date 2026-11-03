@@ -339,5 +339,15 @@
     "workflow": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41728129691",
     "liveAuthoredPages": 24,
     "liveFragmentPairs": 62
+  },
+  "ps5RemainingOriginalHosts": {
+    "updatedAt": "2026-11-03T22:20:45.175Z",
+    "status": "Validated; publishing pending",
+    "report": "docs/qa/ps5-original-hosts.json",
+    "firmwareChoices": 61,
+    "selectionOnly": true,
+    "testsPassed": 44,
+    "hardwareTested": false,
+    "originalHostControl": "UMTX2 retains its own Start control; Relapse starts automatically."
   }
 }

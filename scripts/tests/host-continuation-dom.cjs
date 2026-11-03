@@ -8,7 +8,7 @@ function deferred() {
   const promise = new Promise((yes,no)=>{resolve=yes;reject=no;});
   return {promise,resolve,reject};
 }
-function fixture({platform='ps4',storage=new Map(),sessionStore=new Map(),actions,pairDeferred=false,fileListView=false,catalogGrid=false,firmwareButtons,userAgent='Fixture desktop browser',initialCategory='mods'}={}) {
+function fixture({platform='ps4',firmwareChoicesOnly=false,storage=new Map(),sessionStore=new Map(),actions,pairDeferred=false,fileListView=false,catalogGrid=false,firmwareButtons,userAgent='Fixture desktop browser',initialCategory='mods'}={}) {
   const created=[],opened=[],anchorClicks=[],checks=[],sends=[],pairs=[],windowEvents={};
   let gestureDepth=0,document;
   function matches(node, selector) {
@@ -59,7 +59,7 @@ function fixture({platform='ps4',storage=new Map(),sessionStore=new Map(),action
   ids['host-bridge-url'].value='http://127.0.0.1:8766';ids['host-bridge-token'].value='fixture-token';
   const defaultAction={id:platform+'-fixture-menu-157',label:'Fixture menu',menuFamily:'Fixture menu',platform,category:'mods',game:'Fixture game',gameVersion:'1.57',menuVersion:'2.0',firmwares:[platform==='ps4'?'9.00':'4.51'],format:platform==='ps4'?'BIN':'ELF',run:{type:platform==='ps4'?'goldhen-http':'elf-http',port:platform==='ps4'?9090:9021},downloadURL:'/downloads/fixture/menu.'+(platform==='ps4'?'bin':'elf'),consoleFileId:platform+'-exact-file-157',requirements:[]};
   actions=actions||[defaultAction];
-  ids['host-actions-data'].textContent=JSON.stringify({platform,actions,fileListView,catalogGrid,initialCategory});
+  ids['host-actions-data'].textContent=JSON.stringify({platform,actions,fileListView,catalogGrid,initialCategory,firmwareChoicesOnly});
   const storageKey='whatwhatboy.host.'+platform;
   if(!storage.has(storageKey))storage.set(storageKey,JSON.stringify({address:'192.168.1.40',firmware:platform==='ps4'?'9.00':'4.51'}));
   const sender=element('details'),info=element('div');

@@ -42,6 +42,11 @@
     return versions[0] + ' … ' + versions[versions.length - 1] + ' (' + versions.length + ' listed versions)';
   }
   function requiresFirmware(action) { return Boolean(action.run) || action.browserHost || action.category === 'loaders' && Boolean(action.launchURL); }
+  function availableBrowserFirmwares(actions) {
+    var versions=[];
+    (actions||[]).forEach(function(action){if(action.category!=='loaders'||!action.browserHost||!action.launchURL)return;(action.firmwares||[]).forEach(function(fw){if(/^\d{1,2}\.\d{2}$/.test(fw)&&versions.indexOf(fw)===-1)versions.push(fw);});});
+    return versions.sort(function(a,b){return Number(a)-Number(b);});
+  }
   function consoleDownloadURL(platform, address, fileId, normalize) {
     if (platform !== 'ps4' && platform !== 'ps5') throw Error('Choose PS4 or PS5.');
     if (!/^[a-z0-9][a-z0-9._-]{0,159}$/i.test(fileId || '')) throw Error('Choose a file from the console catalogue.');
@@ -204,6 +209,7 @@
     var source = doc.querySelector('#host-actions-data'); if (!source) return;
     var catalog; try { catalog = JSON.parse(source.textContent); win.WWB_HOST_CATALOG=catalog; } catch (_) { return; }
     var actions = catalog.actions || [], platform = catalog.platform;
+    var availableFirmwares=availableBrowserFirmwares(actions),restrictFirmware=platform==='ps5'&&Boolean(catalog.firmwareChoicesOnly);
     var fileListView=Boolean(catalog.fileListView);
     var gameScope = catalog.gameScope || '', gamesLanding = Boolean(catalog.gamesLanding)&&!fileListView;
     var client = win.HostConsoleClient, category = catalog.initialCategory || (catalog.managerView ? 'payloads' : 'mods'), bridge = null, loading = false;
@@ -237,12 +243,17 @@
     function remember() { try { win.localStorage.setItem(storageKey, JSON.stringify({address: address.value, firmware: firmware.value,uncertainTransfers:connection.serialize()})); } catch (_) {} }
     function syncFirmwareButtons() {
       if (!firmwareButtons) return;
+      if(restrictFirmware){
+        if(firmware.value&&availableFirmwares.indexOf(firmware.value)===-1){firmware.value='';firmwareSource.textContent='Choose firmware with an available Load route';}
+        availableFirmwares.forEach(function(version){if(!firmwareButtons.querySelector('[data-host-firmware="'+version+'"]')){var item=doc.createElement('button');item.type='button';item.setAttribute('data-host-firmware',version);item.setAttribute('translate','no');item.textContent=version;firmwareButtons.appendChild(item);}});
+        each(firmwareButtons.querySelectorAll('[data-host-firmware]'),function(button){var unavailable=availableFirmwares.indexOf(button.getAttribute('data-host-firmware'))===-1;button.hidden=unavailable;button.disabled=unavailable;});
+      }
       if (/^\d{1,2}\.\d{2}$/.test(firmware.value) && !firmwareButtons.querySelector('[data-host-firmware="' + firmware.value + '"]')) {
         var button = doc.createElement('button'); button.type = 'button'; button.setAttribute('data-host-firmware',firmware.value); button.setAttribute('translate','no'); button.textContent = firmware.value; firmwareButtons.appendChild(button);
       }
       each(firmwareButtons.querySelectorAll('[data-host-firmware]'),function (button) { button.setAttribute('aria-pressed',button.getAttribute('data-host-firmware') === firmware.value ? 'true' : 'false'); });
       if (firmwareStatus) {
-        firmwareStatus.textContent = detection.platform === platform && detection.firmware === firmware.value ? 'Browser firmware: ' + detection.firmware : firmware.value ? firmwareSource.textContent + ' · ' + firmware.value : 'Browser firmware: not detected';
+        firmwareStatus.textContent = restrictFirmware&&detection.platform===platform&&detection.firmware&&availableFirmwares.indexOf(detection.firmware)===-1 ? 'No Load route for browser firmware '+detection.firmware : detection.platform === platform && detection.firmware === firmware.value ? 'Browser firmware: ' + detection.firmware : firmware.value ? firmwareSource.textContent + ' · ' + firmware.value : restrictFirmware?'Choose firmware with an available Load route':'Browser firmware: not detected';
         refresh(firmwareStatus);
       }
     }
@@ -384,7 +395,7 @@
       if (category!=='mods') {
         renderedGroups=groupActions(visible);
         count.textContent=String(renderedGroups.length);
-        return windowed(renderedGroups).map(function(group){var first=group.actions[0];if(category==='loaders'&&first.browserHost)return catalogTile({id:first.id,label:'Load',image:'',detail:group.label,attribute:'data-launch',disabled:detection.platform!==platform||!firmware.value||!firmwareMatches(first,firmware.value)});return catalogTile({id:group.id,label:group.label,image:category==='loaders'?'':catalogUI.representativeImage(group.actions),detail:[first.format,first.version||first.menuVersion||''].filter(Boolean).join(' · '),attribute:'data-choose-group'});}).join('');
+        return windowed(renderedGroups).map(function(group){var first=group.actions[0];if(category==='loaders'&&first.browserHost)return catalogTile({id:first.id,label:'Load',image:'',detail:group.label+(platform==='ps5'&&detection.platform!==platform?' · Open on PS5':''),attribute:'data-launch',disabled:detection.platform!==platform||!firmware.value||!firmwareMatches(first,firmware.value)||Boolean(platform==='ps5'&&detection.firmware&&detection.firmware!==firmware.value)});return catalogTile({id:group.id,label:group.label,image:category==='loaders'?'':catalogUI.representativeImage(group.actions),detail:[first.format,first.version||first.menuVersion||''].filter(Boolean).join(' · '),attribute:'data-choose-group'});}).join('');
       }
       var groups=catalogUI.gameGroups(visible),path='<nav class="host-catalog-path" aria-label="Game mods">'+(gameScope?'<a href="/hosts/'+platform+'/?view=mods">Game mods</a>':'<button type="button" data-catalog-back="games">Game mods</button>')+(selected?'<span aria-hidden="true">/</span><button type="button" data-catalog-back="updates" translate="no">'+escape(selected.label)+'</button>':'')+(selected&&catalogUpdate?'<span aria-hidden="true">/</span><strong translate="no">'+escape(catalogUpdate==='unspecified'?'Not provided':catalogUpdate)+'</strong>':'')+'</nav>';
       if (!selected) {
@@ -561,7 +572,7 @@
       if (action.category === 'mods' && !loadCapability(action).available) { tell(loadCapability(action).reason,true); return; }
       if (loadCapability(action).kind === 'browser' && detection.platform !== platform) { tell(loadCapability(action).reason,true); return; }
       var url; try { url = launchURL(action); } catch (error) { tell(error.message, true); return; }
-      if (url && action.browserHost) { if(action.platform==='ps5'&&action.runtimeId==='ps5-umtx'){if(detection.firmware!==firmware.value){tell('Choose the firmware detected on this PS5.',true);return;}try{win.sessionStorage.setItem('wwb.ps5.load.request.v1',JSON.stringify({firmware:firmware.value,createdAt:Date.now()}));}catch(e){tell('Session storage is unavailable. Enable it to load.',true);return;}} tell('Loading ' + action.label + ' on ' + platform.toUpperCase() + '…'); win.location.href=url; }
+      if (url && action.browserHost) { if(action.platform==='ps5'&&detection.firmware!==firmware.value){tell('Choose the firmware detected on this PS5.',true);return;} if(action.platform==='ps5'&&action.runtimeId==='ps5-umtx'){try{win.sessionStorage.setItem('wwb.ps5.load.request.v1',JSON.stringify({firmware:firmware.value,createdAt:Date.now()}));}catch(e){tell('Session storage is unavailable. Enable it to load.',true);return;}} tell('Loading ' + action.label + ' on ' + platform.toUpperCase() + '…'); win.location.href=url; }
       else if (url) { win.open(url, '_blank', 'noopener'); tell('Opening ' + action.label + '. Follow the loader status on that page.'); }
       else service('files');
     }
@@ -613,6 +624,7 @@
     if (firmwareButtons) firmwareButtons.addEventListener('click', function (event) {
       var button=event.target; while(button && button!==firmwareButtons && !button.hasAttribute('data-host-firmware'))button=button.parentNode;
       if(!button || button===firmwareButtons)return;
+      if(restrictFirmware&&availableFirmwares.indexOf(button.getAttribute('data-host-firmware'))===-1)return;
       firmware.value=button.getAttribute('data-host-firmware'); firmwareSource.textContent='Firmware selection: manual'; syncFirmwareButtons(); remember(); render(); refresh(firmwareSource);
     });
     if (search) search.addEventListener('input', function(){if(!consoleBrowser){render();return;}if(searchTimer)(win.clearTimeout||clearTimeout)(searchTimer);searchTimer=(win.setTimeout||setTimeout)(function(){searchTimer=null;render();},120);}); if (game) game.addEventListener('change', render); if (legacy) legacy.addEventListener('change', render);
@@ -695,5 +707,5 @@
     if (doc.querySelector('meta[name="whatwhatboy-local-sender"]')) bridgeURL.value = win.location.origin;
     detectConsole(false);
   }
-  return {firmwareNumber: firmwareNumber, firmwareMatches: firmwareMatches, firmwareLabel: firmwareLabel, requiresFirmware: requiresFirmware, consoleDownloadURL: consoleDownloadURL, targetAddress:targetAddress, managerURL:managerURL,workspaceURL:workspaceURL, actionImage:actionImage, menuFamily:menuFamily, groupActions:groupActions, variantLabel:variantLabel, imageCaption:imageCaption,scopeActions:scopeActions, loadCapability:loadCapability,bridgeFileReady:bridgeFileReady,payloadFileFacts:payloadFileFacts,choosePayloadFile:choosePayloadFile,downloadPlan:downloadPlan,connectionState:connectionState,browserFirmware: browserFirmware, detectBrowser: detectBrowser, compareGameVersions: compareGameVersions, filterActions: filterActions, safeURL: safeURL, install: install};
+  return {availableBrowserFirmwares:availableBrowserFirmwares,firmwareNumber: firmwareNumber, firmwareMatches: firmwareMatches, firmwareLabel: firmwareLabel, requiresFirmware: requiresFirmware, consoleDownloadURL: consoleDownloadURL, targetAddress:targetAddress, managerURL:managerURL,workspaceURL:workspaceURL, actionImage:actionImage, menuFamily:menuFamily, groupActions:groupActions, variantLabel:variantLabel, imageCaption:imageCaption,scopeActions:scopeActions, loadCapability:loadCapability,bridgeFileReady:bridgeFileReady,payloadFileFacts:payloadFileFacts,choosePayloadFile:choosePayloadFile,downloadPlan:downloadPlan,connectionState:connectionState,browserFirmware: browserFirmware, detectBrowser: detectBrowser, compareGameVersions: compareGameVersions, filterActions: filterActions, safeURL: safeURL, install: install};
 }));
