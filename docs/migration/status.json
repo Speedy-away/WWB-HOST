@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-03T22:12:39.270Z",
+  "updatedAt": "2026-11-03T22:19:17.456Z",
   "repository": "Speedy-away/WWB-HOST",
   "site": "https://speedy-away.github.io/WWB-HOST/",
   "mainSite": "https://whatwhatboy.com/",
@@ -340,13 +340,29 @@
     "liveAuthoredPages": 24,
     "liveFragmentPairs": 62
   },
+  "sitewideConsolePerformance20261103": {
+    "status": "Local verification passed",
+    "report": "docs/migration/sitewide-console-performance.json",
+    "tests": 219,
+    "runtimeDocumentsOptimized": 213,
+    "runtimeRoutingBytes": 213195,
+    "fullRoutingBytes": 1018207,
+    "exactAliasesVerified": 6395,
+    "cataloguePages": 13,
+    "sharedCatalogueFiles": 4,
+    "unchangedCatalogueRecords": 1028,
+    "limits": [
+      "Physical PS4/PS5 performance not measured",
+      "Browser UI automation unavailable in Work settings; no native console files executed"
+    ]
+  },
   "ps5RemainingOriginalHosts": {
     "updatedAt": "2026-11-03T22:20:45.175Z",
     "status": "Validated; publishing pending",
     "report": "docs/qa/ps5-original-hosts.json",
     "firmwareChoices": 61,
     "selectionOnly": true,
-    "testsPassed": 44,
+    "testsPassed": 49,
     "hardwareTested": false,
     "originalHostControl": "UMTX2 retains its own Start control; Relapse starts automatically."
   }

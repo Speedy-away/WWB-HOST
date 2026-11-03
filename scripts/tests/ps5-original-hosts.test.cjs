@@ -24,3 +24,5 @@ test('a manually selected firmware cannot launch a different firmware chain on t
 test('only the reviewed original IDs and exact HTTPS targets enter the active browser catalogue',()=>{
  const {bind}=require('../host-first-party-navigation.cjs');for(const a of [{id:'ps5-umtx2',platform:'ps5',launchURL:'https://foreign.example/',browserHost:true},{id:'unknown',platform:'ps5',launchURL:'https://umtx2.pages.dev/',browserHost:true}])assert.equal(bind(a),null);
 });
+
+test('shared production catalogues retain supported-only choices and the13.60 Load route',()=>{const actions=hostActions('ps5'),a=app('13.60',{sharedCatalogue:{key:'original-hosts',actions}});assert.ok(a.ids['host-action-grid'].querySelector('[data-launch="ps5-relapse"]'));assert.equal(a.ids['host-firmware-buttons'].querySelector('[data-host-firmware="6.00"]'),null);assert.equal(a.sends.length,0);assert.equal(a.opened.length,0);});

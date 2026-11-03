@@ -169,14 +169,16 @@
   "hardwareTested": false,
   "upstreamControl": "UMTX2 retains its original start control. No unsupported auto-start URL or cross-origin storage injection is used.",
   "verification": {
-    "testsPassed": 44,
-    "artifactBytes": 844856586,
+    "testsPassed": 49,
+    "artifactBytes": 842827985,
     "publicLinkIssues": 0,
     "cachedResourcesRetained": 1491,
     "sourceScriptsUnchangedByPublisher": 849,
     "ps5ModEntriesPreserved": 13,
     "originalRuntimeAndDownloadBytesChanged": 0,
     "payloadsExecuted": false,
-    "hardwareTested": false
+    "hardwareTested": false,
+    "sharedCatalogueFiles": 4,
+    "runtimeDocumentsOptimized": 213
   }
 }
