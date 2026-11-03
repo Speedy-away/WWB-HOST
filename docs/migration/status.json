@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-03T22:19:17.456Z",
+  "updatedAt": "2026-11-03T22:28:43.357Z",
   "repository": "Speedy-away/WWB-HOST",
   "site": "https://speedy-away.github.io/WWB-HOST/",
   "mainSite": "https://whatwhatboy.com/",
@@ -341,12 +341,12 @@
     "liveFragmentPairs": 62
   },
   "sitewideConsolePerformance20261103": {
-    "status": "Local verification passed",
+    "status": "Published and live verified",
     "report": "docs/migration/sitewide-console-performance.json",
-    "tests": 219,
+    "tests": 227,
     "runtimeDocumentsOptimized": 213,
-    "runtimeRoutingBytes": 213195,
-    "fullRoutingBytes": 1018207,
+    "runtimeRoutingBytes": 222159,
+    "fullRoutingBytes": 1027171,
     "exactAliasesVerified": 6395,
     "cataloguePages": 13,
     "sharedCatalogueFiles": 4,
@@ -354,7 +354,13 @@
     "limits": [
       "Physical PS4/PS5 performance not measured",
       "Browser UI automation unavailable in Work settings; no native console files executed"
-    ]
+    ],
+    "performanceCommit": "4fa06f41d0de8e9f8e2921f781cf8b9b71916ea5",
+    "verifiedMergedCommit": "0488479b84f9ca3ffe1c12c0a9fc44a23d7e67e4",
+    "run": 41730210213,
+    "workflow": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41730210213",
+    "livePages": 1104,
+    "liveSharedCatalogueFiles": 4
   },
   "ps5RemainingOriginalHosts": {
     "updatedAt": "2026-11-03T22:20:45.175Z",

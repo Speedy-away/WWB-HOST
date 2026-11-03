@@ -1,13 +1,15 @@
 {
   "checkedAt": "2026-11-03T22:19:17.456Z",
-  "status": "Local verification passed",
+  "status": "Published and live verified",
   "tests": {
-    "passed": 219,
-    "failed": 0
+    "passed": 227,
+    "failed": 0,
+    "combinedRevision": "0488479b84f9ca3ffe1c12c0a9fc44a23d7e67e4",
+    "performanceTestsBeforeMerge": 219
   },
   "verification": {
     "status": "passed",
-    "bytes": 842731943,
+    "bytes": 842827985,
     "pagesLinks": 2604,
     "nativeScriptsUnchanged": 849,
     "cachedResourcesRetained": 1491,
@@ -16,8 +18,8 @@
     "compactAliasesVerified": 6395,
     "sharedCatalogueFiles": 4,
     "routingBytes": {
-      "full": 1018207,
-      "runtime": 213195
+      "full": 1027171,
+      "runtime": 222159
     },
     "issues": 0
   },
@@ -116,7 +118,8 @@
       }
     ],
     "records": 1028,
-    "identical": true
+    "identical": true,
+    "comparedAtCommit": "4fa06f41d0de8e9f8e2921f781cf8b9b71916ea5"
   },
   "changes": [
     "Compact exact routing membership for all 213 native documents; original native scripts remain untouched",
@@ -133,5 +136,37 @@
   "limits": [
     "Physical PS4/PS5 performance not measured",
     "Browser UI automation unavailable in Work settings; no native console files executed"
-  ]
+  ],
+  "performanceCommit": "4fa06f41d0de8e9f8e2921f781cf8b9b71916ea5",
+  "liveVerification": {
+    "status": "passed",
+    "checkedAt": "2026-11-03T22:28:19.615Z",
+    "revision": "0488479b84f9ca3ffe1c12c0a9fc44a23d7e67e4",
+    "run": 41730210213,
+    "workflow": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41730210213",
+    "livePages": 1104,
+    "sharedCatalogueFiles": 4,
+    "aliasesVerified": 6395,
+    "pagesBuild": {
+      "revision": "0488479b84f9ca3ffe1c12c0a9fc44a23d7e67e4",
+      "base": "/WWB-HOST",
+      "origin": "https://speedy-away.github.io",
+      "bytes": 842827985,
+      "budget": 922746880,
+      "files": 5718,
+      "offloadedFiles": 274,
+      "nativeScriptsUnchanged": 849,
+      "cacheManifestAliases": 7,
+      "historicalLandings": 804,
+      "activeKaro": "hosts/runtime/karo-743646c9df9a-e3c0caf3db54/",
+      "routingBytes": {
+        "full": 1027171,
+        "runtime": 222159
+      },
+      "sharedCatalogueFiles": 4
+    },
+    "limits": [
+      "Static HTTP and authored adapter verification only; no browser or native console execution"
+    ]
+  }
 }
