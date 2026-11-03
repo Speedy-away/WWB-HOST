@@ -309,12 +309,15 @@
   },
   "ps5BrowserLoad": {
     "updatedAt": "2026-11-03T22:01:49.055Z",
-    "status": "Validated; publishing pending",
+    "status": "Published and live verified",
     "report": "docs/qa/ps5-browser-load.json",
     "entry": "/hosts/runtime/ps5-umtx/web/index.html",
     "testsPassed": 31,
     "hardwareTested": false,
-    "concurrentIntegration": "Unfinished compact/local-launcher work remains in the working folder. When integrating that pipeline, retain direct browserHost Load and the ps5-umtx one-use request gate; a WebKit-only entry must not be represented as an established complete jailbreak."
+    "concurrentIntegration": "Unfinished compact/local-launcher work remains in the working folder. When integrating that pipeline, retain direct browserHost Load and the ps5-umtx one-use request gate; a WebKit-only entry must not be represented as an established complete jailbreak.",
+    "checkedAt": "2026-11-03T22:08:33.343Z",
+    "revision": "ec57a07f80677551739f0e36d90c1a67636c0924",
+    "deployment": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41727111581"
   },
   "remainingConsolePerformance20261103": {
     "status": "Local checks passed; publication verification pending",
