@@ -19,7 +19,7 @@
       "sha256": "c623f4b074e5de08ae70c9e3f21ee0c56c8f198b4d9156c0ac6d5b4f32b2c75e",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/505/goldhen_2.1_505.bin",
-      "instructionsURL": "/hosts/ps4/exploit/karo-505/",
+      "instructionsURL": "/hosts/karo/?entry=karo-505#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 2.1 BIN for PS4 5.05.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -42,7 +42,7 @@
       "sha256": "19cabf51f31bd3636c3c2855086e31280fa8b5a819722165796347c469613786",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/505/goldhen_2.1.1_505.bin",
-      "instructionsURL": "/hosts/ps4/exploit/karo-505/",
+      "instructionsURL": "/hosts/karo/?entry=karo-505#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 2.1.1 BIN for PS4 5.05.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -65,7 +65,7 @@
       "sha256": "4f0c28e4fb44bc83d71951177c0608717e77920706f194bf4cfa85ac0af1948d",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/505/goldhen_2.2_505.bin",
-      "instructionsURL": "/hosts/ps4/exploit/karo-505/",
+      "instructionsURL": "/hosts/karo/?entry=karo-505#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 2.2 BIN for PS4 5.05.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -88,7 +88,7 @@
       "sha256": "a6fef74429bf2cc6ceab33933fad3edc01b280a4e058992b9657b335498a07bd",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/505/goldhen_2.2.1_505.bin",
-      "instructionsURL": "/hosts/ps4/exploit/karo-505/",
+      "instructionsURL": "/hosts/karo/?entry=karo-505#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 2.2.1 BIN for PS4 5.05.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -111,7 +111,7 @@
       "sha256": "07d5a3e25b4a3d30e58732d35213c20eea856d44df18409add7a7b0d5ba45d24",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/505/goldhen_2.2.2_505.bin",
-      "instructionsURL": "/hosts/ps4/exploit/karo-505/",
+      "instructionsURL": "/hosts/karo/?entry=karo-505#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 2.2.2 BIN for PS4 5.05.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -134,7 +134,7 @@
       "sha256": "04be8dcf69884894deef8ed3c98f0bb63de206202e00154e60284306a78656eb",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/505/goldhen_2.2.3_505.bin",
-      "instructionsURL": "/hosts/ps4/exploit/karo-505/",
+      "instructionsURL": "/hosts/karo/?entry=karo-505#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 2.2.3 BIN for PS4 5.05.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -157,7 +157,7 @@
       "sha256": "528c2247e729c891d99ff17d7ecb2bdf8f376e731e572a50082c8e51bf683739",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/505/goldhen_2.2.4_505.bin",
-      "instructionsURL": "/hosts/ps4/exploit/karo-505/",
+      "instructionsURL": "/hosts/karo/?entry=karo-505#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 2.2.4 BIN for PS4 5.05.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -180,7 +180,7 @@
       "sha256": "a58e3633c6992b0b392a572679ba56d2a5344d03ad715e0cf30df3341f17e6be",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/505/goldhen_2.3_505.bin",
-      "instructionsURL": "/hosts/ps4/exploit/karo-505/",
+      "instructionsURL": "/hosts/karo/?entry=karo-505#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 2.3 BIN for PS4 5.05.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -203,7 +203,7 @@
       "sha256": "dad90b0deded0f68bf792c2c398460e900013d198ef1a2cf01c0e1d9a054c734",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/505/goldhen_212_505.bin",
-      "instructionsURL": "/hosts/ps4/exploit/karo-505/",
+      "instructionsURL": "/hosts/karo/?entry=karo-505#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 212 BIN for PS4 5.05.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -226,7 +226,7 @@
       "sha256": "92021d8ff4796182e6e529e29796235e218c6364210abad80582bc75919c0fd2",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/672L/goldhen_2.1_672.bin",
-      "instructionsURL": "/hosts/ps4/exploit/karo-672l/",
+      "instructionsURL": "/hosts/karo/?entry=karo-672l#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 2.1 BIN for PS4 6.72.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -249,7 +249,7 @@
       "sha256": "4ddd0f9c009e801ed7778ce9b69e00677faec46fde0ba2caec1e83f9a2f9e802",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/672L/goldhen_2.1.1_672.bin",
-      "instructionsURL": "/hosts/ps4/exploit/karo-672l/",
+      "instructionsURL": "/hosts/karo/?entry=karo-672l#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 2.1.1 BIN for PS4 6.72.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -272,7 +272,7 @@
       "sha256": "10242035e9fea53e0d52ffb79656fb760d8d82482fd997f7449b89d023ca55d3",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/672L/goldhen_2.2_672.bin",
-      "instructionsURL": "/hosts/ps4/exploit/karo-672l/",
+      "instructionsURL": "/hosts/karo/?entry=karo-672l#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 2.2 BIN for PS4 6.72.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -295,7 +295,7 @@
       "sha256": "6de99b7336d1d5a325f801856e04a7dda47da66c2a57860257d1bbdc52f8c936",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/672L/goldhen_2.2.1_672.bin",
-      "instructionsURL": "/hosts/ps4/exploit/karo-672l/",
+      "instructionsURL": "/hosts/karo/?entry=karo-672l#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 2.2.1 BIN for PS4 6.72.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -318,7 +318,7 @@
       "sha256": "76c3938ce754e558b6b0dcfa4478237e27ba4082985335666fff8c494f1c9d02",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/672L/goldhen_2.2.2_672.bin",
-      "instructionsURL": "/hosts/ps4/exploit/karo-672l/",
+      "instructionsURL": "/hosts/karo/?entry=karo-672l#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 2.2.2 BIN for PS4 6.72.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -341,7 +341,7 @@
       "sha256": "01e5a0d7e61f34c2f22faf7e432f2c0ffbacb215f743e2ade17e085e30c5deae",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/672L/goldhen_2.2.3_672.bin",
-      "instructionsURL": "/hosts/ps4/exploit/karo-672l/",
+      "instructionsURL": "/hosts/karo/?entry=karo-672l#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 2.2.3 BIN for PS4 6.72.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -364,7 +364,7 @@
       "sha256": "aa6e138c4211db4dee74473331a7103f5c71d056e38e4cf5ec12f0e5f63f21ac",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/672L/goldhen_2.2.4_672.bin",
-      "instructionsURL": "/hosts/ps4/exploit/karo-672l/",
+      "instructionsURL": "/hosts/karo/?entry=karo-672l#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 2.2.4 BIN for PS4 6.72.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -387,7 +387,7 @@
       "sha256": "75218e080d6a46c3778ef1e4338d453e8c2ce8ff1bc368818943bd21a1d5e681",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/672L/goldhen_2.3_672.bin",
-      "instructionsURL": "/hosts/ps4/exploit/karo-672l/",
+      "instructionsURL": "/hosts/karo/?entry=karo-672l#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 2.3 BIN for PS4 6.72.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -410,7 +410,7 @@
       "sha256": "9f5bdfb3db6d93814ede54cb02824cc840fa58e9c1ecfb5cfe662673e4ff20dc",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/672L/goldhen_212_672.bin",
-      "instructionsURL": "/hosts/ps4/exploit/karo-672l/",
+      "instructionsURL": "/hosts/karo/?entry=karo-672l#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 212 BIN for PS4 6.72.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -433,7 +433,7 @@
       "sha256": "2b8e1b21e74c3a026f495aca43c778d5a663bc8379634be8b609c0f9c3ec2e97",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/702/goldhen_2.2.2_702.bin",
-      "instructionsURL": "/hosts/ps4/exploit/karo-702/",
+      "instructionsURL": "/hosts/karo/?entry=karo-702#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 2.2.2 BIN for PS4 7.02.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -456,7 +456,7 @@
       "sha256": "a38ec39705fa9536a3e0a2031afdd10ed5a3680c9f7695935ee055c39f98d6ca",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/702/goldhen_2.3_702.bin",
-      "instructionsURL": "/hosts/ps4/exploit/karo-702/",
+      "instructionsURL": "/hosts/karo/?entry=karo-702#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 2.3 BIN for PS4 7.02.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -479,7 +479,7 @@
       "sha256": "32c378f4be2e691f4fd6476c57b8c34bc469c6fcfba380e9deaa0f97d6658942",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/755/goldhen_2.3_755.bin",
-      "instructionsURL": "/hosts/ps4/exploit/karo-755/",
+      "instructionsURL": "/hosts/karo/?entry=karo-755#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 2.3 BIN for PS4 7.55.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -502,7 +502,7 @@
       "sha256": "a791ddff6ccb5e8755682e3debdd62c191b9394efdd8c3b138575365c738e917",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/900C/goldhen_2.2.2_900.bin",
-      "instructionsURL": "/hosts/ps4/exploit/karo-900c/",
+      "instructionsURL": "/hosts/karo/?entry=karo-900c#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 2.2.2 BIN for PS4 9.00.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -525,7 +525,7 @@
       "sha256": "cb135f5d8ae91b8d0a6e26f5e38642fae080e3067f08dd19ee4ce23b21c6c8e8",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/900C/goldhen_2.2.3_900.bin",
-      "instructionsURL": "/hosts/ps4/exploit/karo-900c/",
+      "instructionsURL": "/hosts/karo/?entry=karo-900c#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 2.2.3 BIN for PS4 9.00.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -548,7 +548,7 @@
       "sha256": "8371a836b634a09887ebc0c5714e567e7a1ec750edc203f9510352b2466560b9",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/900C/goldhen_2.2.4_900.bin",
-      "instructionsURL": "/hosts/ps4/exploit/karo-900c/",
+      "instructionsURL": "/hosts/karo/?entry=karo-900c#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 2.2.4 BIN for PS4 9.00.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -571,7 +571,7 @@
       "sha256": "c9b8f33d28258af9e80465da591868dada25a1454f30f63882668d5e0dcff9c2",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/900C/goldhen_2.3_900.bin",
-      "instructionsURL": "/hosts/ps4/exploit/karo-900c/",
+      "instructionsURL": "/hosts/karo/?entry=karo-900c#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 2.3 BIN for PS4 9.00.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -594,7 +594,7 @@
       "sha256": "c1b6b5cf2e2a54f0d5328d16f096f33616eabf1e1cdfbdb086a06b8092ed1fed",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/900C/goldhen_212_900.bin",
-      "instructionsURL": "/hosts/ps4/exploit/karo-900c/",
+      "instructionsURL": "/hosts/karo/?entry=karo-900c#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 212 BIN for PS4 9.00.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -617,7 +617,7 @@
       "sha256": "f2c1efc52e99b34dfe31c7b46943ed6f965403ae67fa194fdbf3fe5df828a852",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/900N/goldhen_2.1_900.bin",
-      "instructionsURL": "/hosts/ps4/exploit/karo-900n/",
+      "instructionsURL": "/hosts/karo/?entry=karo-900n#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 2.1 BIN for PS4 9.00.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -640,7 +640,7 @@
       "sha256": "61583ffb9dc2e2a2f4ba0bc6c2e2f0e6ec8c8d5c439abec518d3211737ede36a",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/900N/goldhen_2.1.1_900.bin",
-      "instructionsURL": "/hosts/ps4/exploit/karo-900n/",
+      "instructionsURL": "/hosts/karo/?entry=karo-900n#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 2.1.1 BIN for PS4 9.00.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -663,7 +663,7 @@
       "sha256": "e9bab80d735449a28a4b7a6bf94198bb4858e366542d495ba9f2eb63167342a8",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/900N/goldhen_2.2_900.bin",
-      "instructionsURL": "/hosts/ps4/exploit/karo-900n/",
+      "instructionsURL": "/hosts/karo/?entry=karo-900n#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 2.2 BIN for PS4 9.00.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -686,7 +686,7 @@
       "sha256": "574d4351470c4ebdef9d40809c9ca3e03f0a70a5f057b330afc037436c797c56",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/900N/goldhen_2.2.1_900.bin",
-      "instructionsURL": "/hosts/ps4/exploit/karo-900n/",
+      "instructionsURL": "/hosts/karo/?entry=karo-900n#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 2.2.1 BIN for PS4 9.00.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -709,7 +709,7 @@
       "sha256": "4b3d3ff8b6c938d329b227f9e3dae03a2dcb40b5d7fad60c4fb279c464099599",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/755/goldhen_2.2.2_750.bin.bz2",
-      "instructionsURL": "/hosts/ps4/exploit/karo-755/",
+      "instructionsURL": "/hosts/karo/?entry=karo-755#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 2.2.2 BIN for PS4 7.50.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -732,7 +732,7 @@
       "sha256": "0887ae364511f860b155cce94b1e60fd7e265713bb0490230c9ed0be9a31a3af",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/755/goldhen_2.2.2_751.bin.bz2",
-      "instructionsURL": "/hosts/ps4/exploit/karo-755/",
+      "instructionsURL": "/hosts/karo/?entry=karo-755#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 2.2.2 BIN for PS4 7.51.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -755,7 +755,7 @@
       "sha256": "1087f55d20aa20a758870c2ff537ddf397e852e7544a5680835686d883d66324",
       "image": "/assets/images/console-software/goldhen.png",
       "source": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/755/goldhen_2.2.2_755.bin.bz2",
-      "instructionsURL": "/hosts/ps4/exploit/karo-755/",
+      "instructionsURL": "/hosts/karo/?entry=karo-755#loader",
       "requirements": [
         "Preserved source-labelled GoldHEN 2.2.2 BIN for PS4 7.55.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
@@ -1446,5 +1446,6 @@
   ],
   "compatibilityMethod": "Filename version/firmware labels intersected with exact original entry firmware metadata; every selected ready BIN rehashed in both current runtime and F archive. No compatibility inferred from a family label.",
   "newFilesDownloaded": 0,
-  "nativeExecution": false
+  "nativeExecution": false,
+  "uiOrganization": "All older GoldHEN files retain their original hashes and compatibility. Group under one GoldHEN card, then select firmware and version. Instructions lead to the original reviewed host selector; no new generic BIN Load ABI is asserted."
 }

@@ -1,41 +1,41 @@
 {
   "status": "validated before publication",
-  "updatedAt": "2026-11-03T23:18:32.830Z",
+  "updatedAt": "2026-11-03T23:19:52.640Z",
   "tests": {
-    "passed": 103,
+    "passed": 112,
     "failed": 0
   },
   "artifact": {
     "revision": "main",
     "base": "/WWB-HOST",
     "origin": "https://speedy-away.github.io",
-    "bytes": 859002270,
+    "bytes": 858508361,
     "budget": 922746880,
-    "files": 6178,
+    "files": 6176,
     "offloadedFiles": 282,
     "nativeScriptsUnchanged": 898,
     "cacheManifestAliases": 7,
     "historicalLandings": 804,
     "activeKaro": "hosts/runtime/karo-743646c9df9a-e3c0caf3db54/",
     "routingBytes": {
-      "full": 1081669,
-      "runtime": 238872
+      "full": 1081275,
+      "runtime": 238734
     },
-    "sharedCatalogueFiles": 5
+    "sharedCatalogueFiles": 3
   },
   "verification": {
     "status": "passed",
-    "bytes": 859002270,
+    "bytes": 858508361,
     "pagesLinks": 3815,
     "nativeScriptsUnchanged": 898,
     "cachedResourcesRetained": 1536,
     "runtimeDocumentsOptimized": 218,
     "offloadedFiles": 282,
-    "compactAliasesVerified": 6907,
-    "sharedCatalogueFiles": 5,
+    "compactAliasesVerified": 6905,
+    "sharedCatalogueFiles": 3,
     "routingBytes": {
-      "full": 1081669,
-      "runtime": 238872
+      "full": 1081275,
+      "runtime": 238734
     },
     "issues": 0
   },
