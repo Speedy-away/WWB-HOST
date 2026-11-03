@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-03T22:08:15.272Z",
+  "updatedAt": "2026-11-03T22:12:39.270Z",
   "repository": "Speedy-away/WWB-HOST",
   "site": "https://speedy-away.github.io/WWB-HOST/",
   "mainSite": "https://whatwhatboy.com/",
@@ -320,7 +320,7 @@
     "deployment": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41727111581"
   },
   "remainingConsolePerformance20261103": {
-    "status": "Local checks passed; publication verification pending",
+    "status": "Published and live verified",
     "report": "docs/migration/remaining-console-performance.json",
     "tests": 215,
     "authoredPagesChecked": 24,
@@ -333,6 +333,11 @@
     "limits": [
       "Physical PS4/PS5 performance and native execution not tested",
       "Browser automation unavailable in current Work settings"
-    ]
+    ],
+    "commit": "c6687a91f49ee688d3d6f4a5df7d07600c88dcad",
+    "run": 41728129691,
+    "workflow": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41728129691",
+    "liveAuthoredPages": 24,
+    "liveFragmentPairs": 62
   }
 }

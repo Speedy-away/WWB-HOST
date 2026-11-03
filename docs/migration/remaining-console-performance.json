@@ -30,10 +30,10 @@
     "Trainer attach, file checksums, write verification and explicit confirmation"
   ],
   "pagesBuild": {
-    "revision": "main",
+    "revision": "c6687a91f49ee688d3d6f4a5df7d07600c88dcad",
     "base": "/WWB-HOST",
     "origin": "https://speedy-away.github.io",
-    "bytes": 844765632,
+    "bytes": 844840224,
     "budget": 922746880,
     "files": 5714,
     "offloadedFiles": 274,
@@ -152,5 +152,17 @@
       "path": "hosts/tools/ps4-trainer/index.html",
       "bytes": 5475
     }
-  ]
+  ],
+  "sourceCommit": "c6687a91f49ee688d3d6f4a5df7d07600c88dcad",
+  "liveVerification": {
+    "status": "passed",
+    "checkedAt": "2026-11-03T22:12:20.323Z",
+    "revision": "c6687a91f49ee688d3d6f4a5df7d07600c88dcad",
+    "run": 41728129691,
+    "url": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41728129691",
+    "authoredPages": 24,
+    "fragmentPairs": 62,
+    "preservedRows": 1446,
+    "olderDownloads": 165
+  }
 }
