@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-03T23:11:26.236Z",
+  "updatedAt": "2026-11-03T23:15:09.152Z",
   "repository": "Speedy-away/WWB-HOST",
   "site": "https://speedy-away.github.io/WWB-HOST/",
   "mainSite": "https://whatwhatboy.com/",
@@ -376,7 +376,7 @@
     "deployment": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41730210213"
   },
   "goldhenPopupAndSmoothRendering20261103": {
-    "status": "Local checks passed; publishing pending",
+    "status": "Published and live verified",
     "report": "docs/migration/goldhen-popup-smooth-rendering.json",
     "tests": 239,
     "goldhen": {
@@ -405,6 +405,11 @@
     "limits": [
       "DOM operations measured with inert fixtures; physical-console FPS and native execution were not tested",
       "Browser UI automation is unavailable in Work settings"
-    ]
+    ],
+    "commit": "ae4736fba1b39f6775ed5f0e2bf282243c13c9b2",
+    "run": 41737190646,
+    "workflow": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41737190646",
+    "livePages": 1104,
+    "liveGoldhenDownloadURLs": 34
   }
 }
