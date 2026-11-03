@@ -13,3 +13,5 @@ The repaired KARO assembly has 71 source-reviewed native entries, three verified
 Build: `node scripts/host-project-pages.cjs tmp/pages-preview` then `node scripts/verify-host-project-pages.cjs tmp/pages-preview`. Use a fresh output directory. GitHub Actions builds and deploys Pages on main. Push large snapshots with `node scripts/push-in-batches.cjs --push --batch-mib=512`. This preserves commits, all old files and resumable upload state.
 
 `docs/migration/source-preservation.json` records checksum readback of the migration. `docs/host-reviews/karo/` records original repair provenance. Original project attributions remain in their files.
+
+Pages serves seven original `.cache` manifests through byte-identical `.manifest` aliases with the required `text/cache-manifest` MIME type. Original files and ready ZIPs remain unchanged. When self-hosting those original ZIPs, configure `.cache` files as `text/cache-manifest`.
