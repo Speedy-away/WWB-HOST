@@ -1192,7 +1192,16 @@
     "Technical lineage": "技術的な系譜",
     "PS4 firmware selection": "PS4 · ファームウェア選択",
     "Browser firmware": "ブラウザーのファームウェア",
-    "Compatibility sources": "互換性の出典"
+    "Compatibility sources": "互換性の出典",
+    "Main site": "メインサイト",
+    "Console tools": "本体ツール",
+    "This browser": "このブラウザー",
+    "Console hosts": "本体ホスト",
+    "Site navigation": "サイトナビゲーション",
+    "Payload managers": "ペイロードマネージャー",
+    "Console file managers": "本体ファイルマネージャー",
+    "Desktop tools": "デスクトップツール",
+    "Game patches": "ゲームパッチ"
   };
 
   if (window.__scoobyI18n) window.__scoobyI18n.register("ja", t);

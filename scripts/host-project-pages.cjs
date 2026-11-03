@@ -7,7 +7,7 @@ function walk(dir){return fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.
 function cacheResources(root,names){const resources=new Set();for(const name of names.filter(p=>/^hosts\/runtime\/.+\.(?:manifest|appcache|cache)$/i.test(p))){if(!fs.existsSync(path.join(root,name)))continue;let section='CACHE';for(let line of fs.readFileSync(path.join(root,name),'utf8').split(/\r?\n/)){line=line.trim();if(!line||line.startsWith('#')||line==='CACHE MANIFEST')continue;if(/^[A-Z]+:$/.test(line)){section=line.slice(0,-1);continue;}if(section!=='CACHE')continue;try{const url=new URL(line,'https://host.invalid/'+name);if(url.origin==='https://host.invalid')resources.add(decodeURIComponent(url.pathname.slice(1)));}catch{}}}return resources;}
 function build(output,revision='main',root=ROOT){
  assert.ok(output&&!fs.existsSync(output),'Use a fresh build directory');assert.match(revision,/^(?:main|[a-f0-9]{40})$/);const karo=JSON.parse(fs.readFileSync(path.join(root,'docs/host-reviews/karo/build.json'))),activeKaro=karo.runtime.replace(/^\//,'').replace(/web\/$/,''),all=walk(root).map(f=>slash(path.relative(root,f))).filter(p=>!/^tmp\/|^scripts\/|^i18n-tools\//.test(p));
- const selected=all.filter(p=>!/^docs\/(?:migration|qa|screenshots|host-reviews\/.*(?:retained|full-tests|.*log))/i.test(p)&&!/^AGENTS\.md$|^README\.md$|^SYNC|^sync\./i.test(p)&&(!/^hosts\/runtime\/karo-/.test(p)||p.startsWith(activeKaro))&&!/^hosts\/runtime\/.*\/upstream\//.test(p));
+ const selected=all.filter(p=>!/^docs\/(?:host-goldhen-current-private-inventory|host-compact-download-inventory|host-game-patch-file-import)\.json$/i.test(p)&&!/^docs\/(?:migration|qa|screenshots|host-reviews\/.*(?:retained|full-tests|.*log))/i.test(p)&&!/^AGENTS\.md$|^README\.md$|^SYNC|^sync\./i.test(p)&&(!/^hosts\/runtime\/karo-/.test(p)||p.startsWith(activeKaro))&&!/^hosts\/runtime\/.*\/upstream\//.test(p));
  const excluded=new Set(all.filter(p=>!selected.includes(p))),mapping={};let files=selected.map(name=>({name,bytes:fs.statSync(path.join(root,name)).size}));let bytes=files.reduce((n,f)=>n+f.bytes,0);
  const senderManifest=path.join(root,'downloads/helpers/console-payload-sender/manifest.json');
  if(fs.existsSync(senderManifest))for(const sender of JSON.parse(fs.readFileSync(senderManifest,'utf8')).files)if(sender.publicDownloadURL){assert.ok(require('./sender-download-url.cjs').isAllowed(sender.publicDownloadURL),'Invalid sender download source');mapping[sender.url]=sender.publicDownloadURL;}
@@ -24,7 +24,7 @@ function build(output,revision='main',root=ROOT){
   // Repair migrated image origins and absent social preview images.
   if(name.endsWith('.html'))text=text.replace(/https:\/\/whatwhatboy\.com(\/assets\/images\/[^\s"'<>\\]*)/g,(_,p)=>{const local=p.split(/[?#]/)[0];const fallback='/assets/images/'+require('./style-host-pages.cjs').artwork(name)[0];return ORIGIN+BASE+(fs.existsSync(path.join(root,local))?p:fallback);});
   if(/^hosts\/(?!runtime\/).+\.html$/.test(name)&&fs.existsSync(path.join(root,'assets/host-pages.css')))text=require('./style-host-pages.cjs').themeHTML(text,name);
-  if(name.endsWith('.html'))text=text.replace(/(host-dashboard\.js|host-catalog-grid\.js|host-folders\.js|host-trainer\.js|i18n\.js)\?v=[0-9.]+/g,'$1?v=20261103p1');
+  if(name.endsWith('.html'))text=text.replace(/(host-dashboard\.js|host-catalog-grid\.js|host-folders\.js|host-trainer\.js|i18n\.js)\?v=[A-Za-z0-9.]+/g,'$1?v=20261103p3');
   if(name==='assets/host-dashboard.js')text=text.replaceAll('^\\/hosts\\/runtime\\/','^\\/(?:WWB-HOST\\/)?hosts\\/runtime\\/');
   if((name==='index.html'||/^hosts\/(?!runtime\/).+\.html$/.test(name))&&fs.existsSync(path.join(root,'assets/host-performance.js'))){
    text=text.replace(/<link\b[^>]*href=["'][^"']*(?:font-awesome|fonts\.googleapis\.com)[^"']*["'][^>]*>/gi,'');
@@ -33,12 +33,16 @@ function build(output,revision='main',root=ROOT){
    text=text.replace(/<head\b[^>]*>/i,m=>m+'<script src="/assets/host-performance.js?v=1"></script>');
    text=text.replace('</head>','<link rel="stylesheet" href="/assets/host-performance.css?v=2"></head>');
   }
+  if(name.endsWith('.html'))text=require('./host-compact-pages.cjs').apply(text,name,{root});
+  if(/^hosts\/(?!runtime\/).+\.html$/.test(name))text=text.replace('</head>','<link rel="stylesheet" href="/assets/host-compact.css?v=1"></head>');
+  if((name==='index.html'||/^hosts\/(?!runtime\/).+\.html$/.test(name))&&fs.existsSync(path.join(root,'assets/host-blue-theme.css')))text=text.replace('</head>','<link rel="stylesheet" href="/assets/host-blue-theme.css?v=1"></head>');
   // Prefix authored root-relative strings, including concatenated directory roots.
   text=text.replace(/https:\/\/whatwhatboy\.com\/(hosts\/[^\s"'<>\\]*)/g,(_,p)=>{const url=target(p);return /^https?:/.test(url)?url:ORIGIN+url;});
   text=text.replace(/(["'`=\s(])\/(hosts|assets|languages|downloads|console|docs)\/([^\s"'`<>)]*)/g,(whole,lead,dir,rest)=>{const p=dir+'/'+rest;if((!rest&&name.endsWith('.js'))||/^\$\{|\+/.test(rest))return lead+BASE+'/'+p;return lead+target(p);});
   text=text.replace(/((?:href|action)\s*=\s*["'])\/(["'])/g,'$1'+MAIN+'/$2');
   text=text.replace(/((?:href|src|action|poster)\s*=\s*["'])\/([^"']*)(["'])/gi,(whole,start,p,end)=>p.startsWith('WWB-HOST/')?whole:start+target(p)+end);
   if(name.endsWith('.html'))text=text.replace(/<!-- BEGIN SITE AD -->[\s\S]*?<!-- END SITE AD -->/g,'').replace(/<script\b[^>]*src=["'][^"']*site-ads\.js[^"']*["'][^>]*><\/script>/g,'');
+  if(name.endsWith('.html'))text=require('./host-ads.cjs').apply(name,text,{base:BASE});
   if(name.endsWith('.html'))text=text.replace(/<link\b[^>]*rel=["']canonical["'][^>]*>/i,'<link rel="canonical" href="'+ORIGIN+BASE+'/'+name.replace(/index\.html$/,'')+'">');
   return text;
  }
@@ -47,7 +51,11 @@ function build(output,revision='main',root=ROOT){
   const runtime=f.name.startsWith('hosts/runtime/'),immutable=f.name.startsWith('downloads/')||/^console\/ps[45]\/whatsite-ps[45]\.html$/.test(f.name);
   if(runtime&&/\.m?js$/i.test(f.name)){nativeFiles++;}
   else if(!immutable&&/\.(?:html|js|css|json|xml|md|txt)$/i.test(f.name)){let text=original.toString('utf8');if(!runtime)text=rewrite(text,f.name);
-   if(runtime&&f.name.endsWith('.html')){text=text.replace(/("original"\s*:\s*)("(?:\\.|[^"\\])*")/g,(whole,key,value)=>key+JSON.stringify(manifestHTML(JSON.parse(value),f.name)).replaceAll('<','\\u003c'));text=manifestHTML(text,f.name);const inject='<script src="'+BASE+'/host-project-map.js"></script><script src="'+BASE+'/assets/host-project-routing.js"></script>';text=/<head\b[^>]*>/i.test(text)?text.replace(/<head\b[^>]*>/i,h=>h+inject):inject+text;}
+   if(runtime&&f.name.endsWith('.html')){
+    // 'runtime landing presentation': execution files and original native modules stay unchanged.
+    text=require('./host-compact-pages.cjs').apply(text,f.name,{base:BASE,root});
+    if(/^hosts\/runtime\/ps4-(?:900|psfree-700-960)\/index\.html$/.test(f.name))text=text.replace(/<script>document\.getElementById\("runtime-start"\)\.onclick=[\s\S]*?<\/script>/,'').replace('<p>GamerHack · GoldHEN</p>','<p>Local PSFree browser bootstrap · BIN listener</p>').replace('>Advanced BIN listener<','>Local browser runtime<');
+    text=text.replace(/("original"\s*:\s*)("(?:\\.|[^"\\])*")/g,(whole,key,value)=>key+JSON.stringify(manifestHTML(JSON.parse(value),f.name)).replaceAll('<','\\u003c'));text=manifestHTML(text,f.name);const inject='<script src="'+BASE+'/host-project-map.js"></script><script src="'+BASE+'/assets/host-project-routing.js"></script>';text=/<head\b[^>]*>/i.test(text)?text.replace(/<head\b[^>]*>/i,h=>h+inject):inject+text;}
    data=Buffer.from(text);
   }fs.writeFileSync(destination,data);
  }

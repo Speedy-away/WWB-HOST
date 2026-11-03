@@ -1192,7 +1192,16 @@
     "Technical lineage": "الأصل التقني",
     "PS4 firmware selection": "PS4 · اختيار البرنامج الثابت",
     "Browser firmware": "إصدار المتصفح",
-    "Compatibility sources": "مصادر التوافق"
+    "Compatibility sources": "مصادر التوافق",
+    "Main site": "الموقع الرئيسي",
+    "Console tools": "أدوات الجهاز",
+    "This browser": "هذا المتصفح",
+    "Console hosts": "مضيفو الأجهزة",
+    "Site navigation": "التنقل في الموقع",
+    "Payload managers": "مديرو الحمولات",
+    "Console file managers": "مديرو ملفات الجهاز",
+    "Desktop tools": "أدوات الكمبيوتر",
+    "Game patches": "تصحيحات الألعاب"
   };
 
   if (window.__scoobyI18n) window.__scoobyI18n.register("ar", t);

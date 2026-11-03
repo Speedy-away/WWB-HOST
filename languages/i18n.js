@@ -328,6 +328,11 @@
   // ------------------------------------------------------- dynamic content ---
 
   function startObserver() {
+    if ((window.WWB_HOST_CONSOLE === true || window.WhatsiteConsoleLite && window.WhatsiteConsoleLite.enabled) && current === DEFAULT_LANG) {
+      if (observer) observer.disconnect();
+      observer = null;
+      return;
+    }
     if (observer || !window.MutationObserver) return;
     observer = new MutationObserver(function (records) {
       if (applying || current === DEFAULT_LANG) return;
@@ -456,6 +461,7 @@
     '.i18n-option[aria-selected="true"] .i18n-check{opacity:1}',
     // Left group so the selector sits beside the brand without breaking space-between.
     '.i18n-lead{display:flex;align-items:center;gap:14px;flex-shrink:0}',
+    '.wwb-host-home .topbar{flex-wrap:wrap}',
     // Fallback for pages with no navigation bar.
     '.i18n-floating{position:fixed;top:16px;left:16px;z-index:99999}',
     '.i18n-floating .i18n-toggle{background:rgba(12,12,14,.9);border-color:rgba(255,255,255,.18);',
@@ -651,7 +657,7 @@
   var CHECK = '<svg class="i18n-check" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
 
   // Ordered by preference; the selector lands in the first container that exists.
-  var MOUNTS = ['.nav-inner', '.navbar-inner', '.nav-container', 'nav.navbar',
+  var MOUNTS = ['.wwb-host-home nav.topbar', '.nav-inner', '.navbar-inner', '.nav-container', 'nav.navbar',
                 '.portal-header .header-inner', 'header.header', '.header-inner'];
   var BRANDS = '.sidebar-brand, .brand, .logo, .navbar-brand-text, .portal-logo, .navbar-brand, .brand-name';
 

@@ -1192,7 +1192,16 @@
     "Technical lineage": "Техничко порекло",
     "PS4 firmware selection": "PS4 · Избор фирмвера",
     "Browser firmware": "Фирмвер прегледача",
-    "Compatibility sources": "Извори компатибилности"
+    "Compatibility sources": "Извори компатибилности",
+    "Main site": "Главни сајт",
+    "Console tools": "Алатке за конзолу",
+    "This browser": "Овај прегледач",
+    "Console hosts": "Хостови конзоле",
+    "Site navigation": "Навигација сајта",
+    "Payload managers": "Управљачи payload-има",
+    "Console file managers": "Управљачи датотекама конзоле",
+    "Desktop tools": "Рачунарске алатке",
+    "Game patches": "Закрпе за игре"
   };
 
   if (window.__scoobyI18n) window.__scoobyI18n.register("sr", t);

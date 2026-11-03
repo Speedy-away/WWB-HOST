@@ -33,3 +33,11 @@ node_modules/
 /downloads/helpers/console-payload-sender/console-payload-sender-2.0.0-3860a0014162.zip
 /downloads/helpers/console-payload-sender/console-payload-sender-2.0.0-4d6a3263f2c7.zip
 /downloads/helpers/console-payload-sender/console-payload-sender-2.0.0-67197d90ab00.zip
+
+/docs/.console-expansion-private-inventory/
+
+/docs/host-goldhen-current-private-inventory.json
+
+/docs/host-compact-download-inventory.json
+
+/docs/host-game-patch-file-import.json

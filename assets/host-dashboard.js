@@ -187,7 +187,7 @@
     var words = String(query || '').toLowerCase().trim().split(/\s+/).filter(Boolean);
     return actions.filter(function (action) {
       var text = [action.label, action.menuFamily, action.game, action.gameVersion, action.menuVersion, action.version, action.format, (action.titleIds || []).join(' '), (action.tags || []).join(' '), (action.requirements || []).join(' ')].join(' ').toLowerCase();
-      return (showLegacy || !action.legacy) && (category === 'all' || action.category === category || (action.categories || []).indexOf(category) !== -1) && (!game || action.game === game) && firmwareMatches(action, firmware) && words.every(function (word) { return text.indexOf(word) !== -1; });
+      return (showLegacy || !action.legacy) && (category === 'all' || action.category === category || (action.categories || []).indexOf(category) !== -1) && (!game || action.game === game) && (action.localLauncher || firmwareMatches(action, firmware)) && words.every(function (word) { return text.indexOf(word) !== -1; });
     }).sort(function (a, b) { return a.game && b.game && a.game === b.game ? compareGameVersions(a, b) : 0; });
   }
   function safeURL(value, base) {
@@ -384,9 +384,9 @@
       if (category!=='mods') {
         renderedGroups=groupActions(visible);
         count.textContent=String(renderedGroups.length);
-        return windowed(renderedGroups).map(function(group){var first=group.actions[0];if(category==='loaders'&&first.browserHost)return catalogTile({id:first.id,label:'Load',image:'',detail:group.label,attribute:'data-launch',disabled:detection.platform!==platform||!firmware.value||!firmwareMatches(first,firmware.value)});return catalogTile({id:group.id,label:group.label,image:category==='loaders'?'':catalogUI.representativeImage(group.actions),detail:[first.format,first.version||first.menuVersion||''].filter(Boolean).join(' · '),attribute:'data-choose-group'});}).join('');
+        return windowed(renderedGroups).map(function(group){var first=group.actions[0];if(first.localLauncher)return '<a class="host-firmware-family" href="'+escape(navigationURL(first.launchURL))+'"><strong>'+escape(first.firmwareLabel||group.label)+'</strong><span>Choose HEN / Load</span></a>';if(category==='loaders'&&first.browserHost)return catalogTile({id:first.id,label:'Load',image:'',detail:group.label,attribute:'data-launch',disabled:detection.platform!==platform||!firmware.value||!firmwareMatches(first,firmware.value)});return catalogTile({id:group.id,label:group.label,image:category==='loaders'?'':catalogUI.representativeImage(group.actions),detail:[first.format,first.version||first.menuVersion||''].filter(Boolean).join(' · '),attribute:'data-choose-group'});}).join('');
       }
-      var groups=catalogUI.gameGroups(visible),path='<nav class="host-catalog-path" aria-label="Game mods">'+(gameScope?'<a href="/hosts/'+platform+'/?view=mods">Game mods</a>':'<button type="button" data-catalog-back="games">Game mods</button>')+(selected?'<span aria-hidden="true">/</span><button type="button" data-catalog-back="updates" translate="no">'+escape(selected.label)+'</button>':'')+(selected&&catalogUpdate?'<span aria-hidden="true">/</span><strong translate="no">'+escape(catalogUpdate==='unspecified'?'Not provided':catalogUpdate)+'</strong>':'')+'</nav>';
+      var groups=catalogUI.gameGroups(visible),path='<nav class="host-catalog-path" aria-label="Mods / Mod Menus">'+(gameScope?'<a href="/hosts/'+platform+'/?view=mods">Mods / Mod Menus</a>':'<button type="button" data-catalog-back="games">Mods / Mod Menus</button>')+(selected?'<span aria-hidden="true">/</span><button type="button" data-catalog-back="updates" translate="no">'+escape(selected.label)+'</button>':'')+(selected&&catalogUpdate?'<span aria-hidden="true">/</span><strong translate="no">'+escape(catalogUpdate==='unspecified'?'Not provided':catalogUpdate)+'</strong>':'')+'</nav>';
       if (!selected) {
         renderedGroups=[];count.textContent=String(groups.length);
         return path+windowed(groups).map(function(group){return catalogTile({id:group.key,label:group.label,image:group.image,detail:catalogUI.updates(group.actions).filter(function(v){return v!=='unspecified';}).join(' · '),attribute:'data-catalog-game'});}).join('');
@@ -458,7 +458,7 @@
         var updated = renderedGroups.filter(function (g) { return g.actions.some(function (a) { return a.id === selectedId; }); })[0];
         if (updated) { var focusedVersion=doc.activeElement&&doc.activeElement.getAttribute('data-version-id'); activeGroup = updated; renderVersionChoices(updated); renderVariant(); refresh(versionChoices); if(focusedVersion){var replacement=versionChoices.querySelector('[data-version-id="'+focusedVersion+'"]');if(replacement)replacement.focus();} } else closeVersions();
       }
-      doc.querySelector('#host-empty').hidden = catalogGrid ? Boolean(grid.querySelector('[data-catalog-game],[data-catalog-update],[data-choose-group],[data-launch]')) : visible.length !== 0 || category === 'mods' && gamesLanding;
+      doc.querySelector('#host-empty').hidden = catalogGrid ? Boolean(grid.querySelector('[data-catalog-game],[data-catalog-update],[data-choose-group],[data-launch],.host-firmware-family')) : visible.length !== 0 || category === 'mods' && gamesLanding;
       refresh(grid); refresh(count);
       }
       var managerLoad = doc.querySelector('#host-load-manager'); if (managerLoad) managerLoad.disabled = loading || !firmware.value;

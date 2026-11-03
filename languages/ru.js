@@ -1192,7 +1192,16 @@
     "Technical lineage": "Техническое происхождение",
     "PS4 firmware selection": "PS4 · Выбор прошивки",
     "Browser firmware": "Прошивка браузера",
-    "Compatibility sources": "Источники совместимости"
+    "Compatibility sources": "Источники совместимости",
+    "Main site": "Основной сайт",
+    "Console tools": "Инструменты консоли",
+    "This browser": "Этот браузер",
+    "Console hosts": "Хосты консолей",
+    "Site navigation": "Навигация сайта",
+    "Payload managers": "Менеджеры пейлоадов",
+    "Console file managers": "Файловые менеджеры консоли",
+    "Desktop tools": "Компьютерные инструменты",
+    "Game patches": "Патчи игр"
   };
 
   if (window.__scoobyI18n) window.__scoobyI18n.register("ru", t);

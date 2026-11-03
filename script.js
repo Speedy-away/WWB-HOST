@@ -20,15 +20,17 @@ document.addEventListener('DOMContentLoaded', () => {
     initResponsiveShell();
     initResponsiveTables();
     initSidebar();
-    initSearch();
+    if (!(window.WWB_HOST_CONSOLE === true || window.WhatsiteConsoleLite && window.WhatsiteConsoleLite.enabled)) initSearch();
     initSidebarGroups();
-    initHeroAnimations();
-    initStatsCounters();
+    if (!(window.WWB_HOST_CONSOLE === true || window.WhatsiteConsoleLite && window.WhatsiteConsoleLite.enabled)) {
+        initHeroAnimations();
+        initStatsCounters();
+    }
     initScrollEffects();
     initFaqAccordion();
     initFaqSearch();
     initBlogFilter();
-    initSmoothScroll();
+    if (!(window.WWB_HOST_CONSOLE === true || window.WhatsiteConsoleLite && window.WhatsiteConsoleLite.enabled)) initSmoothScroll();
     initServiceWorker();
 });
 
@@ -64,6 +66,7 @@ function initResponsiveTables() {
 
 // Keep regenerated pages connected to the shared appearance layer as well.
 function initSiteBackground() {
+    if (window.WWB_HOST_CONSOLE === true || window.WhatsiteConsoleLite && window.WhatsiteConsoleLite.enabled) return;
     const hasAsset = (selector, asset) => Array.from(document.querySelectorAll(selector))
         .some((element) => ((element.getAttribute('src') || element.getAttribute('href') || '').split('?')[0]).endsWith(asset));
     if (!hasAsset('link[rel="stylesheet"]', '/assets/site-background.css')) {
@@ -618,7 +621,7 @@ function initStatsCounters() {
 function initScrollEffects() {
     // ---- Fade-in on scroll -----------------------------------------------
 
-    const fadeEls = document.querySelectorAll('.fade-in');
+    const fadeEls = window.WWB_HOST_CONSOLE === true || window.WhatsiteConsoleLite && window.WhatsiteConsoleLite.enabled ? [] : document.querySelectorAll('.fade-in');
 
     if (fadeEls.length > 0) {
         const fadeObserver = new IntersectionObserver(
@@ -662,7 +665,7 @@ function initScrollEffects() {
     updateBackToTop();
 
     backToTop.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+        window.scrollTo({ top: 0, behavior: window.WWB_HOST_CONSOLE === true || window.WhatsiteConsoleLite && window.WhatsiteConsoleLite.enabled || window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
     });
 }
 

@@ -1192,7 +1192,16 @@
     "Technical lineage": "Asal teknis",
     "PS4 firmware selection": "PS4 · Pilihan firmware",
     "Browser firmware": "Firmware browser",
-    "Compatibility sources": "Sumber kompatibilitas"
+    "Compatibility sources": "Sumber kompatibilitas",
+    "Main site": "Situs utama",
+    "Console tools": "Alat konsol",
+    "This browser": "Browser ini",
+    "Console hosts": "Host konsol",
+    "Site navigation": "Navigasi situs",
+    "Payload managers": "Pengelola payload",
+    "Console file managers": "Pengelola file konsol",
+    "Desktop tools": "Alat desktop",
+    "Game patches": "Patch game"
   };
 
   if (window.__scoobyI18n) window.__scoobyI18n.register("id", t);

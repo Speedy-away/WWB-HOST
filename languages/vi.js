@@ -1192,7 +1192,16 @@
     "Technical lineage": "Nguồn gốc kỹ thuật",
     "PS4 firmware selection": "PS4 · Chọn firmware",
     "Browser firmware": "Firmware trình duyệt",
-    "Compatibility sources": "Nguồn tương thích"
+    "Compatibility sources": "Nguồn tương thích",
+    "Main site": "Trang chính",
+    "Console tools": "Công cụ máy chơi game",
+    "This browser": "Trình duyệt này",
+    "Console hosts": "Host máy chơi game",
+    "Site navigation": "Điều hướng trang",
+    "Payload managers": "Trình quản lý payload",
+    "Console file managers": "Trình quản lý tệp máy chơi game",
+    "Desktop tools": "Công cụ máy tính",
+    "Game patches": "Bản vá trò chơi"
   };
 
   if (window.__scoobyI18n) window.__scoobyI18n.register("vi", t);

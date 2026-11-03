@@ -38,6 +38,8 @@ function hostActions(platform) {
     for(let i=rows.length-1;i>=0;i--)if(/^ps4-(?:original-)?goldhen-/.test(rows[i].id)&&String(rows[i].format).toUpperCase()==='BIN')rows.splice(i,1);
     const current=path.join(root,'docs/host-goldhen-current.json');
     if(fs.existsSync(current))rows.push(...JSON.parse(fs.readFileSync(current,'utf8')).actions);
+    const retained=path.join(root,'docs/host-goldhen-retained-versions.json');
+    if(fs.existsSync(retained))rows.push(...JSON.parse(fs.readFileSync(retained,'utf8')).actions);
   }
   const runtimeFile = path.join(root,'docs/host-runtime-builds.json');
   const runtimeDownloads = fs.existsSync(path.join(root,'docs/host-runtime-downloads.json')) ? JSON.parse(fs.readFileSync(path.join(root,'docs/host-runtime-downloads.json'),'utf8')).runtimes : [];
@@ -60,7 +62,7 @@ function hostActions(platform) {
     const build=JSON.parse(fs.readFileSync(path.join(root,'docs/afterglow-build.json'),'utf8'));
     rows.unshift({id:'built-in-ps4-afterglow',runtimeId:'ps4-afterglow',platform:'ps4',label:'Afterglow · ps4-hen / GoldHEN',category:'loaders',format:'Built-in browser loader',firmwares:['13.52','14.00'],launchURL:build.entry,image:image('ps4'),source:'https://github.com/well0nez/afterglow-web/tree/'+build.commit,instructionsURL:'/hosts/ps4/afterglow/',requirements:['PS4 browser required','13.52 / 14.00 only','Autostart is opt-in']});
   }
-  return require('./ps5-browser-hosts.cjs').prepare(require('./ps4-browser-hosts.cjs').prepare([...new Map(rows.map(action => [action.id, action])).values()],platform),platform).map(require('./host-first-party-navigation.cjs').bind).filter(Boolean);
+  return require('./host-compact-pages.cjs').actions(root,platform,require('./ps5-browser-hosts.cjs').prepare(require('./ps4-browser-hosts.cjs').prepare([...new Map(rows.map(action => [action.id, action])).values()],platform),platform).map(require('./host-first-party-navigation.cjs').bind).filter(Boolean));
 }
 
 const {dashboard,workspaceDashboard} = require('./host-dashboard-markup.cjs');

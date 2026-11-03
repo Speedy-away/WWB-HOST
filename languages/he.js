@@ -1192,7 +1192,16 @@
     "Technical lineage": "מקור טכני",
     "PS4 firmware selection": "PS4 · בחירת קושחה",
     "Browser firmware": "קושחת הדפדפן",
-    "Compatibility sources": "מקורות תאימות"
+    "Compatibility sources": "מקורות תאימות",
+    "Main site": "האתר הראשי",
+    "Console tools": "כלי קונסולה",
+    "This browser": "דפדפן זה",
+    "Console hosts": "מארחי קונסולה",
+    "Site navigation": "ניווט באתר",
+    "Payload managers": "מנהלי מטענים",
+    "Console file managers": "מנהלי קבצים בקונסולה",
+    "Desktop tools": "כלי מחשב",
+    "Game patches": "תיקוני משחקים"
   };
 
   if (window.__scoobyI18n) window.__scoobyI18n.register("he", t);

@@ -1192,7 +1192,16 @@
     "Technical lineage": "技术来源",
     "PS4 firmware selection": "PS4 · 固件选择",
     "Browser firmware": "浏览器固件",
-    "Compatibility sources": "兼容性来源"
+    "Compatibility sources": "兼容性来源",
+    "Main site": "主站",
+    "Console tools": "主机工具",
+    "This browser": "当前浏览器",
+    "Console hosts": "主机入口",
+    "Site navigation": "网站导航",
+    "Payload managers": "载荷管理器",
+    "Console file managers": "主机文件管理器",
+    "Desktop tools": "桌面工具",
+    "Game patches": "游戏补丁"
   };
 
   if (window.__scoobyI18n) window.__scoobyI18n.register("zh", t);

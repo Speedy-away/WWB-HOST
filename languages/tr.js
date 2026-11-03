@@ -1192,7 +1192,16 @@
     "Technical lineage": "Teknik köken",
     "PS4 firmware selection": "PS4 · Donanım yazılımı seçimi",
     "Browser firmware": "Tarayıcı sürümü",
-    "Compatibility sources": "Uyumluluk kaynakları"
+    "Compatibility sources": "Uyumluluk kaynakları",
+    "Main site": "Ana site",
+    "Console tools": "Konsol araçları",
+    "This browser": "Bu tarayıcı",
+    "Console hosts": "Konsol hostları",
+    "Site navigation": "Site gezintisi",
+    "Payload managers": "Payload yöneticileri",
+    "Console file managers": "Konsol dosya yöneticileri",
+    "Desktop tools": "Masaüstü araçları",
+    "Game patches": "Oyun yamaları"
   };
 
   if (window.__scoobyI18n) window.__scoobyI18n.register("tr", t);

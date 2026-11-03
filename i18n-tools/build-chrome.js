@@ -95,13 +95,28 @@ Object.assign(T, require('./host-arabicguy-672-translations.cjs'));
 Object.assign(T, require('./host-package-installer-translations.cjs'));
 Object.assign(T, require('./site-refresh-translations.cjs'));
 Object.assign(T, require('./afterglow-translations.cjs'));
+// New host labels are additive; existing shared translations keep precedence.
+for (const pack of ['./host-home-translations.cjs','./host-navigation-translations.cjs']) {
+  for (const [key, row] of Object.entries(require(pack))) if (!Object.prototype.hasOwnProperty.call(T,key)) T[key] = row;
+}
+// Preserve locale-only entries from earlier/manual translation passes.
+const vm = require('node:vm');
+const existing = Object.fromEntries(LANGS.map(code => {
+  const filename = path.join(ROOT,'languages',code+'.js');
+  if (!fs.existsSync(filename)) return [code,{}];
+  const box = {window:{}};
+  vm.runInNewContext(fs.readFileSync(filename,'utf8'),box,{filename,timeout:1000});
+  const entry = (box.window.__scoobyI18nQueue || []).find(item => item[0] === code);
+  if (!entry || !entry[1] || Object.values(entry[1]).some(value => typeof value !== 'string')) throw Error('Invalid existing dictionary: '+code);
+  return [code,entry[1]];
+}));
 const keys = Object.keys(T);
 let written = 0;
 
 for (const code of LANGS) {
-  const entries = keys
-    .filter(k => T[k][code])
-    .map(k => '    ' + JSON.stringify(k) + ': ' + JSON.stringify(T[k][code]) + ',');
+  const dictionary = {...existing[code], ...Object.fromEntries(keys.filter(key => T[key][code]).map(key => [key,T[key][code]]))};
+  const entries = Object.keys(dictionary)
+    .map(key => '    ' + JSON.stringify(key) + ': ' + JSON.stringify(dictionary[key]) + ',');
 
   const out =
 `/* ${code} — whatwhatboy site dictionary.
