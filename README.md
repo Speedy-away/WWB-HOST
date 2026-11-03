@@ -15,3 +15,5 @@ Build: `node scripts/host-project-pages.cjs tmp/pages-preview` then `node script
 `docs/migration/source-preservation.json` records checksum readback of the migration. `docs/host-reviews/karo/` records original repair provenance. Original project attributions remain in their files.
 
 Pages serves seven original `.cache` manifests through byte-identical `.manifest` aliases with the required `text/cache-manifest` MIME type. Original files and ready ZIPs remain unchanged. When self-hosting those original ZIPs, configure `.cache` files as `text/cache-manifest`.
+
+The 24 authored host pages share `assets/host-pages.css` and image headings. Run `node scripts/style-host-pages.cjs` after changing page generators; the Pages publisher also applies this theme during deployment. Native runtimes and ready downloads keep their original bytes.

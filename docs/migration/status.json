@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-03T20:27:27.261Z",
+  "updatedAt": "2026-11-03T20:36:35.258Z",
   "repository": "Speedy-away/WWB-HOST",
   "site": "https://speedy-away.github.io/WWB-HOST/",
   "mainSite": "https://whatwhatboy.com/",
@@ -14,12 +14,12 @@
     "hardwareVerified": false
   },
   "pages": {
-    "revision": "65ebb2fae24f01b261aece1bfc826cc231431b43",
+    "revision": "468339255178965af15d2cc484550eb0917a8419",
     "base": "/WWB-HOST",
     "origin": "https://speedy-away.github.io",
-    "bytes": 842053203,
+    "bytes": 842068498,
     "budget": 922746880,
-    "files": 5567,
+    "files": 5568,
     "offloadedFiles": 274,
     "nativeScriptsUnchanged": 848,
     "cacheManifestAliases": 7,
@@ -33,8 +33,8 @@
     "homeDeployment": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41705919245",
     "cacheFix": "Keep every existing CACHE resource on the Pages origin; offload only files that original caches do not require.",
     "cacheMimeAliasPending": false,
-    "productionCommit": "65ebb2fae24f01b261aece1bfc826cc231431b43",
-    "productionDeployment": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41710687092",
+    "productionCommit": "468339255178965af15d2cc484550eb0917a8419",
+    "productionDeployment": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41712758658",
     "mainCommit": "fe5386a1738bc9d3d40a9c77c81313fb2d9a4d11",
     "mainLinkVerified": true
   },
@@ -115,7 +115,7 @@
     "allOlderZIPsAndReleasesPreserved": true
   },
   "hostGallery20261103": {
-    "status": "Complete locally in WWB-HOST; primary host galleries, button firmware selection and trainer popup. Publishing is managed by the separate migration chat.",
+    "status": "Published; shared image-led page theme also verified on all authored host pages.",
     "report": "docs/host-gallery-update.json",
     "preview": "http://127.0.0.1:61823/WWB-HOST/hosts/ps4/?view=mods",
     "tests": {
@@ -125,11 +125,11 @@
       "report": "docs/qa/host-gallery-tests.txt"
     },
     "senderVersion": "2.1.0+8d8bda70ee88",
-    "sourceChangesNeedPublication": true
+    "sourceChangesNeedPublication": false
   },
   "unrelatedWork": "Concurrent trainer, gallery and catalogue working edits were preserved and excluded from the migration commits.",
   "pageTheme20261103": {
-    "status": "Verified locally; publishing",
+    "status": "published-and-verified",
     "pages": 24,
     "report": "docs/migration/page-theme-review.json",
     "stylesheet": "assets/host-pages.css",
@@ -139,6 +139,45 @@
     "nativeRuntimeFilesChanged": 0,
     "behaviorTestsPassed": 29,
     "physicalConsoleTested": false,
-    "browserRenderVerified": false
+    "browserRenderVerified": false,
+    "checkedAt": "2026-11-03T20:36:35.258Z",
+    "commit": "468339255178965af15d2cc484550eb0917a8419",
+    "deployment": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41712758658",
+    "uniqueHeaderImages": 11,
+    "liveLoadDownloadURLs": 1553,
+    "nativeScriptsUnchanged": 848,
+    "cacheManifestAliases": 7,
+    "retainedBuildVersions": 165,
+    "hardwareExecutionVerified": false,
+    "pagesBuild": {
+      "revision": "468339255178965af15d2cc484550eb0917a8419",
+      "base": "/WWB-HOST",
+      "origin": "https://speedy-away.github.io",
+      "bytes": 842068498,
+      "budget": 922746880,
+      "files": 5568,
+      "offloadedFiles": 274,
+      "nativeScriptsUnchanged": 848,
+      "cacheManifestAliases": 7,
+      "historicalLandings": 804,
+      "activeKaro": "hosts/runtime/karo-743646c9df9a-e3c0caf3db54/"
+    }
+  },
+  "homeImagePolish20261103": {
+    "report": "docs/home-image-polish.json",
+    "preview": "http://127.0.0.1:57296/WWB-HOST/",
+    "localFilesUpdated": true,
+    "publication": false,
+    "scope": "Existing console photos preserved;4 illustrated trainer/payload/file/firmware cards added; relative assets work when index.html is opened directly.",
+    "verifiedLinks": 2388,
+    "publisherFixtureTests": 3
+  },
+  "firmwareGoldhenCleanup": {
+    "date": "2026-11-03T20:36:01.299Z",
+    "report": "docs/qa/download-size-cleanup.json",
+    "status": "Validated, awaiting push",
+    "legacySenderOriginalLinks": 23,
+    "suppliedGoldhenSHA256": "39452f5e1c305ac9efcb4745eef7958b4db8c6d85299529f08700970b009ea4d",
+    "consolePayloadsExecuted": false
   }
 }
