@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-03T23:45:42.664Z",
+  "updatedAt": "2026-11-03T23:52:30.759Z",
   "repository": "Speedy-away/WWB-HOST",
   "site": "https://speedy-away.github.io/WWB-HOST/",
   "mainSite": "https://whatwhatboy.com/",
@@ -940,7 +940,7 @@
     "updatedAt": "2026-11-03T23:42:12.673Z"
   },
   "restInteractionPerformance20261103": {
-    "status": "Local checks passed; publication pending",
+    "status": "Published and live verified",
     "report": "docs/migration/rest-interaction-performance.json",
     "focusedTests": 342,
     "patchGames": {
@@ -964,7 +964,13 @@
       "No physical-console FPS, native execution or browser rendering test",
       "Browser automation is disabled in Work settings"
     ],
-    "integratedBase": "6fc0cff624483b836ca245c83a8c423c03217b30",
-    "canonicalSite": "https://speedy-away.github.io/wwb-host/"
+    "integratedBase": "360d394cc837fe08b2980ff8428b9037e9c3c187",
+    "canonicalSite": "https://speedy-away.github.io/wwb-host/",
+    "commit": "d37a2b00d588aa19a2fb4f51651b36341c6dd39a",
+    "run": 41741965896,
+    "workflow": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41741965896",
+    "livePages": 1149,
+    "patchDownloadXMLsVerified": 280,
+    "aliasesVerified": 6905
   }
 }

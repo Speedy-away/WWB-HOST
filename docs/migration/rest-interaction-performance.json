@@ -1,5 +1,5 @@
 {
-  "status": "Local checks passed; publication pending",
+  "status": "Published and live verified",
   "checkedAt": "2026-11-03T23:44:02.624Z",
   "focusedTests": {
     "passed": 342,
@@ -37,7 +37,7 @@
   ],
   "verification": {
     "status": "passed",
-    "bytes": 863187551,
+    "bytes": 863277371,
     "pagesLinks": 3816,
     "nativeScriptsUnchanged": 898,
     "cachedResourcesRetained": 1536,
@@ -46,8 +46,8 @@
     "compactAliasesVerified": 6905,
     "sharedCatalogueFiles": 3,
     "routingBytes": {
-      "full": 1081225,
-      "runtime": 238518
+      "full": 1090441,
+      "runtime": 247734
     },
     "activeRuntimeFiles": 259,
     "issues": 0
@@ -80,6 +80,41 @@
     "No physical-console FPS, native execution or browser rendering test",
     "Browser automation is disabled in Work settings"
   ],
-  "integratedBase": "6fc0cff624483b836ca245c83a8c423c03217b30",
-  "canonicalSite": "https://speedy-away.github.io/wwb-host/"
+  "integratedBase": "360d394cc837fe08b2980ff8428b9037e9c3c187",
+  "canonicalSite": "https://speedy-away.github.io/wwb-host/",
+  "commit": "d37a2b00d588aa19a2fb4f51651b36341c6dd39a",
+  "liveVerification": {
+    "patchDownloadXMLsVerified": 280,
+    "changedAssetsVerified": 3,
+    "status": "passed",
+    "checkedAt": "2026-11-03T23:51:43.761Z",
+    "revision": "d37a2b00d588aa19a2fb4f51651b36341c6dd39a",
+    "run": 41741965896,
+    "workflow": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41741965896",
+    "livePages": 1149,
+    "sharedCatalogueFiles": 3,
+    "aliasesVerified": 6905,
+    "pagesBuild": {
+      "revision": "d37a2b00d588aa19a2fb4f51651b36341c6dd39a",
+      "base": "/wwb-host",
+      "origin": "https://speedy-away.github.io",
+      "bytes": 863277371,
+      "budget": 922746880,
+      "files": 6177,
+      "offloadedFiles": 281,
+      "nativeScriptsUnchanged": 898,
+      "cacheManifestAliases": 7,
+      "historicalLandings": 804,
+      "activeKaro": "hosts/runtime/karo-743646c9df9a-e3c0caf3db54/",
+      "routingBytes": {
+        "full": 1090441,
+        "runtime": 247734
+      },
+      "activeRuntimeFiles": 259,
+      "sharedCatalogueFiles": 3
+    },
+    "limits": [
+      "Static HTTP and authored adapter verification only; no browser or native console execution"
+    ]
+  }
 }
