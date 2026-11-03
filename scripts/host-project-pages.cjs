@@ -15,6 +15,7 @@ function build(output,revision='main',root=ROOT){
  const hosted=new Set(files.filter(f=>!mapping['/'+f.name]).map(f=>f.name));function target(p){p=p.replace(/^\//,'');if(p===''||p==='index.html')return MAIN+'/';if(mapping['/'+p])return mapping['/'+p];if(hosted.has(p)||hosted.has(p.replace(/\/$/,'')+'/index.html')||['assets/','languages/','hosts/','downloads/'].includes(p))return BASE+'/'+p;return MAIN+'/'+p;}
  const internalRoots=['hosts','assets','languages','downloads','console','docs'];
  function rewrite(text,name){
+  if(name==='assets/host-dashboard.js')text=text.replaceAll('^\\/hosts\\/runtime\\/','^\\/(?:WWB-HOST\\/)?hosts\\/runtime\\/');
   // Prefix authored root-relative strings, including concatenated directory roots.
   text=text.replace(/https:\/\/whatwhatboy\.com\/(hosts\/[^\s"'<>\\]*)/g,(_,p)=>ORIGIN+target(p));
   text=text.replace(/(["'`=\s(])\/(hosts|assets|languages|downloads|console|docs)\/([^\s"'`<>)]*)/g,(whole,lead,dir,rest)=>{const p=dir+'/'+rest;if((!rest&&name.endsWith('.js'))||/^\$\{|\+/.test(rest))return lead+BASE+'/'+p;return lead+target(p);});
