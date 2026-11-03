@@ -25,7 +25,7 @@ function themeHTML(html,name){
  if(!html.includes('class="host-taskbar"'))html=html.replace(/<body[^>]*>/,m=>m+'<nav class="host-taskbar" aria-label="Host navigation"><a class="host-taskbar-brand" href="/index.html">WWB HOST</a><a href="/hosts/ps4/">PS4</a><a href="/hosts/ps5/">PS5</a><a href="/hosts/karo/">KARO</a><a href="https://whatwhatboy.com/">Main site</a></nav>');
  html=html.replace(/(<a\b[^>]*class="host-taskbar-brand"[^>]*>)[^<]*(<\/a>)/g,'$1WWB HOST$2');
  html=html.replace(/(<a\b[^>]*class="host-top-brand"[^>]*>)[\s\S]*?<\/a>/g,'$1<img src="/assets/images/logo.png" alt="" width="32" height="32"><span>WWB HOST</span></a>');
- html=html.replace(/<a\b[^>]*class="(?:host-taskbar-brand|host-top-brand)"[^>]*>/g,tag=>tag.replace(/href="[^"]*"/,'href="https://speedy-away.github.io/WWB-HOST/"'));
+ html=html.replace(/<a\b[^>]*class="(?:host-taskbar-brand|host-top-brand)"[^>]*>/g,tag=>tag.replace(/href="[^"]*"/,'href="https://speedy-away.github.io/wwb-host/"'));
  // compact-launcher-heading: firmware families and launch controls need no decorative hero.
  if(/\/(?:exploit|afterglow|firmware)\//.test(name))return html;
  const start=html.indexOf('<main');if(start<0||html.includes('data-wwb-image-heading'))return html;

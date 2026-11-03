@@ -9,7 +9,7 @@
     "ps5": 62
   },
   "tests": {
-    "passed": 123,
+    "passed": 130,
     "failed": 0
   },
   "build": {
@@ -53,7 +53,8 @@
     "Disable browser Load and mark it busy during the handoff; preserve repeat-click protection after a navigation error",
     "Read back one-use session requests and UMTX2 autorun choice before navigating; surface storage refusal",
     "Retained PS4 and PS5 bookmark Load controls require a real press and ignore duplicate clicks",
-    "Match GitHub Pages canonical lowercase /wwb-host/ after repository rename; retain legacy and local validator support"
+    "Match GitHub Pages canonical lowercase /wwb-host/ after repository rename; retain legacy and local validator support",
+    "Update theme-injected host header links and self-host instructions; reject obsolete uppercase Pages URLs during verification"
   ],
   "onSitePayload": {
     "path": "hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/ps5/UMTX/payloads/OnionHENk1.11.elf",
