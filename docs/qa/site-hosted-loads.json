@@ -1,5 +1,5 @@
 {
-  "status": "validated before publication",
+  "status": "Published and live verified",
   "updatedAt": "2026-11-03T23:19:52.640Z",
   "tests": {
     "passed": 112,
@@ -192,5 +192,24 @@
     "Physical PS4/PS5 execution has not been tested",
     "Native exploit and payload code was not executed; handoff tests use inert mocks",
     "Legacy private KARO acquisition tests require local source-review files absent from isolated worktree"
-  ]
+  ],
+  "publishedCommit": "2986784ed180731a0f6ca9e8bb01f274d9c973a6",
+  "workflow": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41738510347",
+  "live": {
+    "status": "passed",
+    "verifiedAt": "2026-11-03T23:28:43.540Z",
+    "commit": "2986784ed180731a0f6ca9e8bb01f274d9c973a6",
+    "platforms": {
+      "ps4": {
+        "firmwareChoices": 34,
+        "localRoutes": 5
+      },
+      "ps5": {
+        "firmwareChoices": 62,
+        "localRoutes": 2
+      }
+    },
+    "firmwareGridOnly": "Choose firmware",
+    "nativeCodeExecuted": false
+  }
 }

@@ -596,7 +596,7 @@
     "liveSharedCatalogueFiles": 4
   },
   "sameOriginConsoleLoads20261103": {
-    "status": "validated before publication",
+    "status": "Published and live verified",
     "updatedAt": "2026-11-03T23:18:32.830Z",
     "tests": {
       "passed": 103,
@@ -792,7 +792,26 @@
     ],
     "report": "docs/qa/site-hosted-loads.json",
     "request": "All active PS4 and PS5 Load routes hosted on WWB-HOST; firmware grid only in Choose firmware; payloads, game mods and tools show directly",
-    "preservation": "Reused pinned local builds; older builds, downloads and game mods retained. No new upstream downloads required."
+    "preservation": "Reused pinned local builds; older builds, downloads and game mods retained. No new upstream downloads required.",
+    "publishedCommit": "2986784ed180731a0f6ca9e8bb01f274d9c973a6",
+    "workflow": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41738510347",
+    "live": {
+      "status": "passed",
+      "verifiedAt": "2026-11-03T23:28:43.540Z",
+      "commit": "2986784ed180731a0f6ca9e8bb01f274d9c973a6",
+      "platforms": {
+        "ps4": {
+          "firmwareChoices": 34,
+          "localRoutes": 5
+        },
+        "ps5": {
+          "firmwareChoices": 62,
+          "localRoutes": 2
+        }
+      },
+      "firmwareGridOnly": "Choose firmware",
+      "nativeCodeExecuted": false
+    }
   },
   "goldhenPopupAndSmoothRendering20261103": {
     "status": "Published and live verified",
