@@ -1,0 +1,15 @@
+# WWB HOST
+
+Independent PS4 / PS5 host site for [whatwhatboy.com](https://whatwhatboy.com/).
+
+- Website: https://speedy-away.github.io/WWB-HOST/
+- Main chooser: /WWB-HOST/hosts/
+- KARO builds: /WWB-HOST/hosts/karo/
+
+All copied older versions and original native files are preserved in this repository and the existing organized local archive. The Pages builder deploys the active site below its size limit and serves large downloads from exact repository revisions. Original native JavaScript is not rewritten.
+
+The repaired KARO assembly has71 source-reviewed native entries, three verified original payload repairs, and33 downloadable web-host ZIPs. The three historical7.02 cache manifests were never present upstream; those native entries are explicitly online-only. The unused ambiguous OnionHEN placeholder and Defender-quarantined optional activator sources stay blocked. Physical console execution remains untested.
+
+Build: `node scripts/host-project-pages.cjs tmp/pages-preview` then `node scripts/verify-host-project-pages.cjs tmp/pages-preview`. Use a fresh output directory. GitHub Actions builds and deploys Pages on main. Push large snapshots with `node scripts/push-in-batches.cjs --push --batch-mib=512`. This preserves commits, all old files and resumable upload state.
+
+`docs/migration/source-preservation.json` records checksum readback of the migration. `docs/host-reviews/karo/` records original repair provenance. Original project attributions remain in their files.
