@@ -188,8 +188,12 @@
   },
   "ps4BrowserLoad": {
     "date": "2026-11-03T20:48:34.672Z",
-    "status": "Locally validated; publication pending",
+    "status": "Published and live verified",
     "report": "docs/qa/ps4-browser-load.json",
-    "hardwareTested": false
+    "hardwareTested": false,
+    "checkedAt": "2026-11-03T20:57:54.968Z",
+    "commit": "6ccc8e8bd29de9f7ac1c3fc649765878e3b49858",
+    "deployment": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41716058331",
+    "focusedTests": 54
   }
 }
