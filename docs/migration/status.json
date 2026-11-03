@@ -185,5 +185,11 @@
     "downloadBytesVerified": true,
     "archivePresentRecords": 5994,
     "archiveMissingRecords": 0
+  },
+  "ps4BrowserLoad": {
+    "date": "2026-11-03T20:48:34.672Z",
+    "status": "Locally validated; publication pending",
+    "report": "docs/qa/ps4-browser-load.json",
+    "hardwareTested": false
   }
 }

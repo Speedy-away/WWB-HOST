@@ -41,7 +41,7 @@
     if (versions.length <= 3) return versions.join(', ');
     return versions[0] + ' … ' + versions[versions.length - 1] + ' (' + versions.length + ' listed versions)';
   }
-  function requiresFirmware(action) { return Boolean(action.run) || action.category === 'loaders' && Boolean(action.launchURL); }
+  function requiresFirmware(action) { return Boolean(action.run) || action.browserHost || action.category === 'loaders' && Boolean(action.launchURL); }
   function consoleDownloadURL(platform, address, fileId, normalize) {
     if (platform !== 'ps4' && platform !== 'ps5') throw Error('Choose PS4 or PS5.');
     if (!/^[a-z0-9][a-z0-9._-]{0,159}$/i.test(fileId || '')) throw Error('Choose a file from the console catalogue.');
@@ -103,7 +103,7 @@
   function loadCapability(action) {
     var type = action.run && action.run.type, format = String(action.format || '').toUpperCase();
     if (['goldhen-http','elf-http','elf-tcp','ps5-manager'].indexOf(type) !== -1 || type === 'bin-tcp' && action.platform === 'ps4' && format === 'BIN' && action.run.port === 9020) return {available:true,kind:'payload',reason:''};
-    if (action.runtimeId && /^\/hosts\/runtime\//.test(action.launchURL || '')) return {available:true,kind:'browser',reason:action.browserLoadMessage || 'Open this host on the matching console to use its built-in browser loader.'};
+    if (action.browserHost || action.runtimeId && /^\/hosts\/runtime\//.test(action.launchURL || '')) return {available:true,kind:'browser',reason:action.browserLoadMessage || 'Open this host on the matching console to use its built-in browser loader.'};
     if (/^(PRX|SPRX)$/.test(format)) return {available:false,kind:'plugin',reason:'This plugin loads through the console’s native plugin manager. Web loading is not available for this build.'};
     if (/^(JSON|MC4|SHN|XML)$/.test(format)) return {available:false,kind:'data',reason:'Install this file in the native cheat or patch manager, then enable it in the game.'};
     return {available:false,kind:'unsupported',reason:'No verified built-in loading method is available for this build. Setup and original sources are under Requirements.'};
@@ -287,7 +287,7 @@
         var label = isMenu || action.run || capability.kind === 'browser' ? 'Load' : launch ? (action.launchLabel || 'Open tool') : '';
         var requiresSender = action.run && (action.run.type === 'elf-tcp' || action.run.type === 'bin-tcp' || needsFile) && !canBridge;
         var uncertain = action.run && connection.warning(configuredAddress());
-        var disabled = isMenu && !capability.available || needsFirmware || requiresSender || capability.kind === 'browser' && detection.platform !== platform || loading || uncertain;
+        var disabled = isMenu && !capability.available || needsFirmware || requiresSender || capability.kind === 'browser' && (detection.platform !== platform || !firmwareMatches(action,firmware.value)) || loading || uncertain;
         var meta = [action.format ? String(action.format).toUpperCase() : '', action.game ? '' : action.version, firmwareLabel(action)].filter(Boolean).join(' · ');
         var details = (action.requirements || []).map(function (text) { return '<li>' + escape(text) + '</li>'; }).join('');
         var facts = payloadFileFacts(action);
@@ -373,7 +373,7 @@
       if (category!=='mods') {
         renderedGroups=groupActions(visible);
         count.textContent=String(renderedGroups.length);
-        return renderedGroups.map(function(group){var first=group.actions[0];return catalogUI.tileMarkup({id:group.id,label:group.label,image:category==='loaders'?'':catalogUI.representativeImage(group.actions),detail:[first.format,first.version||first.menuVersion||''].filter(Boolean).join(' · '),attribute:'data-choose-group'});}).join('');
+        return renderedGroups.map(function(group){var first=group.actions[0];if(category==='loaders'&&first.browserHost)return catalogUI.tileMarkup({id:first.id,label:'Load',image:'',detail:group.label,attribute:'data-launch',disabled:detection.platform!==platform||!firmware.value||!firmwareMatches(first,firmware.value)});return catalogUI.tileMarkup({id:group.id,label:group.label,image:category==='loaders'?'':catalogUI.representativeImage(group.actions),detail:[first.format,first.version||first.menuVersion||''].filter(Boolean).join(' · '),attribute:'data-choose-group'});}).join('');
       }
       var groups=catalogUI.gameGroups(visible),path='<nav class="host-catalog-path" aria-label="Game mods">'+(gameScope?'<a href="/hosts/'+platform+'/?view=mods">Game mods</a>':'<button type="button" data-catalog-back="games">Game mods</button>')+(selected?'<span aria-hidden="true">/</span><button type="button" data-catalog-back="updates" translate="no">'+escape(selected.label)+'</button>':'')+(selected&&catalogUpdate?'<span aria-hidden="true">/</span><strong translate="no">'+escape(catalogUpdate==='unspecified'?'Not provided':catalogUpdate)+'</strong>':'')+'</nav>';
       if (!selected) {
@@ -446,7 +446,7 @@
         var updated = renderedGroups.filter(function (g) { return g.actions.some(function (a) { return a.id === selectedId; }); })[0];
         if (updated) { var focusedVersion=doc.activeElement&&doc.activeElement.getAttribute('data-version-id'); activeGroup = updated; renderVersionChoices(updated); renderVariant(); refresh(versionChoices); if(focusedVersion){var replacement=versionChoices.querySelector('[data-version-id="'+focusedVersion+'"]');if(replacement)replacement.focus();} } else closeVersions();
       }
-      doc.querySelector('#host-empty').hidden = catalogGrid ? Boolean(grid.querySelector('[data-catalog-game],[data-catalog-update],[data-choose-group]')) : visible.length !== 0 || category === 'mods' && gamesLanding;
+      doc.querySelector('#host-empty').hidden = catalogGrid ? Boolean(grid.querySelector('[data-catalog-game],[data-catalog-update],[data-choose-group],[data-launch]')) : visible.length !== 0 || category === 'mods' && gamesLanding;
       refresh(grid); refresh(count);
       }
       var managerLoad = doc.querySelector('#host-load-manager'); if (managerLoad) managerLoad.disabled = loading || !firmware.value;
@@ -549,7 +549,8 @@
       if (action.category === 'mods' && !loadCapability(action).available) { tell(loadCapability(action).reason,true); return; }
       if (loadCapability(action).kind === 'browser' && detection.platform !== platform) { tell(loadCapability(action).reason,true); return; }
       var url; try { url = launchURL(action); } catch (error) { tell(error.message, true); return; }
-      if (url) { win.open(url, '_blank', 'noopener'); tell('Opening ' + action.label + '. Follow the loader status on that page.'); }
+      if (url && action.browserHost) { tell('Loading ' + action.label + ' on ' + platform.toUpperCase() + '…'); win.location.href=url; }
+      else if (url) { win.open(url, '_blank', 'noopener'); tell('Opening ' + action.label + '. Follow the loader status on that page.'); }
       else service('files');
     }
     if (grid) grid.addEventListener('click', handleActionClick);

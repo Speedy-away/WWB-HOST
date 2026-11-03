@@ -1,0 +1,27 @@
+{
+  "updatedAt": "2026-11-03T20:48:34.672Z",
+  "request": "Use a simple Load action for complete PS4 browser jailbreak / GoldHEN hosts.",
+  "status": "Locally validated; publication pending",
+  "changes": [
+    "Direct same-tab Load for verified original browser hosts; no modal or separate sender for the jailbreak route.",
+    "GamerHack exact existing whitelist retained:5.05/5.07 and enumerated7.00–13.52 firmwares.",
+    "RAW GAME exact13.02/13.04/13.50/13.52 whitelist retained.",
+    "Afterglow13.52/14.00 restored to generated catalogue using its public build record instead of a missing private archive sidecar.",
+    "One supplied Goldhen PS4 download gains its matching Afterglow browser Load route; download bytes unchanged.",
+    "Old9.00 and7.00–9.60 entry pages now show Load and open GamerHack; advanced BIN listener retained separately."
+  ],
+  "sources": {
+    "gamerhack": "https://raw.githubusercontent.com/GamerHack/GamerHack.github.io/master/g2all/index.html",
+    "raw13g": "https://raw.githubusercontent.com/raw13g/raw13g.github.io/main/index.html",
+    "afterglow": "https://github.com/well0nez/afterglow-web#running-it",
+    "sentrix": "User-provided URL could not be read using the web review tool; not promoted as a verified loader."
+  },
+  "verification": {
+    "focusedTests": 54,
+    "gameModMetadataUnchanged": true,
+    "newDownloadFiles": 0,
+    "downloadedCodeExecuted": false,
+    "hardwareExecution": false,
+    "browserPreview": "Unavailable in Work settings"
+  }
+}

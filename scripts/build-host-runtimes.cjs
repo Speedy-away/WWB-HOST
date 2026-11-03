@@ -63,4 +63,5 @@ for(const spec of specs){
  write(base+'/build.json',JSON.stringify(manifest,null,2)+'\n');manifests.push(manifest);
 }
 write('docs/host-runtime-builds.json',JSON.stringify({schemaVersion:1,updated:'2026-11-02',runtimes:manifests,excluded:[{repo:'soniciso1/relapse',commit:'112dbe5949e9c3de923bb0909289c58a9c082151',reason:'No repository license found. Remains an external reference; not mirrored.'}]},null,2)+'\n');
+require('./ps4-browser-hosts.cjs').refreshLegacyEntries(root);
 console.log(JSON.stringify({runtimes:manifests.map(m=>({id:m.id,files:m.files.length,entry:m.entry,listener:m.listener}))},null,2));

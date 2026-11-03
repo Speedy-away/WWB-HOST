@@ -1,7 +1,7 @@
 /* Authored presentation helpers only. No requests, downloads or payload loading. */
 (function(root,factory){var api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.HostCatalogGrid=api;}(typeof globalThis!=='undefined'?globalThis:this,function(){
   'use strict';
-  var ATTRIBUTES=['data-catalog-game','data-catalog-update','data-choose-group','data-catalog-category'];
+  var ATTRIBUTES=['data-catalog-game','data-catalog-update','data-choose-group','data-catalog-category','data-launch'];
   var FALLBACKS={games:'/assets/images/host-catalog/games.svg',mods:'/assets/images/host-catalog/games.svg',updates:'/assets/images/host-catalog/updates.svg',payloads:'/assets/images/host-catalog/payloads.svg',loaders:'/assets/images/host-catalog/loaders.svg',tools:'/assets/images/host-catalog/tools.svg',files:'/assets/images/host-catalog/files.svg'};
   function text(value){return value==null?'':String(value);}
   function escape(value){return text(value).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
@@ -50,7 +50,7 @@
   function tileMarkup(options){
     options=options||{};var attribute=options.attribute||'data-choose-group';if(ATTRIBUTES.indexOf(attribute)<0)throw Error('Unsupported catalogue tile attribute.');
     var image=localImage(options.image),label=text(options.label),id=text(options.id),detail=text(options.detail);
-    return '<button type="button" class="host-catalog-tile'+(!image?' host-catalog-tile--text':'')+'" '+attribute+'="'+escape(id)+'"><span class="host-catalog-tile__media">'+(image?'<img src="'+escape(image)+'" alt="" loading="lazy" decoding="async">':'<span class="host-catalog-tile__empty" aria-hidden="true"></span>')+'</span><span class="host-catalog-tile__label">'+escape(label)+'</span>'+(detail?'<span class="host-catalog-tile__detail">'+escape(detail)+'</span>':'')+'</button>';
+    return '<button type="button" class="host-catalog-tile'+(!image?' host-catalog-tile--text':'')+'" '+attribute+'="'+escape(id)+'"'+(options.disabled?' disabled aria-disabled="true"':'')+'><span class="host-catalog-tile__media">'+(image?'<img src="'+escape(image)+'" alt="" loading="lazy" decoding="async">':'<span class="host-catalog-tile__empty" aria-hidden="true"></span>')+'</span><span class="host-catalog-tile__label">'+escape(label)+'</span>'+(detail?'<span class="host-catalog-tile__detail">'+escape(detail)+'</span>':'')+'</button>';
   }
   return {gameGroups:gameGroups,updates:updates,filterByGameUpdate:filterByGameUpdate,representativeImage:representativeImage,tileMarkup:tileMarkup,gameKey:gameKey,localImage:localImage,fallbackImage:fallbackImage};
 }));
