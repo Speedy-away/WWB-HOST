@@ -5,7 +5,7 @@ const action={id:'file-facts-fixture',label:'Fixture',platform:'ps4',category:'m
 test('selected-file requirements expose the exact file identity without translating technical values',()=>{
   assert.deepEqual(ui.payloadFileFacts(action),{filename:'Original Payload.bin',bytes:4,sha256:'ab'.repeat(32)});
   const app=fixture({actions:[action]});app.openMenu();const html=app.ids['host-version-detail'].innerHTML;
-  assert.match(html,/<summary>Requirements<\/summary><dl class="host-file-facts">/);assert.ok(html.includes('>Original Payload.bin</code>'));assert.ok(html.includes('>4 B</code>'));assert.ok(html.includes('>'+action.sha256+'</code>'));
+  assert.match(html,/<summary>Details<\/summary><dl class="host-file-facts">/);assert.ok(html.includes('>Original Payload.bin</code>'));assert.ok(html.includes('>4 B</code>'));assert.ok(html.includes('>'+action.sha256+'</code>'));
   assert.equal((html.match(/<code translate="no" data-i18n-skip>/g)||[]).length,3);
 });
 test('missing or malformed source identity does not fabricate file facts or expose a local path',()=>{

@@ -17,7 +17,8 @@ function artwork(name){
 }
 function themeHTML(html,name){
  if(!/^hosts\/(?!runtime\/).+\.html$/.test(name))return html;
- if(!html.includes('host-pages.css'))html=html.replace('</head>','<link rel="stylesheet" href="/assets/host-pages.css?v=1">\n</head>');
+ html=html.replace(/host-pages\.css\?v=\d+/g,'host-pages.css?v=2');
+ if(!html.includes('host-pages.css'))html=html.replace('</head>','<link rel="stylesheet" href="/assets/host-pages.css?v=2">\n</head>');
  if(!/<body[^>]*class="[^"]*\bwwb-host-page\b/.test(html))html=html.replace(/<body([^>]*)>/,(_,attrs)=>'<body'+(/class="/.test(attrs)?attrs.replace(/class="/, 'class="wwb-host-page '):attrs+' class="wwb-host-page"')+'>');
  html=html.replace(/wwb-host-page wwb-host-page /g,'wwb-host-page ');
  if(!html.includes('class="host-taskbar"'))html=html.replace(/<body[^>]*>/,m=>m+'<nav class="host-taskbar" aria-label="Host navigation"><a class="host-taskbar-brand" href="/index.html">WWB HOST</a><a href="/hosts/ps4/">PS4</a><a href="/hosts/ps5/">PS5</a><a href="/hosts/karo/">KARO</a><a href="https://whatwhatboy.com/">Main site</a></nav>');

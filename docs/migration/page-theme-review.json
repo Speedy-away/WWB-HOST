@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-03T20:27:02.909Z",
+  "updatedAt": "2026-11-03T21:08:03.213Z",
   "pages": 24,
   "theme": "Forest/mint, sharp borders, image headings, native HTML/CSS; matches the root home.",
   "actionContractsUnchanged": true,
@@ -31,12 +31,12 @@
     {
       "page": "hosts/ps4/cheats/index.html",
       "image": "/assets/images/host-selector/whatwhatboy-ps4.jpg",
-      "actionContractSHA256": "29014b310b1e949e51cbe02f39af4a8646e1a4bfc5cf9a47337e5baf966858e5"
+      "actionContractSHA256": "28318651240b525c17eff05d78a746b7421abed153e8000abc1e4de2cd274d6c"
     },
     {
       "page": "hosts/ps4/files/index.html",
       "image": "/assets/images/host-catalog/files.svg",
-      "actionContractSHA256": "81a025e63a73decd53543df119917f98ed6a8eb27b09eddfba3313da234b038c"
+      "actionContractSHA256": "a36ba29f392d58d4cf695180959158a7a959fd3698ce613008ed906fcca45036"
     },
     {
       "page": "hosts/ps4/firmware/index.html",
@@ -46,12 +46,12 @@
     {
       "page": "hosts/ps4/gta5/index.html",
       "image": "/assets/images/gta52.png",
-      "actionContractSHA256": "0906193f0a033e1b6e8a8e40cc0d8102eeed41bed44849587c9c61f445199a66"
+      "actionContractSHA256": "0391000faab9e463780eff68065f8217599ca0f139e7c2767ce7f3b232b92742"
     },
     {
       "page": "hosts/ps4/index.html",
       "image": "/assets/images/host-selector/whatwhatboy-ps4.jpg",
-      "actionContractSHA256": "d3bd0f90496fabdd905281411bf6a8d339b62b66165baa18f8961e4823175ea0"
+      "actionContractSHA256": "6b613a596aab74108854e3222f18a0c0196a0561aa3692cf9a605dc55ec84cba"
     },
     {
       "page": "hosts/ps4/lua/index.html",
@@ -61,7 +61,7 @@
     {
       "page": "hosts/ps4/other-games/index.html",
       "image": "/assets/images/host-catalog/games.svg",
-      "actionContractSHA256": "d5303e59a79c974c9acc6a84cec0966c0a734048663ad182a231d8d4b3c04c4f"
+      "actionContractSHA256": "9f84b153cec2ffaefdbebc44aefaab7b7e845acccbbf3f87625f5a21c20da8c7"
     },
     {
       "page": "hosts/ps4/packages/index.html",
@@ -71,12 +71,12 @@
     {
       "page": "hosts/ps4/payload-manager/index.html",
       "image": "/assets/images/host-catalog/payloads.svg",
-      "actionContractSHA256": "194b0d4a0428cbc12036f204c3243ade9308799709d052dc163171f474ea9fe6"
+      "actionContractSHA256": "1b111ff549ea42dd18f481a5f3297e6c42de7fdb15c329d88e56a3b7d4333801"
     },
     {
       "page": "hosts/ps4/rdr2/index.html",
       "image": "/assets/images/rdr2.png",
-      "actionContractSHA256": "3864eedf156dc4c468faa93f3ea6fb92b9bdd7b0e4143bf2675e8fdc57e082de"
+      "actionContractSHA256": "5748bdc1cd08efb7d287d034f19348a29faa39c14b1ddf9b121967fa89363ead"
     },
     {
       "page": "hosts/ps5/files/index.html",
@@ -86,12 +86,12 @@
     {
       "page": "hosts/ps5/gta5/index.html",
       "image": "/assets/images/gta52.png",
-      "actionContractSHA256": "dd660a064e9fb95fda91d9a67f7d11c1d455ebb1781e57cd2ca1f0d0587ccb81"
+      "actionContractSHA256": "b0e896fbe37c7b47d6f13f50f3a6dcc6b1597673b3ec9d115059f209ceb126e8"
     },
     {
       "page": "hosts/ps5/index.html",
       "image": "/assets/images/host-selector/whatwhatboy-ps5.jpg",
-      "actionContractSHA256": "963d88b2aeec90b445dfe016cbbaf3b84a260bec360fb86c45e0096c1d833fc2"
+      "actionContractSHA256": "0d88a997c695d6ec55b9cc854bf2275794ab2228048cf5a070d852dcfc1cc591"
     },
     {
       "page": "hosts/ps5/lua/index.html",
@@ -101,7 +101,7 @@
     {
       "page": "hosts/ps5/other-games/index.html",
       "image": "/assets/images/host-catalog/games.svg",
-      "actionContractSHA256": "7e9c69bc76490a5fd13dc96e3084a94783d5e40b78fb3447ff1a600fd2170081"
+      "actionContractSHA256": "6e674b23303969e019a5bd5d6c8c0424407842bf449a7a11494950adf72af7e7"
     },
     {
       "page": "hosts/ps5/packages/index.html",
@@ -116,7 +116,7 @@
     {
       "page": "hosts/ps5/rdr2/index.html",
       "image": "/assets/images/rdr2.png",
-      "actionContractSHA256": "40d325cd46ceff7aa1793774a20d0a5d75fc17967f9fe0c33469dd32fb6805fd"
+      "actionContractSHA256": "7d00410f4057b0c1767a678ee90e2be0dcf7a33a9a0d42bb6f595eae7c59c334"
     },
     {
       "page": "hosts/tools/esp-flasher/index.html",
@@ -128,18 +128,5 @@
       "image": "/assets/images/host-catalog/tools.svg",
       "actionContractSHA256": "768252447a3ea307974f2cba08fc9e534b504a911bd262ab66957523cb20c282"
     }
-  ],
-  "immutableTrees": {
-    "downloads": "936e5fd2b88098033c6185b9a473b55a15c06781",
-    "hosts/runtime": "1cc6f612a2c60e816d3c5889c7adfbba67e1b880"
-  },
-  "behaviorTestsPassed": 29,
-  "projectBuild": {
-    "bytes": 842017931,
-    "links": 2384,
-    "nativeScriptsUnchanged": 848,
-    "cachedResourcesRetained": 1491,
-    "cacheManifestAliases": 7,
-    "issues": 0
-  }
+  ]
 }

@@ -195,5 +195,22 @@
     "commit": "6ccc8e8bd29de9f7ac1c3fc649765878e3b49858",
     "deployment": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41716058331",
     "focusedTests": 54
+  },
+  "allPagesAudit20261103": {
+    "status": "150 tests passing; publishing verified fixes",
+    "pages": 25,
+    "images": 87,
+    "missingImages": 0,
+    "invalidImages": 0,
+    "duplicateIDs": 0,
+    "behaviorAndProvenanceTests": 150,
+    "fixes": [
+      "Mobile padding CSS specificity",
+      "Three missing social-preview images",
+      "Explicit GoldHEN PC/mobile Download destination",
+      "Private migration evidence resolution in provenance tests"
+    ],
+    "hardwareExecutionVerified": false,
+    "browserRenderVerified": false
   }
 }

@@ -153,6 +153,7 @@
   }
   function downloadPlan(action, platform, address, detected, normalize) {
     if (!action.downloadURL) throw Error('This entry does not provide a downloadable file.');
+    if(action.downloadOnDevice)return {destination:'device',address:'',url:action.downloadURL};
     if (String(address || '').trim() || detected.platform === platform) {
       var target = targetAddress(address || '127.0.0.1',platform,detected,normalize);
       if (!action.consoleFileId) throw Error('Update the console downloader catalogue before saving this file to the console.');
@@ -276,6 +277,10 @@
       }
       return plan;
     }
+    function downloadLink(action,url,content){
+      if(action.downloadOnDevice&&detection.platform===platform)return '<span class="host-load-note">Download on PC / mobile</span>';
+      return '<a class="host-download" data-no-file-options data-download-action="'+escape(action.id)+'" href="'+escape(url)+'" download>'+content+'</a>';
+    }
     function actionMarkup(action) {
         if(fileListView&&!activeGroup)return fileMarkup(action);
         var download = safeURL(action.downloadURL || '', win.location.href);
@@ -298,9 +303,9 @@
         originalHost = navigationURL(originalHost);
         var artwork = action.category==='loaders' ? '' : catalogGrid ? catalogUI.representativeImage([action]) : isMenu ? actionImage(action) : '', imageLabel = imageCaption(action), releaseLabel = action.resourceType === 'cheat-definitions' ? 'Trainer version' : 'Menu version';
         return '<article class="host-action' + (artwork ? ' host-action-with-art' : '') + '">' + (artwork ? '<figure class="host-action-art"><img src="' + escape(artwork) + '" alt="' + escape(action.imageAlt || action.label + ' · ' + imageLabel) + '" loading="lazy"></figure>' : '') + '<div class="host-action-content"><div class="host-action-title"><h3>' + escape(action.label) + '</h3>' + (action.game ? '<span>' + escape(action.game) + '</span>' : '') + '</div>' + (action.game ? '<dl class="host-version-facts"><div><dt>Game update</dt><dd>' + escape(action.gameVersion || 'Not provided') + '</dd></div><div><dt>' + releaseLabel + '</dt><dd>' + escape(action.menuVersion || 'Not provided') + '</dd></div></dl>' : '') + '<p class="host-action-meta">' + escape(meta) + '</p>' + (action.variantLabel || action.hostVariant ? '<p class="host-action-meta">' + escape(action.variantLabel || action.hostVariant) + '</p>' : '') + (action.titleIds && action.titleIds.length ? '<p class="host-action-meta">' + escape(action.titleIds.join(', ')) + '</p>' : '') + (action.supportArchiveURL ? '<p class="host-file-note">Plugin update file. First installation also needs its support files.</p>' : '') + '<div class="host-action-buttons">' +
-          (download ? '<a class="host-download" data-no-file-options data-download-action="' + escape(action.id) + '" href="' + escape(download) + '" download>Download</a>' : '') +
+          (download ? downloadLink(action,download,'Download') : '') +
           (label ? '<button type="button" class="host-launch" data-launch="' + escape(action.id) + '"' + (disabled ? ' disabled title="' + escape(!capability.available && isMenu ? capability.reason : 'Choose compatible firmware and a running console loader.') + '"' : '') + '>' + escape(label) + '</button>' : '') + '</div>' +
-          (download ? '<p class="host-download-destination">Download destination: ' + escape(String(address.value || '').trim() || detection.platform === platform ? platform.toUpperCase() : 'This device') + '</p>' : '') +
+          (download ? '<p class="host-download-destination">Download destination: ' + escape(!action.downloadOnDevice&&(String(address.value || '').trim() || detection.platform === platform) ? platform.toUpperCase() : 'This device') + '</p>' : '') +
           (isMenu && !capability.available ? '<p class="host-load-note">' + escape(capability.reason) + '</p>' : '') +
           '' +
           (requiresSender ? '<p class="host-load-note">' + (action.format === 'BIN' ? 'Connect the paired desktop sender to load this BIN.' : 'Connect the paired desktop sender to load this ELF.') + '</p>' : '') +
@@ -347,7 +352,7 @@
       var arrow='<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v9m-3-3 3 3 3-3M4 13v4h12v-4"/></svg>';
       var play='<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true"><path d="m7 4 9 6-9 6z"/></svg>';
       var info='<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="M10 9v5m0-8v.1"/></svg>';
-      return '<article class="host-action host-file-row"><div class="host-file-line"><div class="host-file-identity"><span class="host-file-glyph">'+icon+'</span><div><h3 translate="no">'+escape(title)+'</h3>'+(subtitle?'<small>'+escape(subtitle)+'</small>':'')+'</div></div><span class="host-file-type" translate="no">'+escape(format)+'</span><span class="host-file-size" translate="no" title="'+(Number.isSafeInteger(fileBytes)?fileBytes+' B':'')+'">'+size+'</span><div class="host-file-compat">'+(restriction?'<button type="button" class="host-support-check" data-support-action="'+escape(action.id)+'" title="'+escape(restriction)+'"><span translate="no">'+escape(pins.length>2?'…':restriction)+'</span></button>':'<span class="host-file-unspecified">—</span>')+'</div><div class="host-action-buttons">'+(url?'<a class="host-download" data-no-file-options data-download-action="'+escape(action.id)+'" href="'+escape(url)+'" download>'+arrow+'<span>Download</span></a>':'')+(action.run||action.launchURL?'<button class="host-launch" type="button" data-launch="'+escape(action.id)+'"'+(disabled?' disabled title="'+escape(reason)+'"':'')+'>'+play+'<span>Load</span></button>':'')+'<button type="button" class="host-file-info" data-support-action="'+escape(action.id)+'" aria-label="Requirements" title="Requirements">'+info+'</button></div></div></article>';
+      return '<article class="host-action host-file-row"><div class="host-file-line"><div class="host-file-identity"><span class="host-file-glyph">'+icon+'</span><div><h3 translate="no">'+escape(title)+'</h3>'+(subtitle?'<small>'+escape(subtitle)+'</small>':'')+'</div></div><span class="host-file-type" translate="no">'+escape(format)+'</span><span class="host-file-size" translate="no" title="'+(Number.isSafeInteger(fileBytes)?fileBytes+' B':'')+'">'+size+'</span><div class="host-file-compat">'+(restriction?'<button type="button" class="host-support-check" data-support-action="'+escape(action.id)+'" title="'+escape(restriction)+'"><span translate="no">'+escape(pins.length>2?'…':restriction)+'</span></button>':'<span class="host-file-unspecified">—</span>')+'</div><div class="host-action-buttons">'+(url?downloadLink(action,url,arrow+'<span>Download</span>'):'')+(action.run||action.launchURL?'<button class="host-launch" type="button" data-launch="'+escape(action.id)+'"'+(disabled?' disabled title="'+escape(reason)+'"':'')+'>'+play+'<span>Load</span></button>':'')+'<button type="button" class="host-file-info" data-support-action="'+escape(action.id)+'" aria-label="Requirements" title="Requirements">'+info+'</button></div></div></article>';
     }
     function groupMarkup(group) {
       if (group.actions[0].category !== 'mods') return actionMarkup(group.actions[0]);

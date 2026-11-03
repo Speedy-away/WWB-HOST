@@ -34,6 +34,7 @@ test('every downloadable host action has an exact native file ID without broaden
   const {hostActions} = require('../build-host-selector.cjs');
   const catalogue=read('docs/console-download-catalog.json').items;
   for(const platform of ['ps4','ps5']) for(const action of hostActions(platform).filter(a=>a.downloadURL)) {
+    if(action.downloadOnDevice){assert.equal(action.id,'ps4-goldhen-user-supplied');assert.equal(action.browserHost,true);assert.deepEqual(ui.downloadPlan(action,platform,'192.168.1.42',ui.detectBrowser('Windows NT 10.0'),normalize),{destination:'device',address:'',url:action.downloadURL});continue;}
     assert.ok(action.consoleFileId,action.id);
     const file=catalogue.find(f=>f.id===action.consoleFileId);
     assert.equal(file.sha256,action.sha256,action.id);
@@ -57,3 +58,5 @@ test('generated chooser has separate categories and button choices instead of a 
     assert.ok(html.includes('Download a copy when pressing Load'));
   }
 });
+
+test('GoldHEN device download stays explicit with a configured console and never offers an unsupported receiver route',()=>{const action=require('../build-host-selector.cjs').hostActions('ps4').find(a=>a.id==='ps4-goldhen-user-supplied');assert.equal(action.downloadOnDevice,true);for(const ua of ['Windows NT 10.0','PlayStation 4/13.52'])assert.deepEqual(ui.downloadPlan(action,'ps4','192.168.1.42',ui.detectBrowser(ua),normalize),{destination:'device',address:'',url:action.downloadURL});const {fixture}=require('./host-continuation-dom.cjs'),app=fixture({actions:[action],initialCategory:'goldhen',userAgent:'PlayStation 4/13.52'});assert.match(app.ids['host-action-grid'].innerHTML,/Download on PC \/ mobile/);assert.doesNotMatch(app.ids['host-action-grid'].innerHTML,/data-download-action=/);assert.equal(app.sends.length,0);});
