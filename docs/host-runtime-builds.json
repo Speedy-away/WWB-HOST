@@ -36,8 +36,8 @@
         },
         {
           "path": "index.html",
-          "bytes": 2100,
-          "sha256": "b07f26c2ffbf362b8cc985d3717ba07e705d64d6218441087f345bef39fca59c"
+          "bytes": 2420,
+          "sha256": "0c57e228914892c177312882a14974abce1af074b6fd0221e45e288481efb97e"
         },
         {
           "path": "README.md",
@@ -512,8 +512,8 @@
         },
         {
           "path": "index.html",
-          "bytes": 897,
-          "sha256": "7be7b2e6ab154d4982271f746eb43343cc3018c81be988bdcdd7b32d97e653c9"
+          "bytes": 1001,
+          "sha256": "5ea5f224505acdb7527c04c024e566baf66eccec93601381c233988ac7bc6831"
         },
         {
           "path": "LICENSE-elfldr",
@@ -1681,8 +1681,8 @@
         },
         {
           "path": "index.html",
-          "bytes": 2223,
-          "sha256": "1a50495c066c344540e555e2cb12e1b6aa5db5fcbcf41fe21b8c6493dfe71dd5"
+          "bytes": 2543,
+          "sha256": "a521fa28136d4383bc5f704889d8cf1612923080c156bf813115b3f3ff49f9f2"
         },
         {
           "path": "source-record.json",

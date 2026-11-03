@@ -216,7 +216,7 @@
     var availableFirmwares=availableBrowserFirmwares(actions),restrictFirmware=Boolean(catalog.firmwareChoicesOnly);
     var fileListView=Boolean(catalog.fileListView);
     var gameScope = catalog.gameScope || '', gamesLanding = Boolean(catalog.gamesLanding)&&!fileListView;
-    var client = win.HostConsoleClient, category = catalog.initialCategory || (catalog.managerView ? 'payloads' : 'mods'), bridge = null, loading = false;
+    var client = win.HostConsoleClient, category = catalog.initialCategory || (catalog.managerView ? 'payloads' : 'mods'), bridge = null, loading = false, browserHandoff = false;
     var initialCategory = String(win.location.hash || '').replace(/^#/, '');
     if (['mods','payloads','loaders','tools','goldhen'].indexOf(initialCategory) !== -1) category = initialCategory;
     var firmware = doc.querySelector('#host-firmware'), search = doc.querySelector('#host-search'), game = doc.querySelector('#host-game'), legacy = doc.querySelector('#host-show-legacy');
@@ -321,7 +321,7 @@
         var label = isMenu || action.run || capability.kind === 'browser' ? 'Load' : launch ? (action.launchLabel || 'Open tool') : '';
         var requiresSender = action.run && (action.run.type === 'elf-tcp' || action.run.type === 'bin-tcp' || needsFile) && !canBridge;
         var uncertain = action.run && connection.warning(configuredAddress());
-        var disabled = isMenu && !capability.available || needsFirmware || requiresSender || capability.kind === 'browser' && (detection.platform !== platform || !firmwareMatches(action,firmware.value)) || loading || uncertain;
+        var disabled = isMenu && !capability.available || needsFirmware || requiresSender || capability.kind === 'browser' && (detection.platform !== platform || !firmwareMatches(action,firmware.value)) || loading || action.browserHost && browserHandoff || uncertain;
         var meta = [action.format ? String(action.format).toUpperCase() : '', action.game ? '' : action.version, firmwareLabel(action)].filter(Boolean).join(' · ');
         var details = (action.requirements || []).map(function (text) { return '<li>' + escape(text) + '</li>'; }).join('');
         var facts = payloadFileFacts(action);
@@ -407,7 +407,7 @@
       if (category!=='mods') {
         renderedGroups=groupActions(visible);
         writeCount(renderedGroups.length);
-        return windowed(renderedGroups).map(function(group){var first=group.actions[0];if(group.firmwarePicker)return catalogTile({id:group.id,label:'GoldHEN',image:catalogUI.representativeImage(group.actions),detail:'Choose firmware · '+group.actions.length+' versions',attribute:'data-choose-group'});if(category==='loaders'&&first.browserHost)return catalogTile({id:first.id,label:'Load',image:'',detail:group.label+(detection.platform!==platform?' · Open on '+platform.toUpperCase():''),attribute:'data-launch',disabled:detection.platform!==platform||!firmware.value||!firmwareMatches(first,firmware.value)||Boolean(detection.firmware&&detection.firmware!==firmware.value)});return catalogTile({id:group.id,label:group.label,image:category==='loaders'?'':catalogUI.representativeImage(group.actions),detail:[first.format,first.version||first.menuVersion||''].filter(Boolean).join(' · '),attribute:'data-choose-group'});}).join('');
+        return windowed(renderedGroups).map(function(group){var first=group.actions[0];if(group.firmwarePicker)return catalogTile({id:group.id,label:'GoldHEN',image:catalogUI.representativeImage(group.actions),detail:'Choose firmware · '+group.actions.length+' versions',attribute:'data-choose-group'});if(category==='loaders'&&first.browserHost)return catalogTile({id:first.id,label:'Load',image:'',detail:group.label+(detection.platform!==platform?' · Open on '+platform.toUpperCase():''),attribute:'data-launch',disabled:browserHandoff||detection.platform!==platform||!firmware.value||!firmwareMatches(first,firmware.value)||Boolean(detection.firmware&&detection.firmware!==firmware.value)});return catalogTile({id:group.id,label:group.label,image:category==='loaders'?'':catalogUI.representativeImage(group.actions),detail:[first.format,first.version||first.menuVersion||''].filter(Boolean).join(' · '),attribute:'data-choose-group'});}).join('');
       }
       var groups=catalogUI.gameGroups(visible),path='<nav class="host-catalog-path" aria-label="Game mods">'+(gameScope?'<a href="/hosts/'+platform+'/?view=mods">Game mods</a>':'<button type="button" data-catalog-back="games">Game mods</button>')+(selected?'<span aria-hidden="true">/</span><button type="button" data-catalog-back="updates" translate="no">'+escape(selected.label)+'</button>':'')+(selected&&catalogUpdate?'<span aria-hidden="true">/</span><strong translate="no">'+escape(catalogUpdate==='unspecified'?'Not provided':catalogUpdate)+'</strong>':'')+'</nav>';
       if (!selected) {
@@ -592,7 +592,19 @@
       if (action.category === 'mods' && !loadCapability(action).available) { tell(loadCapability(action).reason,true); return; }
       if (loadCapability(action).kind === 'browser' && detection.platform !== platform) { tell(loadCapability(action).reason,true); return; }
       var url; try { url = launchURL(action); } catch (error) { tell(error.message, true); return; }
-      if (url && action.browserHost) { if(detection.firmware!==firmware.value){tell('Choose the firmware detected on this '+platform.toUpperCase()+'.',true);return;} if(action.nativeRoute){try{if(!win.HostSiteLoad)throw Error('The local Load controller is unavailable. Reload this page.');url=win.HostSiteLoad.start(win,doc,action,event.isTrusted===true);}catch(error){tell(error.message,true);return;}} else if(action.platform==='ps5'&&action.runtimeId==='ps5-umtx'){try{win.sessionStorage.setItem('wwb.ps5.load.request.v1',JSON.stringify({firmware:firmware.value,createdAt:Date.now()}));}catch(e){tell('Session storage is unavailable. Enable it to load.',true);return;}} tell('Loading ' + action.label + ' on ' + platform.toUpperCase() + '…'); win.location.href=url; }
+      if (url && action.browserHost) {
+        if(browserHandoff||button.disabled)return;
+        if(detection.firmware!==firmware.value){tell('Choose the firmware detected on this '+platform.toUpperCase()+'.',true);return;}
+        if(event.isTrusted!==true){tell('Press Load in the console browser.',true);return;}
+        browserHandoff=true;button.disabled=true;button.setAttribute('aria-busy','true');
+        status.setAttribute('role','status');status.setAttribute('aria-live','polite');
+        tell('Loading…');
+        try {
+          if(action.nativeRoute){if(!win.HostSiteLoad)throw Error('The local Load controller is unavailable. Reload this page.');url=win.HostSiteLoad.start(win,doc,action,true);}
+          else if(action.platform==='ps5'&&action.runtimeId==='ps5-umtx'){var request=JSON.stringify({firmware:firmware.value,createdAt:Date.now()});win.sessionStorage.setItem('wwb.ps5.load.request.v1',request);if(win.sessionStorage.getItem('wwb.ps5.load.request.v1')!==request)throw Error('Browser session storage is unavailable. Nothing was started.');}
+          win.location.href=url;
+        } catch(error) {button.setAttribute('aria-busy','false');status.setAttribute('role','alert');tell(error.message,true);}
+      }
       else if (url) { win.open(url, '_blank', 'noopener'); tell('Opening ' + action.label + '. Follow the loader status on that page.'); }
       else service('files');
     }
