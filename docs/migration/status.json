@@ -66,5 +66,15 @@
     "linkIssues": 0,
     "fixtureTests": "1 passed",
     "hardwareExecutionVerified": false
+  },
+  "senderReleaseDelivery": {
+    "version": "2.1.0+8d8bda70ee88",
+    "bytes": 106736981,
+    "sha256": "e580a8d9e763b87e4107a84e62d4590b4db9eac804dd3fc435c651c960739e7d",
+    "publicDownloadURL": "https://github.com/Speedy-away/WWB-HOST/releases/download/sender-2.1.0-8d8bda70ee88/console-payload-sender-2.1.0-8d8bda70ee88.zip",
+    "localZipPreserved": true,
+    "archiveVerified": true,
+    "publication": "Release upload and final main push pending",
+    "testsPassed": 67
   }
 }

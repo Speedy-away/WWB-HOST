@@ -1,0 +1,48 @@
+{
+  "checkedAt": "2026-11-03T19:43:28.999Z",
+  "hostRepository": "https://github.com/Speedy-away/WWB-HOST",
+  "hostCommit": "0716f70dc70d0b9efebe157f6b3ad34008f65fee",
+  "hostSite": "https://speedy-away.github.io/WWB-HOST/",
+  "hostDeployment": {
+    "id": 41705919245,
+    "url": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41705919245",
+    "conclusion": "success",
+    "head": "0716f70dc70d0b9efebe157f6b3ad34008f65fee"
+  },
+  "publicHTTP": [
+    {
+      "path": "",
+      "status": 200
+    },
+    {
+      "path": "hosts/ps4/",
+      "status": 200
+    },
+    {
+      "path": "hosts/ps5/",
+      "status": 200
+    },
+    {
+      "path": "hosts/karo/",
+      "status": 200
+    },
+    {
+      "path": "hosts/karo/versions.html",
+      "status": 200
+    }
+  ],
+  "homeImagesVerified": 6,
+  "mainCommit": "fe5386a1738bc9d3d40a9c77c81313fb2d9a4d11",
+  "mainDeployment": {
+    "id": 41707006458,
+    "url": "https://github.com/Speedy-away/whatsite/actions/runs/41707006458",
+    "conclusion": "success",
+    "head": "fe5386a1738bc9d3d40a9c77c81313fb2d9a4d11"
+  },
+  "mainSiteLinkVerified": true,
+  "status": "published-and-verified",
+  "finishedAt": "2026-11-03T19:55:13.462Z",
+  "nativeCodeExecuted": false,
+  "consoleContact": false,
+  "hardwareExecutionVerified": false
+}

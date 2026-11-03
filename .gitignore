@@ -4,3 +4,9 @@ node_modules/
 .env
 .env.*
 .DS_Store
+
+# Sender ZIP retained locally and in F:; public download is a release asset.
+/downloads/helpers/console-payload-sender/console-payload-sender-2.1.0-9aab99b3337b.zip
+
+# Sender ZIP retained locally and in F:; public download is a release asset.
+/downloads/helpers/console-payload-sender/console-payload-sender-2.1.0-8d8bda70ee88.zip

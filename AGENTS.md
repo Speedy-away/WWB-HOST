@@ -50,3 +50,7 @@ changes or losing older downloads.
 # Independent host repository
 
 Public URL https://speedy-away.github.io/WWB-HOST/. Main site https://whatwhatboy.com/. Keep original native runtime and immutable downloadable bytes unchanged. All Pages prefix and repository-download adaptation belongs to scripts/host-project-pages.cjs and assets/host-project-routing.js. Do not execute native console files during testing. Never restore or refetch the recorded Defender-quarantined sources. Preserve all prior snapshots. The source history remains in whatsite; this repository owns future host changes. Use bounded/resumable pushes. Read docs/migration before broad generators; some retained historical maintenance tools require private original-source staging from the local archive.
+
+# Oversized sender delivery
+
+Sender ZIPs at or above 95 MiB stay in the working folder and F: archive, never in Git. Package/archive first, then run `node scripts/release-console-payload-sender.cjs` to publish and verify the immutable release asset before pushing its download metadata. Preserve older ZIPs/releases. The manifest keeps its local `url` identity and uses `publicDownloadURL` for delivery; the Pages publisher must retain that release alias even when the ignored ZIP is absent from checkout. Never replace a published different asset.

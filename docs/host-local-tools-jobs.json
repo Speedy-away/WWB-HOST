@@ -1,6 +1,50 @@
 {
   "jobs": [
     {
+      "id": "whatsite-ps4-trainer-750a7b8fb4d7212c",
+      "title": "whatwhatboy PS4 local WebRTE trainer",
+      "platform": "PS4",
+      "category": "Tools",
+      "project": "whatsite Local Host Tools",
+      "version": "2026.11.03.1+750a7b8fb4d7212c",
+      "release": "2026.11.03.1+750a7b8fb4d7212c",
+      "filename": "ps4-trainer-750a7b8fb4d7212c.zip",
+      "url": "https://raw.githubusercontent.com/Speedy-away/WWB-HOST/main/downloads/helpers/host-local-tools/ps4-trainer/ps4-trainer-750a7b8fb4d7212c.zip",
+      "importPath": "downloads/helpers/host-local-tools/ps4-trainer/ps4-trainer-750a7b8fb4d7212c.zip",
+      "kind": "generated",
+      "archiveRole": [
+        "Helpers"
+      ],
+      "mirror": false,
+      "pages": [
+        "hosts/tools/ps4-trainer/index.html"
+      ],
+      "expectedBytes": 7330450,
+      "expectedSha256": "fbe209c41d6f2f87b9c5bf6c9b9647265fdd8059c918decc69a5aea89041f63a"
+    },
+    {
+      "id": "whatsite-esp-flasher-fac1e070e9ec024f",
+      "title": "whatwhatboy local ESP Web Flasher",
+      "platform": "PC",
+      "category": "Tools",
+      "project": "whatsite Local Host Tools",
+      "version": "2026.11.03.1+fac1e070e9ec024f",
+      "release": "2026.11.03.1+fac1e070e9ec024f",
+      "filename": "esp-flasher-fac1e070e9ec024f.zip",
+      "url": "https://raw.githubusercontent.com/Speedy-away/WWB-HOST/main/downloads/helpers/host-local-tools/esp-flasher/esp-flasher-fac1e070e9ec024f.zip",
+      "importPath": "downloads/helpers/host-local-tools/esp-flasher/esp-flasher-fac1e070e9ec024f.zip",
+      "kind": "generated",
+      "archiveRole": [
+        "Helpers"
+      ],
+      "mirror": false,
+      "pages": [
+        "hosts/tools/esp-flasher/index.html"
+      ],
+      "expectedBytes": 810271,
+      "expectedSha256": "c2bf8921f55ec0561d4fc390acb256e5e3fa954a8c5b61a758f487b03220a3a9"
+    },
+    {
       "id": "whatsite-ps4-trainer-d057dba4a7a6da98",
       "title": "whatwhatboy PS4 local WebRTE trainer",
       "platform": "PS4",

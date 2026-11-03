@@ -1,0 +1,16 @@
+{
+  "verifiedAt": "2026-11-03T20:08:54.824Z",
+  "version": "2.1.0+9aab99b3337b",
+  "name": "console-payload-sender-2.1.0-9aab99b3337b.zip",
+  "bytes": 106736861,
+  "sha256": "507f007ae5d8473fe794c192dd27e823d232a68990092123d648a480512a45e5",
+  "local": "/downloads/helpers/console-payload-sender/console-payload-sender-2.1.0-9aab99b3337b.zip",
+  "archivePath": "F:\\whatsite-backup-downloads-etc\\files\\PC\\Tools\\Console Payload Sender\\Helpers\\2.1.0+9aab99b3337b\\console-payload-sender-2.1.0-9aab99b3337b.zip",
+  "release": "https://github.com/Speedy-away/WWB-HOST/releases/tag/sender-2.1.0-9aab99b3337b",
+  "downloadURL": "https://github.com/Speedy-away/WWB-HOST/releases/download/sender-2.1.0-9aab99b3337b/console-payload-sender-2.1.0-9aab99b3337b.zip",
+  "assetId": 706920337,
+  "serverDigest": "sha256:507f007ae5d8473fe794c192dd27e823d232a68990092123d648a480512a45e5",
+  "zipUnchanged": true,
+  "archiveVerified": true,
+  "downloadedCodeExecuted": false
+}

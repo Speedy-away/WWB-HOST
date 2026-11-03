@@ -442,7 +442,40 @@
       "files": 1495,
       "payloads": 125,
       "actions": 185
+    },
+    {
+      "id": "console-payload-sender-9aab99b3337b",
+      "name": "console-payload-sender-2.1.0-9aab99b3337b.zip",
+      "version": "2.1.0+9aab99b3337b",
+      "url": "/downloads/helpers/console-payload-sender/console-payload-sender-2.1.0-9aab99b3337b.zip",
+      "source": "https://github.com/Speedy-away/WWB-HOST/releases/download/sender-2.1.0-9aab99b3337b/console-payload-sender-2.1.0-9aab99b3337b.zip",
+      "bytes": 106736861,
+      "sha256": "507f007ae5d8473fe794c192dd27e823d232a68990092123d648a480512a45e5",
+      "snapshot": "9aab99b3337b4afc9abef38ef066c0453ad25cafe01f15375eeec8d8eab3987f",
+      "files": 1572,
+      "payloads": 125,
+      "actions": 185,
+      "releaseTag": "sender-2.1.0-9aab99b3337b",
+      "publicDownloadURL": "https://github.com/Speedy-away/WWB-HOST/releases/download/sender-2.1.0-9aab99b3337b/console-payload-sender-2.1.0-9aab99b3337b.zip",
+      "originalSource": "https://speedy-away.github.io/WWB-HOST/downloads/helpers/console-payload-sender/console-payload-sender-2.1.0-9aab99b3337b.zip",
+      "releaseAssetId": 706920337
+    },
+    {
+      "id": "console-payload-sender-8d8bda70ee88",
+      "name": "console-payload-sender-2.1.0-8d8bda70ee88.zip",
+      "version": "2.1.0+8d8bda70ee88",
+      "url": "/downloads/helpers/console-payload-sender/console-payload-sender-2.1.0-8d8bda70ee88.zip",
+      "source": "https://github.com/Speedy-away/WWB-HOST/releases/download/sender-2.1.0-8d8bda70ee88/console-payload-sender-2.1.0-8d8bda70ee88.zip",
+      "bytes": 106736981,
+      "sha256": "e580a8d9e763b87e4107a84e62d4590b4db9eac804dd3fc435c651c960739e7d",
+      "snapshot": "8d8bda70ee88b7bd20738c10bb0fc22b3bdcad75a00972674dcb269eb7f3b76c",
+      "files": 1572,
+      "payloads": 125,
+      "actions": 185,
+      "releaseTag": "sender-2.1.0-8d8bda70ee88",
+      "publicDownloadURL": "https://github.com/Speedy-away/WWB-HOST/releases/download/sender-2.1.0-8d8bda70ee88/console-payload-sender-2.1.0-8d8bda70ee88.zip",
+      "originalSource": "https://speedy-away.github.io/WWB-HOST/downloads/helpers/console-payload-sender/console-payload-sender-2.1.0-8d8bda70ee88.zip"
     }
   ],
-  "latest": "/downloads/helpers/console-payload-sender/console-payload-sender-2.0.0-67197d90ab00.zip"
+  "latest": "/downloads/helpers/console-payload-sender/console-payload-sender-2.1.0-8d8bda70ee88.zip"
 }

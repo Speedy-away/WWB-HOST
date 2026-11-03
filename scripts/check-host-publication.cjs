@@ -6,6 +6,7 @@ const assert = require('node:assert/strict');
 const crypto = require('node:crypto');
 const root = path.resolve(__dirname, '..');
 const site = 'https://speedy-away.github.io/WWB-HOST/';
+const resolveURL = (value, aliases) => new URL(aliases[value] || value.replace(/^\/(?!WWB-HOST\/)/, ''), site).href;
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 async function request(url, method) {
   let last;
@@ -31,7 +32,7 @@ async function main() {
   assert.equal(revision.length, 1, 'Downloads must use one immutable deployed revision');
   const build = JSON.parse(fs.readFileSync(path.join(root, 'docs/host-reviews/karo/build.json')));
   const arabic = JSON.parse(fs.readFileSync(path.join(root, 'docs/host-arabicguy-672-actions.json'))).actions;
-  const resolve = value => /^https?:/.test(value) ? value : map.aliases[value] || new URL(value.replace(/^\//, ''), site).href;
+  const resolve = value => resolveURL(value, map.aliases);
   const rows = [
     ...build.entries.map(entry => ({kind: 'KARO Load', id: entry.id, url: resolve(build.runtime + entry.path)})),
     ...build.artifacts.map(file => ({kind: 'KARO ZIP', id: file.unit, url: resolve(file.url), bytes: file.bytes})),
@@ -41,6 +42,7 @@ async function main() {
   ];
   assert.ok(!rows.some(row => /\/(?:900NM|900New)\/payload\.js(?:$|\?)/i.test(row.url)), 'Quarantined files must never be requested');
   const unique = [...new Map(rows.map(row => [row.url, row])).values()], results = [], failures = [];
+  for (const row of unique) assert.match(row.url, /^https:\/\//, 'The HTTP client requires an absolute URL');
   let next = 0, checked = 0;
   async function worker() {
     while (next < unique.length) {
@@ -53,10 +55,12 @@ async function main() {
         if (/raw\.githubusercontent\.com/.test(row.url)) assert.equal(r.headers.get('access-control-allow-origin'), '*', 'Native fetch requires CORS: ' + row.url);
         results.push({...row, status: r.status, contentType: r.headers.get('content-type'), headerBytes: length ? Number(length) : null});
       } catch (error) { failures.push({...row, error: error.message}); }
-      if (++checked % 100 === 0) console.log('Checked ' + checked + '/' + unique.length + ' published Load/Download URLs');
+      if (++checked % 100 === 0) console.log('Checked ' + checked + '/' + unique.length + ' published Load/Download URLs; failures: ' + failures.length);
     }
   }
-  await Promise.all(Array.from({length: 6}, worker));
+  const workers = Number(process.env.WWB_HOST_HTTP_WORKERS || 6);
+  assert.ok(Number.isInteger(workers) && workers >= 1 && workers <= 24);
+  await Promise.all(Array.from({length: workers}, worker));
   const exactArabic = [];
   for (const action of arabic) {
     const r = await request(action.downloadURL, 'GET');
@@ -71,8 +75,8 @@ async function main() {
   const destination = path.join(root, 'docs/migration/public-http-verification.json');
   fs.mkdirSync(path.dirname(destination), {recursive: true});
   fs.writeFileSync(destination, JSON.stringify(report, null, 2) + '\n');
-  console.log(JSON.stringify({...report, results: undefined}));
+  console.log(JSON.stringify({...report, results: undefined, failures: failures.length, failureSample: failures.slice(0, 3)}));
   assert.equal(failures.length, 0, 'Some published URLs failed; inspect the saved report');
 }
 if (require.main === module) main().catch(error => {console.error(error.message); process.exitCode = 1;});
-module.exports = {main};
+module.exports = {main, resolveURL};
