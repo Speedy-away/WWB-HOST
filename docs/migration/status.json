@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-03T23:17:07.603Z",
+  "updatedAt": "2026-11-03T23:45:42.664Z",
   "repository": "Speedy-away/WWB-HOST",
   "site": "https://speedy-away.github.io/WWB-HOST/",
   "mainSite": "https://whatwhatboy.com/",
@@ -926,5 +926,33 @@
     "verifiedOldUppercasePathStatus": 404,
     "reason": "Repository canonical name changed to wwb-host during the authorized push; published prefix follows Pages API html_url",
     "updatedAt": "2026-11-03T23:42:12.673Z"
+  },
+  "restInteractionPerformance20261103": {
+    "status": "Local checks passed; publication pending",
+    "report": "docs/migration/rest-interaction-performance.json",
+    "focusedTests": 342,
+    "patchGames": {
+      "ps4": 98,
+      "ps5": 101
+    },
+    "consolePatchArtworkRequests": 0,
+    "legacyAuditFailures": {
+      "before": 9,
+      "after": 8,
+      "preExisting": true
+    },
+    "preservation": {
+      "nativeFilesChanged": 0,
+      "downloadsChanged": 0,
+      "readyPackagesChanged": 0,
+      "allOlderVersionsRetained": true,
+      "advertisingIntegrationUnchanged": true
+    },
+    "limits": [
+      "No physical-console FPS, native execution or browser rendering test",
+      "Browser automation is disabled in Work settings"
+    ],
+    "integratedBase": "6fc0cff624483b836ca245c83a8c423c03217b30",
+    "canonicalSite": "https://speedy-away.github.io/wwb-host/"
   }
 }

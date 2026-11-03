@@ -30,7 +30,7 @@ function build(output,revision='main',root=ROOT){
   // Repair migrated image origins and absent social preview images.
   if(name.endsWith('.html'))text=text.replace(/https:\/\/whatwhatboy\.com(\/assets\/images\/[^\s"'<>\\]*)/g,(_,p)=>{const local=p.split(/[?#]/)[0];const fallback='/assets/images/'+require('./style-host-pages.cjs').artwork(name)[0];return ORIGIN+BASE+(fs.existsSync(path.join(root,local))?p:fallback);});
   if(/^hosts\/(?!runtime\/).+\.html$/.test(name)&&fs.existsSync(path.join(root,'assets/host-pages.css')))text=require('./style-host-pages.cjs').themeHTML(text,name);
-  if(name.endsWith('.html'))text=text.replace(/(host-dashboard\.js|host-catalog-grid\.js|host-folders\.js|host-trainer\.js|host-karo-builds\.js|host-site-load\.js|i18n\.js)(?:\?v=[\w.-]+)?(?=["'])/g,(_,asset)=>asset+'?v='+(asset==='host-folders.js'?'20261103p5':'20261103p6'));
+  if(name.endsWith('.html'))text=text.replace(/(host-dashboard\.js|host-catalog-grid\.js|host-folders\.js|host-trainer\.js|host-karo-builds\.js|host-site-load\.js|host-game-patches\.js|i18n\.js)(?:\?v=[\w.-]+)?(?=["'])/g,(_,asset)=>asset+'?v='+(asset==='host-folders.js'?'20261103p5':/^(?:host-dashboard|host-game-patches)\.js$/.test(asset)?'20261103p7':'20261103p6'));
   if(name==='assets/host-dashboard.js')text=text.replaceAll('^\\/hosts\\/runtime\\/','^\\/(?:(?:WWB-HOST|wwb-host)\\/)?hosts\\/runtime\\/');
   if((name==='index.html'||/^hosts\/(?!runtime\/).+\.html$/.test(name))&&fs.existsSync(path.join(root,'assets/host-performance.js'))){
    text=text.replace(/<link\b[^>]*href=["'][^"']*(?:font-awesome|fonts\.googleapis\.com)[^"']*["'][^>]*>/gi,'');
@@ -38,7 +38,7 @@ function build(output,revision='main',root=ROOT){
    text=text.replace(/<script\b([^>]*?)type=["']module["']([^>]*?)src=["']([^"']*host-esp-flasher\.js[^"']*)["']([^>]*)><\/script>/gi,(_,a,b,src)=>'<meta data-host-desktop-module="'+src+'">');
    text=text.replace(/<img\b[^>]*>/gi,tag=>/\bwidth=["'](?:24|32)["']/.test(tag)?tag:tag.replace(/\bsrc=/i,'data-host-src='));
    text=text.replace(/<head\b[^>]*>/i,m=>m+'<script src="/assets/host-performance.js?v=2"></script>');
-   text=text.replace('</head>','<link rel="stylesheet" href="/assets/host-performance.css?v=3"></head>');
+   text=text.replace('</head>','<link rel="stylesheet" href="/assets/host-performance.css?v=4"></head>');
   }
   if(name.endsWith('.html'))text=require('./host-compact-pages.cjs').apply(text,name,{root});
   if(/^hosts\/(?!runtime\/).+\.html$/.test(name))text=text.replace('</head>','<link rel="stylesheet" href="/assets/host-compact.css?v=1"><link rel="stylesheet" href="/assets/host-blue-theme.css?v=1"></head>');

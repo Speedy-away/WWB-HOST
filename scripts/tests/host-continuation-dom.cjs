@@ -8,7 +8,7 @@ function deferred() {
   const promise = new Promise((yes,no)=>{resolve=yes;reject=no;});
   return {promise,resolve,reject};
 }
-function fixture({platform='ps4',firmwareChoicesOnly=false,storage=new Map(),sessionStore=new Map(),actions,pairDeferred=false,fileListView=false,catalogGrid=false,firmwareButtons,userAgent='Fixture desktop browser',initialCategory='mods',sharedCatalogue,dashboardApi}={}) {
+function fixture({platform='ps4',firmwareChoicesOnly=false,storage=new Map(),sessionStore=new Map(),actions,pairDeferred=false,fileListView=false,catalogGrid=false,firmwareButtons,userAgent='Fixture desktop browser',initialCategory='mods',sharedCatalogue,dashboardApi,catalogMetrics}={}) {
   const created=[],opened=[],anchorClicks=[],checks=[],sends=[],pairs=[],windowEvents={};
   let gestureDepth=0,document;
   function matches(node, selector) {
@@ -79,7 +79,7 @@ function fixture({platform='ps4',firmwareChoicesOnly=false,storage=new Map(),ses
     launchInstalled(address,itemPath){return queue(sends,{method:'installed',address,itemPath});}
   };
   const window={HostConsoleClient:client,navigator:{userAgent},location:{href:'http://127.0.0.1:8766/hosts/'+platform+'/',origin:'http://127.0.0.1:8766'},sessionStorage:{getItem(key){return sessionStore.get(key)||null;},setItem(key,value){sessionStore.set(key,value);},removeItem(key){sessionStore.delete(key);}},localStorage:{getItem(key){return storage.get(key)||null;},setItem(key,value){storage.set(key,value);}},open(url,target,features){opened.push({url,target,features,duringGesture:gestureDepth>0});return{};},addEventListener(type,handler){(windowEvents[type]||=[]).push(handler);}};
-  if(catalogGrid&&require('node:fs').existsSync(require('node:path').join(__dirname,'../../assets/host-catalog-grid.js')))window.HostCatalogGrid=require('../../assets/host-catalog-grid.js');
+  if(catalogGrid&&require('node:fs').existsSync(require('node:path').join(__dirname,'../../assets/host-catalog-grid.js'))){const api=require('../../assets/host-catalog-grid.js');window.HostCatalogGrid={...api};if(catalogMetrics)for(const name of ['tileMarkup','gameGroups'])window.HostCatalogGrid[name]=function(...args){catalogMetrics[name]=(catalogMetrics[name]||0)+1;return api[name](...args);};}
   if(sharedCatalogue)window.WWB_HOST_ACTION_DATA=sharedCatalogue;
   window.document=document;window.top=window;window.self=window;window.HostSiteLoad=require('../../assets/host-site-load.js');window.WhatsiteKaro=require('../../assets/host-karo-builds.js');
   (dashboardApi||dashboard).install(document,window);

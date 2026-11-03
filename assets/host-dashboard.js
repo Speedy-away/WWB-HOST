@@ -231,7 +231,7 @@
     function catalogTile(options){if(consoleBrowser)options.textOnly=true;return catalogUI.tileMarkup(options);}
     var address = doc.querySelector('#host-console-address'), status = doc.querySelector('#host-status');
     var grid = doc.querySelector('#host-action-grid'), count = doc.querySelector('#host-action-count');
-    var lastGridMarkup=null,lastGridKey='',lastCountText=null,gridChanged=false,countChanged=false;
+    var lastGridMarkup=null,lastGridKey='',lastCountText=null,gridChanged=false,countChanged=false,catalogueStamp=null,lastChoiceStructure=null;
     function writeGrid(markup){
       if(markup===lastGridMarkup){lastGridKey=renderKey;return;}
       if(consoleBrowser&&renderKey===lastGridKey&&lastGridMarkup&&markup.indexOf(lastGridMarkup)===0&&grid.insertAdjacentHTML)grid.insertAdjacentHTML('beforeend',markup.slice(lastGridMarkup.length));
@@ -423,13 +423,14 @@
       renderedGroups=groupActions(exact);writeCount(renderedGroups.length);
       return path+windowed(renderedGroups).map(function(group){return catalogTile({id:group.id,label:group.label,image:catalogUI.representativeImage(group.actions),detail:group.actions.map(function(a){return a.menuVersion||a.format;}).filter(function(v,i,all){return v&&all.indexOf(v)===i;}).join(' · '),attribute:'data-choose-group'});}).join('');
     }
+    function writeChoices(markup){var structure=markup.replace(/aria-pressed="(?:true|false)"/g,'');if(structure===lastChoiceStructure)return false;lastChoiceStructure=structure;versionChoices.innerHTML=markup;return true;}
     function renderVersionChoices(group) {
       var rows=group.actions,prefix='';
       if(group.firmwarePicker){
-        if(!goldhenFirmware){var choices=[];group.actions.forEach(function(action){var options=goldhenOptions(action);options.forEach(function(fw){if(choices.indexOf(fw)<0)choices.push(fw);});});choices.sort(function(a,b){return a==='requirements'?1:b==='requirements'?-1:firmwareNumber(a)-firmwareNumber(b);});versionChoices.innerHTML=choices.map(function(fw){return '<button type="button" data-goldhen-firmware="'+escape(fw)+'"><strong>'+escape(fw==='requirements'?'See requirements':fw)+'</strong></button>';}).join('');return;}
+        if(!goldhenFirmware){var choices=[];group.actions.forEach(function(action){var options=goldhenOptions(action);options.forEach(function(fw){if(choices.indexOf(fw)<0)choices.push(fw);});});choices.sort(function(a,b){return a==='requirements'?1:b==='requirements'?-1:firmwareNumber(a)-firmwareNumber(b);});return writeChoices(choices.map(function(fw){return '<button type="button" data-goldhen-firmware="'+escape(fw)+'"><strong>'+escape(fw==='requirements'?'See requirements':fw)+'</strong></button>';}).join(''));}
         rows=group.actions.filter(function(action){return goldhenOptions(action).indexOf(goldhenFirmware)>=0;});prefix='<button type="button" data-goldhen-back>← Change firmware · '+escape(goldhenFirmware==='requirements'?'See requirements':goldhenFirmware)+'</button>';
       }
-      versionChoices.innerHTML = prefix+rows.map(function (action) { return '<button type="button" data-version-id="' + escape(action.id) + '" aria-label="' + escape(action.game ? variantLabel(action) : action.label) + '" aria-pressed="' + (action.id === selectedActionId ? 'true' : 'false') + '">'+(action.game?'<span>Game update <strong>' + escape(action.gameVersion || 'Not provided') + '</strong></span><span>' + (action.resourceType === 'cheat-definitions' ? 'Trainer version' : 'Menu version') + ' <strong>' + escape(action.menuVersion || 'Not provided') + '</strong></span>':'<strong>'+escape(action.label)+'</strong>')+'<small>' + escape([String(action.format || '').toUpperCase(),action.variantLabel || action.hostVariant,(action.titleIds || []).join(', ')].filter(Boolean).join(' · ')) + '</small></button>'; }).join('');
+      return writeChoices(prefix+rows.map(function (action) { return '<button type="button" data-version-id="' + escape(action.id) + '" aria-label="' + escape(action.game ? variantLabel(action) : action.label) + '" aria-pressed="' + (action.id === selectedActionId ? 'true' : 'false') + '">'+(action.game?'<span>Game update <strong>' + escape(action.gameVersion || 'Not provided') + '</strong></span><span>' + (action.resourceType === 'cheat-definitions' ? 'Trainer version' : 'Menu version') + ' <strong>' + escape(action.menuVersion || 'Not provided') + '</strong></span>':'<strong>'+escape(action.label)+'</strong>')+'<small>' + escape([String(action.format || '').toUpperCase(),action.variantLabel || action.hostVariant,(action.titleIds || []).join(', ')].filter(Boolean).join(' · ')) + '</small></button>'; }).join(''));
     }
     function goldhenOptions(action){var options=(action.firmwareChoices||action.firmwares||[]).filter(function(fw){return /^\d{1,2}\.\d{2}$/.test(fw);});return options.length?options:['requirements'];}
     function renderVariant() {
@@ -458,11 +459,15 @@
     }
     function render() {
       gridChanged=false;countChanged=false;
-      var nextKey=[category,firmware.value,search.value,game.value,legacy.checked,catalogGame,catalogUpdate].join('|');if(nextKey!==renderKey){renderLimit=pageSize;renderKey=nextKey;}if(moreButton)moreButton.hidden=true;
+      var query=search?search.value:'',selectedGame=game?game.value:'',includeLegacy=Boolean(legacy&&legacy.checked);
+      var nextKey=[category,firmware.value,query,selectedGame,includeLegacy,catalogGame,catalogUpdate].join('|');if(nextKey!==renderKey){renderLimit=pageSize;renderKey=nextKey;}
       var firmwareNote = doc.querySelector('#host-firmware-note');
       if (firmwareNote) firmwareNote.hidden = firmware.value !== '14.00';
       if (grid) {
-      var visible = filterActions(scopedCatalogue, category, (fileListView||catalogGrid)&&category!=='loaders'?'':firmware.value, search.value, category === 'mods' ? game.value : '', legacy.checked);
+      var stamp=JSON.stringify([category,firmware.value,query,selectedGame,includeLegacy,catalogGame,catalogUpdate,renderLimit,detection.platform,detection.firmware,browserHandoff]),reuseCatalogue=catalogGrid&&stamp===catalogueStamp;
+      if(!reuseCatalogue){
+      if(moreButton)moreButton.hidden=true;
+      var visible = filterActions(scopedCatalogue, category, (fileListView||catalogGrid)&&category!=='loaders'?'':firmware.value, query, category === 'mods' ? selectedGame : '', includeLegacy);
       if((fileListView||catalogGrid)&&category==='loaders'&&!firmware.value)visible=[];
       doc.querySelector('#host-game-filter').hidden = catalogGrid || category !== 'mods' || gamesLanding || gameScope === 'gta5' || gameScope === 'rdr2';
       if (category === 'mods' && gamesLanding) grid.classList.add('host-game-collections'); else grid.classList.remove('host-game-collections');
@@ -484,12 +489,14 @@
         renderedGroups.forEach(function (group) { (group.actions[0].runtimeId ? localGroups : otherGroups).push(group); });
         writeGrid(localGroups.map(groupMarkup).join('') + (otherGroups.length ? '<details class="host-other-hosts"><summary>Other hosts</summary><p>These links open the original external hosts and setup pages.</p><div class="host-action-grid">' + otherGroups.map(groupMarkup).join('') + '</div></details>' : ''));
       } else writeGrid(renderedGroups.map(groupMarkup).join(''));
+      catalogueStamp=stamp;
+      }
       if (activeGroup) {
         var selectedId = selectedActionId;
         var updated = renderedGroups.filter(function (g) { return activeGroup.firmwarePicker&&!selectedId?g.firmwarePicker:g.actions.some(function (a) { return a.id === selectedId; }); })[0];
-        if (updated) { var focusedVersion=doc.activeElement&&doc.activeElement.getAttribute('data-version-id'); activeGroup = updated; renderVersionChoices(updated); renderVariant(); refresh(versionChoices); if(focusedVersion){var replacement=versionChoices.querySelector('[data-version-id="'+focusedVersion+'"]');if(replacement)replacement.focus();} } else closeVersions();
+        if (updated) { var focusedVersion=doc.activeElement&&doc.activeElement.getAttribute('data-version-id'); activeGroup = updated; var choicesChanged=renderVersionChoices(updated); renderVariant(); if(choicesChanged)refresh(versionChoices); if(focusedVersion){var replacement=versionChoices.querySelector('[data-version-id="'+focusedVersion+'"]');if(replacement)replacement.focus();} } else closeVersions();
       }
-      doc.querySelector('#host-empty').hidden = catalogGrid ? Boolean(grid.querySelector('[data-catalog-game],[data-catalog-update],[data-choose-group],[data-launch]')) : visible.length !== 0 || category === 'mods' && gamesLanding;
+      if(!reuseCatalogue)doc.querySelector('#host-empty').hidden = catalogGrid ? Boolean(grid.querySelector('[data-catalog-game],[data-catalog-update],[data-choose-group],[data-launch]')) : visible.length !== 0 || category === 'mods' && gamesLanding;
       if(gridChanged)refresh(grid);if(countChanged)refresh(count);
       }
       var managerLoad = doc.querySelector('#host-load-manager'); if (managerLoad) managerLoad.disabled = loading || !firmware.value;
