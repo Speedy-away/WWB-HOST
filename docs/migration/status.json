@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-03T22:28:43.357Z",
+  "updatedAt": "2026-11-03T23:11:26.236Z",
   "repository": "Speedy-away/WWB-HOST",
   "site": "https://speedy-away.github.io/WWB-HOST/",
   "mainSite": "https://whatwhatboy.com/",
@@ -374,5 +374,37 @@
     "checkedAt": "2026-11-03T22:27:43.896Z",
     "revision": "0488479b84f9ca3ffe1c12c0a9fc44a23d7e67e4",
     "deployment": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41730210213"
+  },
+  "goldhenPopupAndSmoothRendering20261103": {
+    "status": "Local checks passed; publishing pending",
+    "report": "docs/migration/goldhen-popup-smooth-rendering.json",
+    "tests": 239,
+    "goldhen": {
+      "cards": 1,
+      "firmwareChoices": 9,
+      "entries": 34,
+      "olderBuilds": 33,
+      "archiveCopiesVerified": 33,
+      "load": "Existing Afterglow browser route preserved for 13.52 / 14.00; older BIN entries retain their original host Instructions and Download identities.",
+      "selection": "Card → firmware → version → existing action controls; selecting firmware runs nothing"
+    },
+    "domTileCreation": {
+      "before": 532,
+      "after": 100
+    },
+    "unchangedConnectionEdits": {
+      "before": 500,
+      "after": 0
+    },
+    "preservation": {
+      "downloadBytesChanged": 0,
+      "nativeFilesChanged": 0,
+      "readyPackagesChanged": 0,
+      "olderVersionsRetained": true
+    },
+    "limits": [
+      "DOM operations measured with inert fixtures; physical-console FPS and native execution were not tested",
+      "Browser UI automation is unavailable in Work settings"
+    ]
   }
 }

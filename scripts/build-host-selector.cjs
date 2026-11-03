@@ -38,6 +38,8 @@ function hostActions(platform) {
     for(let i=rows.length-1;i>=0;i--)if(/^ps4-(?:original-)?goldhen-/.test(rows[i].id)&&String(rows[i].format).toUpperCase()==='BIN')rows.splice(i,1);
     const current=path.join(root,'docs/host-goldhen-current.json');
     if(fs.existsSync(current))rows.push(...JSON.parse(fs.readFileSync(current,'utf8')).actions);
+    const retained=path.join(root,'docs/host-goldhen-retained-versions.json');
+    if(fs.existsSync(retained))rows.push(...JSON.parse(fs.readFileSync(retained,'utf8')).actions);
   }
   const runtimeFile = path.join(root,'docs/host-runtime-builds.json');
   const runtimeDownloads = fs.existsSync(path.join(root,'docs/host-runtime-downloads.json')) ? JSON.parse(fs.readFileSync(path.join(root,'docs/host-runtime-downloads.json'),'utf8')).runtimes : [];

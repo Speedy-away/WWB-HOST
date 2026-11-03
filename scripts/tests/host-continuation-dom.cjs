@@ -8,7 +8,7 @@ function deferred() {
   const promise = new Promise((yes,no)=>{resolve=yes;reject=no;});
   return {promise,resolve,reject};
 }
-function fixture({platform='ps4',firmwareChoicesOnly=false,storage=new Map(),sessionStore=new Map(),actions,pairDeferred=false,fileListView=false,catalogGrid=false,firmwareButtons,userAgent='Fixture desktop browser',initialCategory='mods',sharedCatalogue}={}) {
+function fixture({platform='ps4',firmwareChoicesOnly=false,storage=new Map(),sessionStore=new Map(),actions,pairDeferred=false,fileListView=false,catalogGrid=false,firmwareButtons,userAgent='Fixture desktop browser',initialCategory='mods',sharedCatalogue,dashboardApi}={}) {
   const created=[],opened=[],anchorClicks=[],checks=[],sends=[],pairs=[],windowEvents={};
   let gestureDepth=0,document;
   function matches(node, selector) {
@@ -42,7 +42,10 @@ function fixture({platform='ps4',firmwareChoicesOnly=false,storage=new Map(),ses
       click(){if(this.tagName==='A')anchorClicks.push({url:this.href,duringGesture:gestureDepth>0});return this.fire('click');}
     };
     let markup='';
-    Object.defineProperty(node,'innerHTML',{get(){return markup;},set(html){markup=String(html);node.children=[];for(const match of markup.matchAll(/<(button|a|select|input|summary)\b([^>]*)>/gi)){const child=element(match[1]);for(const attribute of match[2].matchAll(/([a-z0-9_-]+)(?:="([^"]*)")?/gi))child.setAttribute(attribute[1],attribute[2]||'');node.appendChild(child);}}});
+    function parseMarkup(html){for(const match of String(html).matchAll(/<(button|a|select|input|summary)\b([^>]*)>/gi)){const child=element(match[1]);for(const attribute of match[2].matchAll(/([a-z0-9_-]+)(?:="([^"]*)")?/gi))child.setAttribute(attribute[1],attribute[2]||'');node.appendChild(child);}}
+    node.htmlWrites=0;node.htmlAppends=0;
+    Object.defineProperty(node,'innerHTML',{get(){return markup;},set(html){node.htmlWrites++;markup=String(html);node.children=[];parseMarkup(markup);}});
+    node.insertAdjacentHTML=function(position,html){if(position!=='beforeend')throw Error('Unsupported fixture position');node.htmlAppends++;markup+=String(html);parseMarkup(html);};
     created.push(node);return node;
   }
   const ids={};
@@ -78,7 +81,7 @@ function fixture({platform='ps4',firmwareChoicesOnly=false,storage=new Map(),ses
   const window={HostConsoleClient:client,navigator:{userAgent},location:{href:'http://127.0.0.1:8766/hosts/'+platform+'/',origin:'http://127.0.0.1:8766'},sessionStorage:{getItem(key){return sessionStore.get(key)||null;},setItem(key,value){sessionStore.set(key,value);},removeItem(key){sessionStore.delete(key);}},localStorage:{getItem(key){return storage.get(key)||null;},setItem(key,value){storage.set(key,value);}},open(url,target,features){opened.push({url,target,features,duringGesture:gestureDepth>0});return{};},addEventListener(type,handler){(windowEvents[type]||=[]).push(handler);}};
   if(catalogGrid&&require('node:fs').existsSync(require('node:path').join(__dirname,'../../assets/host-catalog-grid.js')))window.HostCatalogGrid=require('../../assets/host-catalog-grid.js');
   if(sharedCatalogue)window.WWB_HOST_ACTION_DATA=sharedCatalogue;
-  dashboard.install(document,window);
+  (dashboardApi||dashboard).install(document,window);
   function clickWithin(container,selector){const target=container.querySelector(selector);if(!target)throw Error('Missing fixture control '+selector);return container.fire('click',{target});}
   return {platform,actions,ids,storage,storageKey,checks,sends,pairs,opened,anchorClicks,document,window,created,
     selectFirmware(version){clickWithin(ids['host-firmware-buttons'],'[data-host-firmware="'+version+'"]');},

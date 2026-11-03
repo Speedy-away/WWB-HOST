@@ -12,3 +12,4 @@
 @media(max-width:640px){.host-console-browser .host-catalog-grid,.host-console-browser .host-reset #host-action-grid.host-catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 
 .host-console-browser .console-visual{display:none!important}.host-console-browser .console-copy{border-top:0}.host-console-browser .game-links>a{grid-template-columns:minmax(0,1fr) auto}.host-console-browser .karo-feature{grid-template-columns:1fr;min-height:0;padding:20px}.host-console-browser .intro h1{font-size:2.2rem}
+.host-console-browser #trainer-dialog-art{display:none!important}.host-console-browser .trainer-dialog-summary{grid-template-columns:minmax(0,1fr)}
