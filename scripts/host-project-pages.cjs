@@ -21,6 +21,7 @@ function build(output,revision='main',root=ROOT){
  function manifestHTML(html,name){return html.replace(/(<html\b[^>]*?\bmanifest\s*=\s*)(?:"([^"]+)"|'([^']+)'|([^\s>]+))/gi,(whole,start,a,b,c)=>{try{const u=new URL(a||b||c,'https://host.invalid/'+name),alias=manifestAliases.get(decodeURIComponent(u.pathname.slice(1)));return alias?start+'"'+BASE+'/'+alias+u.search+u.hash+'"':whole;}catch{return whole;}});}
  const internalRoots=['hosts','assets','languages','downloads','console','docs'];
  function rewrite(text,name){
+  if(/^hosts\/(?!runtime\/).+\.html$/.test(name)&&fs.existsSync(path.join(root,'assets/host-pages.css')))text=require('./style-host-pages.cjs').themeHTML(text,name);
   if(name==='assets/host-dashboard.js')text=text.replaceAll('^\\/hosts\\/runtime\\/','^\\/(?:WWB-HOST\\/)?hosts\\/runtime\\/');
   // Prefix authored root-relative strings, including concatenated directory roots.
   text=text.replace(/https:\/\/whatwhatboy\.com\/(hosts\/[^\s"'<>\\]*)/g,(_,p)=>{const url=target(p);return /^https?:/.test(url)?url:ORIGIN+url;});

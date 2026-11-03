@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-03T20:19:40.034Z",
+  "updatedAt": "2026-11-03T20:27:27.261Z",
   "repository": "Speedy-away/WWB-HOST",
   "site": "https://speedy-away.github.io/WWB-HOST/",
   "mainSite": "https://whatwhatboy.com/",
@@ -127,5 +127,18 @@
     "senderVersion": "2.1.0+8d8bda70ee88",
     "sourceChangesNeedPublication": true
   },
-  "unrelatedWork": "Concurrent trainer, gallery and catalogue working edits were preserved and excluded from the migration commits."
+  "unrelatedWork": "Concurrent trainer, gallery and catalogue working edits were preserved and excluded from the migration commits.",
+  "pageTheme20261103": {
+    "status": "Verified locally; publishing",
+    "pages": 24,
+    "report": "docs/migration/page-theme-review.json",
+    "stylesheet": "assets/host-pages.css",
+    "generator": "scripts/style-host-pages.cjs",
+    "actionContractsUnchanged": true,
+    "downloadFilesChanged": 0,
+    "nativeRuntimeFilesChanged": 0,
+    "behaviorTestsPassed": 29,
+    "physicalConsoleTested": false,
+    "browserRenderVerified": false
+  }
 }
