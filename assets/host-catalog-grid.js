@@ -24,7 +24,11 @@
     for(i=0;i<rows.length;i++){value=localImage(rows[i].image);if(value&&!/\/social\//i.test(value)&&!/\/expansion-ps4-ps5\/(?:ftpsrv|klogsrv|websrv|elfldr)\.png$/i.test(value)&&!/\/consoles\//i.test(value)&&!/console artwork/i.test(text(rows[i].imageRole)))return value;}
     return '';
   }
-  function representativeImage(actions){var rows=list(actions);return selectedImage(rows,false)||fallbackImage(rows[0]&&rows[0].category);}
+  function toolImage(action){
+    var label=text(action&&action.label).toLowerCase(),rules=[[/database restore|restore/,'restore'],[/backup/,'backup'],[/ftp|server|network/,'network'],[/log|history/,'logs'],[/dump/,'dump'],[/disable updates|block|aslr/,'lock'],[/enable updates/,'unlock'],[/browser/,'browser'],[/debug/,'debug'],[/usb/,'usb'],[/uart|dex|idu/,'terminal'],[/exit|shutdown|reboot/,'power'],[/rif|license|licence/,'key'],[/kernel|memory/,'memory']];
+    for(var i=0;i<rules.length;i++)if(rules[i][0].test(label))return '/assets/images/host-catalog/'+rules[i][1]+'.svg';return '';
+  }
+  function representativeImage(actions){var rows=list(actions);return selectedImage(rows,false)||toolImage(rows[0])||fallbackImage(rows[0]&&rows[0].category);}
   function gameGroups(actions){
     var result=[],lookup=Object.create(null),rows=list(actions);
     for(var i=0;i<rows.length;i++){var action=rows[i],key=gameKey(action.game);if(!key)continue;if(!Object.prototype.hasOwnProperty.call(lookup,key)){var group={key:key,label:key==='gta5'?'GTA V':key==='rdr2'?'Red Dead Redemption 2':key,actions:[],image:''};lookup[key]=group;result.push(group);}lookup[key].actions.push(action);}
@@ -46,7 +50,7 @@
   function tileMarkup(options){
     options=options||{};var attribute=options.attribute||'data-choose-group';if(ATTRIBUTES.indexOf(attribute)<0)throw Error('Unsupported catalogue tile attribute.');
     var image=localImage(options.image),label=text(options.label),id=text(options.id),detail=text(options.detail);
-    return '<button type="button" class="host-catalog-tile" '+attribute+'="'+escape(id)+'"><span class="host-catalog-tile__media">'+(image?'<img src="'+escape(image)+'" alt="" loading="lazy" decoding="async">':'<span class="host-catalog-tile__empty" aria-hidden="true"></span>')+'</span><span class="host-catalog-tile__label">'+escape(label)+'</span>'+(detail?'<span class="host-catalog-tile__detail">'+escape(detail)+'</span>':'')+'</button>';
+    return '<button type="button" class="host-catalog-tile'+(!image?' host-catalog-tile--text':'')+'" '+attribute+'="'+escape(id)+'"><span class="host-catalog-tile__media">'+(image?'<img src="'+escape(image)+'" alt="" loading="lazy" decoding="async">':'<span class="host-catalog-tile__empty" aria-hidden="true"></span>')+'</span><span class="host-catalog-tile__label">'+escape(label)+'</span>'+(detail?'<span class="host-catalog-tile__detail">'+escape(detail)+'</span>':'')+'</button>';
   }
   return {gameGroups:gameGroups,updates:updates,filterByGameUpdate:filterByGameUpdate,representativeImage:representativeImage,tileMarkup:tileMarkup,gameKey:gameKey,localImage:localImage,fallbackImage:fallbackImage};
 }));

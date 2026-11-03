@@ -251707,6 +251707,35 @@
           "archiveCheckedAt": "2026-11-03T20:16:21.888Z"
         }
       ]
+    },
+    {
+      "id": "host-goldhen-current-supplied",
+      "title": "Goldhen PS4",
+      "project": "GoldHEN",
+      "platform": "PS4",
+      "category": "Payloads",
+      "url": "https://raw.githubusercontent.com/well0nez/afterglow-web/acf25a831725f0d44fcb64725d4ce35acbba8f9d/goldhen.bin",
+      "provenance": "User supplied C:/Users/whatw/Desktop/goldhen.bin; SHA-256 matches pinned Afterglow upstream file.",
+      "files": [
+        {
+          "name": "goldhen.bin",
+          "version": "Afterglow-acf25a831725-user-supplied",
+          "local": "/downloads/ps4/goldhen/user-supplied-39452f5e1c30/goldhen.bin",
+          "sourceUrl": "https://raw.githubusercontent.com/well0nez/afterglow-web/acf25a831725f0d44fcb64725d4ce35acbba8f9d/goldhen.bin",
+          "releaseTag": "Afterglow-acf25a831725-user-supplied",
+          "archivedAt": "2026-11-03T20:30:03.906Z",
+          "archiveRole": [
+            "Builds"
+          ],
+          "bytes": 297496,
+          "sha256": "39452f5e1c305ac9efcb4745eef7958b4db8c6d85299529f08700970b009ea4d",
+          "backupPath": "F:\\whatsite-backup-downloads-etc\\files\\PS4\\Payloads\\GoldHEN\\Builds\\Afterglow-acf25a831725-user-supplied\\goldhen.bin"
+        }
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/well0nez/afterglow-web/acf25a831725f0d44fcb64725d4ce35acbba8f9d/goldhen.bin"
+      ],
+      "status": "downloaded"
     }
   ],
   "updated": "2026-11-03T20:16:21.888Z",

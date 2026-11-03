@@ -207,7 +207,7 @@
     var gameScope = catalog.gameScope || '', gamesLanding = Boolean(catalog.gamesLanding)&&!fileListView;
     var client = win.HostConsoleClient, category = catalog.initialCategory || (catalog.managerView ? 'payloads' : 'mods'), bridge = null, loading = false;
     var initialCategory = String(win.location.hash || '').replace(/^#/, '');
-    if (['mods','payloads','loaders','tools'].indexOf(initialCategory) !== -1) category = initialCategory;
+    if (['mods','payloads','loaders','tools','goldhen'].indexOf(initialCategory) !== -1) category = initialCategory;
     var firmware = doc.querySelector('#host-firmware'), search = doc.querySelector('#host-search'), game = doc.querySelector('#host-game'), legacy = doc.querySelector('#host-show-legacy');
     var firmwareSource = doc.querySelector('#host-firmware-source'), detection = detectBrowser(win.navigator.userAgent);
     var firmwareButtons = doc.querySelector('#host-firmware-buttons'), firmwareStatus = doc.querySelector('#host-firmware-status');
@@ -222,7 +222,7 @@
     var storageKey = 'whatwhatboy.host.' + platform, connection = connectionState(), pairingGeneration = 0;
     function each(nodes, callback) { Array.prototype.forEach.call(nodes, callback); }
     function refresh(node) { if (win.__scoobyI18n && win.__scoobyI18n.refresh) win.__scoobyI18n.refresh(node); }
-    function tell(message, error) { status.textContent = message; status.setAttribute('data-error', error ? 'true' : 'false'); refresh(status); var modalStatus = doc.querySelector('#host-version-status'); if (modalStatus && overlay && !overlay.hidden) { modalStatus.textContent = message; modalStatus.setAttribute('data-error',error ? 'true' : 'false'); refresh(modalStatus); } }
+    function tell(message, error) { status.textContent = message; status.setAttribute('data-error', error ? 'true' : 'false'); refresh(status); var modalStatus = doc.querySelector('#host-version-status'); if (modalStatus && overlay && !overlay.hidden) { modalStatus.textContent += (modalStatus.textContent ? '\n' : '') + '[' + new Date().toLocaleTimeString() + '] ' + message; modalStatus.scrollTop = modalStatus.scrollHeight; modalStatus.setAttribute('data-error',error ? 'true' : 'false'); refresh(modalStatus); } }
     function currentAddress() {
       if (!client) throw Error('The console connection helper is unavailable. Reload this page.');
       return targetAddress(address.value, platform, detection, client.normalizeAddress);
@@ -296,17 +296,17 @@
         var originalHost = action.hostURL || action.launchURL || '';
         if (originalHost.indexOf('{address}') !== -1) originalHost = '';
         originalHost = navigationURL(originalHost);
-        var artwork = catalogGrid ? catalogUI.representativeImage([action]) : isMenu ? actionImage(action) : '', imageLabel = imageCaption(action), releaseLabel = action.resourceType === 'cheat-definitions' ? 'Trainer version' : 'Menu version';
+        var artwork = action.category==='loaders' ? '' : catalogGrid ? catalogUI.representativeImage([action]) : isMenu ? actionImage(action) : '', imageLabel = imageCaption(action), releaseLabel = action.resourceType === 'cheat-definitions' ? 'Trainer version' : 'Menu version';
         return '<article class="host-action' + (artwork ? ' host-action-with-art' : '') + '">' + (artwork ? '<figure class="host-action-art"><img src="' + escape(artwork) + '" alt="' + escape(action.imageAlt || action.label + ' · ' + imageLabel) + '" loading="lazy"></figure>' : '') + '<div class="host-action-content"><div class="host-action-title"><h3>' + escape(action.label) + '</h3>' + (action.game ? '<span>' + escape(action.game) + '</span>' : '') + '</div>' + (action.game ? '<dl class="host-version-facts"><div><dt>Game update</dt><dd>' + escape(action.gameVersion || 'Not provided') + '</dd></div><div><dt>' + releaseLabel + '</dt><dd>' + escape(action.menuVersion || 'Not provided') + '</dd></div></dl>' : '') + '<p class="host-action-meta">' + escape(meta) + '</p>' + (action.variantLabel || action.hostVariant ? '<p class="host-action-meta">' + escape(action.variantLabel || action.hostVariant) + '</p>' : '') + (action.titleIds && action.titleIds.length ? '<p class="host-action-meta">' + escape(action.titleIds.join(', ')) + '</p>' : '') + (action.supportArchiveURL ? '<p class="host-file-note">Plugin update file. First installation also needs its support files.</p>' : '') + '<div class="host-action-buttons">' +
           (download ? '<a class="host-download" data-no-file-options data-download-action="' + escape(action.id) + '" href="' + escape(download) + '" download>Download</a>' : '') +
           (label ? '<button type="button" class="host-launch" data-launch="' + escape(action.id) + '"' + (disabled ? ' disabled title="' + escape(!capability.available && isMenu ? capability.reason : 'Choose compatible firmware and a running console loader.') + '"' : '') + '>' + escape(label) + '</button>' : '') + '</div>' +
           (download ? '<p class="host-download-destination">Download destination: ' + escape(String(address.value || '').trim() || detection.platform === platform ? platform.toUpperCase() : 'This device') + '</p>' : '') +
           (isMenu && !capability.available ? '<p class="host-load-note">' + escape(capability.reason) + '</p>' : '') +
-          (capability.kind === 'browser' && detection.platform !== platform ? '<p class="host-load-note">' + escape(capability.reason) + '</p>' : '') +
+          '' +
           (requiresSender ? '<p class="host-load-note">' + (action.format === 'BIN' ? 'Connect the paired desktop sender to load this BIN.' : 'Connect the paired desktop sender to load this ELF.') + '</p>' : '') +
           (needsFile ? '<p class="host-load-note">Load uses the original downloaded BIN you choose. The sender verifies it in memory without saving a copy.</p>' : '') +
           (uncertain ? '<p class="host-load-note">A previous transfer has an unknown result. Check the console and clear its transfer warning before loading again.</p>' : '') +
-          '<details><summary>Requirements</summary>' + fileDetails + '<ul>' + details + '</ul>' + (action.firmwares && action.firmwares.length ? '<p>Firmware: ' + escape(action.firmwares.join(', ')) + '</p>' : '') + (action.license ? '<p>' + escape(action.license) + '</p>' : '') + links + (action.supportArchiveURL ? ' · <a href="' + escape(navigationURL(action.supportArchiveURL)) + '">Full setup files</a>' : '') + (!action.run && originalHost ? ' · <a href="' + escape(originalHost) + '" target="_blank" rel="noopener noreferrer">Original host</a>' : '') + '</details></div></article>';
+          '<details><summary>Details</summary>' + fileDetails + '<ul>' + details + '</ul>' + (action.firmwares && action.firmwares.length ? '<p>Firmware: ' + escape(action.firmwares.join(', ')) + '</p>' : '') + (action.license ? '<p>' + escape(action.license) + '</p>' : '') + links + (action.supportArchiveURL ? ' · <a href="' + escape(navigationURL(action.supportArchiveURL)) + '">Full setup files</a>' : '') + (!action.run && originalHost ? ' · <a href="' + escape(originalHost) + '" target="_blank" rel="noopener noreferrer">Original host</a>' : '') + '</details></div></article>';
     }
     function showSupport(action){
       var overlay=doc.querySelector('#host-support-overlay');if(!overlay)return;
@@ -372,7 +372,7 @@
       if (category!=='mods') {
         renderedGroups=groupActions(visible);
         count.textContent=String(renderedGroups.length);
-        return renderedGroups.map(function(group){var first=group.actions[0];return catalogUI.tileMarkup({id:group.id,label:group.label,image:catalogUI.representativeImage(group.actions),detail:[first.format,first.version||first.menuVersion||''].filter(Boolean).join(' · '),attribute:'data-choose-group'});}).join('');
+        return renderedGroups.map(function(group){var first=group.actions[0];return catalogUI.tileMarkup({id:group.id,label:group.label,image:category==='loaders'?'':catalogUI.representativeImage(group.actions),detail:[first.format,first.version||first.menuVersion||''].filter(Boolean).join(' · '),attribute:'data-choose-group'});}).join('');
       }
       var groups=catalogUI.gameGroups(visible),path='<nav class="host-catalog-path" aria-label="Game mods">'+(gameScope?'<a href="/hosts/'+platform+'/?view=mods">Game mods</a>':'<button type="button" data-catalog-back="games">Game mods</button>')+(selected?'<span aria-hidden="true">/</span><button type="button" data-catalog-back="updates" translate="no">'+escape(selected.label)+'</button>':'')+(selected&&catalogUpdate?'<span aria-hidden="true">/</span><strong translate="no">'+escape(catalogUpdate==='unspecified'?'Not provided':catalogUpdate)+'</strong>':'')+'</nav>';
       if (!selected) {
@@ -411,7 +411,7 @@
       doc.querySelector('#host-version-game').textContent = [group.game,platform.toUpperCase()].filter(Boolean).join(' · ');
       selectedActionId = group.actions[0].id;
       renderVersionChoices(group);
-      doc.querySelector('#host-version-status').textContent = 'Choose the game update and menu version before downloading or loading.';
+      doc.querySelector('#host-version-status').textContent = '';
       overlay.hidden = false; doc.body.classList.add('host-dialog-open'); renderVariant(); refresh(overlay); versionChoices.querySelector('button').focus();
     }
     function render() {
@@ -559,7 +559,7 @@
         while (button && button !== versionChoices && !button.hasAttribute('data-version-id')) button = button.parentNode;
         if (!button || button === versionChoices) return;
         selectedActionId = button.getAttribute('data-version-id');
-        doc.querySelector('#host-version-status').textContent = 'Choose the game update and menu version before downloading or loading.';
+        doc.querySelector('#host-version-status').textContent = '';
         renderVariant();
       });
       doc.querySelector('#host-version-close').addEventListener('click',closeVersions);

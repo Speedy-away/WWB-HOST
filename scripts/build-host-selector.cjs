@@ -34,6 +34,11 @@ function hostActions(platform) {
       rows.push(normalized);
     }
   }
+  if(platform==='ps4') {
+    for(let i=rows.length-1;i>=0;i--)if(/^ps4-(?:original-)?goldhen-/.test(rows[i].id)&&String(rows[i].format).toUpperCase()==='BIN')rows.splice(i,1);
+    const current=path.join(root,'docs/host-goldhen-current.json');
+    if(fs.existsSync(current))rows.push(...JSON.parse(fs.readFileSync(current,'utf8')).actions);
+  }
   const runtimeFile = path.join(root,'docs/host-runtime-builds.json');
   const runtimeDownloads = fs.existsSync(path.join(root,'docs/host-runtime-downloads.json')) ? JSON.parse(fs.readFileSync(path.join(root,'docs/host-runtime-downloads.json'),'utf8')).runtimes : [];
   if (fs.existsSync(runtimeFile)) for (const runtime of JSON.parse(fs.readFileSync(runtimeFile,'utf8')).runtimes || []) {
@@ -81,6 +86,7 @@ function savePage(file, title, description, artwork, nav, content, primary, acti
     html = html.replace('class="container guide-hero-grid"', 'class="container guide-hero-grid guide-hero-text"');
     html = html.replace(/(<header class="guide-hero">[\s\S]*?<\/div>)<img[^>]*>/, '$1');
   }
+  if(/^hosts\/ps[45]\/index\.html$/.test(file)&&!html.includes('host-file-entry.js'))html=html.replace('</head>','<script src="../../assets/host-file-entry.js"></script></head>');
   fs.writeFileSync(filename, require('./search-page-output.cjs').finish(file, html));
 }
 
@@ -108,7 +114,7 @@ function buildHostSelector({hostOnly=false}={}) {
     '#consoles', 'Choose console', true);
 
   const chooserFile = path.join(root, 'hosts/index.html');
-  fs.writeFileSync(chooserFile, require('./search-page-output.cjs').finish(chooserFile, fs.readFileSync(chooserFile, 'utf8').replace('</body>', '<script defer src="/assets/host-catalog-grid.js?v=1"></script><script defer src="/assets/host-dashboard.js?v=18"></script></body>')));
+  fs.writeFileSync(chooserFile, require('./search-page-output.cjs').finish(chooserFile, fs.readFileSync(chooserFile, 'utf8').replace('</body>', '<script defer src="/assets/host-catalog-grid.js?v=2"></script><script defer src="/assets/host-dashboard.js?v=19"></script></body>')));
 
   for (const platform of ['ps4', 'ps5']) {
     const name = platform.toUpperCase();
@@ -141,7 +147,7 @@ function buildHostSelector({hostOnly=false}={}) {
     for (const relative of [`hosts/${platform}/index.html`,managerFile,filesPage,...gamePages]) {
       const hostFile = path.join(root,relative);
       let hostHtml = fs.readFileSync(hostFile, 'utf8').replace('console-guide host-selector', 'console-guide host-selector host-dashboard-page');
-      hostHtml = hostHtml.replace('</head>', '<link rel="stylesheet" href="/assets/host-dashboard.css?v=16"><link rel="stylesheet" href="/assets/host-webhost.css?v=2"><link rel="stylesheet" href="/assets/host-firmware-buttons.css?v=1"><link rel="stylesheet" href="/assets/host-catalog-grid.css?v=1">\n</head>').replace('</body>', '<script defer src="/assets/host-console-client.js?v=15"></script><script defer src="/assets/host-catalog-grid.js?v=1"></script><script defer src="/assets/host-dashboard.js?v=18"></script></body>');
+      hostHtml = hostHtml.replace('</head>', '<link rel="stylesheet" href="/assets/host-dashboard.css?v=16"><link rel="stylesheet" href="/assets/host-webhost.css?v=2"><link rel="stylesheet" href="/assets/host-firmware-buttons.css?v=2"><link rel="stylesheet" href="/assets/host-catalog-grid.css?v=2">\n</head>').replace('</body>', '<script defer src="/assets/host-console-client.js?v=15"></script><script defer src="/assets/host-catalog-grid.js?v=2"></script><script defer src="/assets/host-dashboard.js?v=19"></script></body>');
       if(relative===`hosts/${platform}/index.html`)hostHtml=require('./host-folder-markup.cjs').shell(hostHtml);
       fs.writeFileSync(hostFile, require('./search-page-output.cjs').finish(relative, hostHtml));
     }

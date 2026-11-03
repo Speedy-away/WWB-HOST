@@ -2,7 +2,7 @@
  'use strict';
  var data=document.getElementById('host-actions-data');if(!data)return;
  var platform=JSON.parse(data.textContent).platform,base='/hosts/'+platform+'/';
- var labels={loaders:'Choose firmware',payloads:'Payloads',mods:'Game mods',tools:'Tools',connection:'Connection & setup',sender:'Desktop sender · connect from a PC'};
+ var labels={loaders:'Choose firmware',payloads:'Payloads',mods:'Game mods',tools:'Tools',goldhen:'Goldhen PS4',connection:'Connection & setup',sender:'Desktop sender · connect from a PC'};
  var params=new URL(location.href).searchParams,selected=params.get('view')||params.get('folder')||'loaders';
  if(!Object.prototype.hasOwnProperty.call(labels,selected))selected='loaders';
  document.querySelectorAll('.host-file-tabs a').forEach(function(link){if(new URL(link.href).searchParams.get('view')===selected)link.setAttribute('aria-current','page');});

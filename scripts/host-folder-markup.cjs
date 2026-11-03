@@ -3,8 +3,10 @@ const icon=(name)=>{const shapes={back:'<path d="m14 6-6 6 6 6M8 12h12"/>',more:
 function organize(markup,platform){
  const base='/hosts/'+platform+'/',name=platform.toUpperCase();
  const rows=[['?view=loaders','Choose firmware'],['?view=payloads','Payloads'],['?view=mods','Game mods'],['?view=tools','Tools'],['files/','File manager'],['payload-manager/',name+' Payload Manager'],['/console/'+platform+'/downloads.html','Console downloads'],['?view=connection','Connection &amp; setup'],['?view=sender','Desktop sender · connect from a PC']];
+ if(platform==='ps4')rows.splice(4,0,['?view=goldhen','Goldhen PS4']);
+ const primaryCount=platform==='ps4'?5:4;
  const anchors=items=>items.map(([href,label])=>`<a href="${href.startsWith('/')?href:base+href}" aria-label="${label}">${label}</a>`).join('');
- const directory=`<header class="host-folder-heading"><div><p class="host-platform-label" translate="no">PLAYSTATION ${platform==='ps4'?'4':'5'}</p><div class="host-heading-line"><h1 id="host-folder-title">${name}</h1><span class="host-file-count" id="host-file-count" role="status"></span></div></div><a class="host-header-connection" aria-label="Connection &amp; setup" href="${base}?view=connection">${icon('connection')}<span>Connection &amp; setup</span></a><span id="host-folder-path" hidden></span></header><nav id="host-folder-directory" class="host-file-tabs" aria-label="${name} files"><div class="host-primary-tabs">${anchors(rows.slice(0,4))}</div><details class="host-utility-menu"><summary aria-label="More">${icon('more')}<span>More</span></summary><div>${anchors(rows.slice(4))}</div></details></nav><div id="host-file-firmware"></div>`;
+ const directory=`<header class="host-folder-heading"><div><p class="host-platform-label" translate="no">PLAYSTATION ${platform==='ps4'?'4':'5'}</p><div class="host-heading-line"><h1 id="host-folder-title">${name}</h1><span class="host-file-count" id="host-file-count" role="status"></span></div></div><a class="host-header-connection" aria-label="Connection &amp; setup" href="${base}?view=connection">${icon('connection')}<span>Connection &amp; setup</span></a><span id="host-folder-path" hidden></span></header><nav id="host-folder-directory" class="host-file-tabs" aria-label="${name} files"><div class="host-primary-tabs">${anchors(rows.slice(0,primaryCount))}</div><details class="host-utility-menu"><summary aria-label="More">${icon('more')}<span>More</span></summary><div>${anchors(rows.slice(primaryCount))}</div></details></nav><div id="host-file-firmware"></div>`;
  let html=markup.replace('<section class="host-connect"','<section data-host-folder-panel="connection" hidden class="host-connect"');
  html=html.replace('<div class="host-library-heading">','<section id="host-folder-library" hidden><div class="host-library-heading">');
  html=html.replace('<details class="host-sender">','</section><section data-host-folder-panel="sender" hidden><details class="host-sender">');
@@ -22,6 +24,6 @@ function shell(html){
  result=result.replace(/<header class="guide-hero">[\s\S]*?<\/header>/,'').replace(/<div class="container"><nav class="guide-nav"[\s\S]*?<\/nav><\/div>/,'');
  result=result.replace(/<link rel="stylesheet" href="https:\/\/fonts.googleapis.com[^>]+>/,'<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap">');
  result=result.replace('</head>','<link rel="stylesheet" href="/assets/host-file-browser.css?v=1"></head>');
- return result.replace('</body>','<script defer src="/assets/host-folders.js?v=3"></script></body>');
+ return result.replace('</body>','<script defer src="/assets/host-folders.js?v=4"></script></body>');
 }
 module.exports={organize,shell};
