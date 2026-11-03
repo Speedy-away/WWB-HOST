@@ -1,0 +1,60 @@
+{
+  "updatedAt": "2026-11-03T19:43:26.426Z",
+  "repository": "Speedy-away/WWB-HOST",
+  "site": "https://speedy-away.github.io/WWB-HOST/",
+  "mainSite": "https://whatwhatboy.com/",
+  "status": "Verified independent host site and illustrated root home ready for publication.",
+  "sourceSnapshot": "docs/migration/source-preservation.json",
+  "rootHome": "index.html",
+  "karo": {
+    "build": "e3c0caf3db54",
+    "entries": 71,
+    "onlineOnly": 3,
+    "originalRepairs": 3,
+    "hardwareVerified": false
+  },
+  "pages": {
+    "revision": "main",
+    "base": "/WWB-HOST",
+    "origin": "https://speedy-away.github.io",
+    "bytes": 788879208,
+    "budget": 922746880,
+    "files": 5545,
+    "offloadedFiles": 263,
+    "nativeScriptsUnchanged": 848,
+    "historicalLandings": 804,
+    "activeKaro": "hosts/runtime/karo-743646c9df9a-e3c0caf3db54/"
+  },
+  "publication": {
+    "pagesEnabled": true,
+    "archiveUploadPending": false,
+    "homepageCommitPending": false
+  },
+  "constraints": [
+    "Preserveolderversions.",
+    "Neverrestore/refetchDefender-quarantinedfiles.",
+    "NeverexecuteconsolefilesduringQA.",
+    "Useprojectprefixpublisherandboundedpushes."
+  ],
+  "next": [
+    "Letthefixed-HEADbatcheduploadcompletebeforecommittinghomepage.",
+    "Commit/pushrootindexandreviewedprefixfixes.",
+    "VerifyGitHubPagesdeploymentandmain-sitelink."
+  ],
+  "home": {
+    "file": "index.html",
+    "title": "WWB HOST | PS4 & PS5",
+    "links": [
+      "./hosts/ps4/",
+      "./hosts/ps5/",
+      "./hosts/karo/",
+      "https://whatwhatboy.com/"
+    ],
+    "noRedirect": true,
+    "imageCount": 6
+  },
+  "retainedVersionsPage": {
+    "file": "hosts/karo/versions.html",
+    "readyZIPs": 165
+  }
+}

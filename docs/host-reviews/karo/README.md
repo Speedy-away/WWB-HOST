@@ -12,8 +12,8 @@ Download saves to the viewing device. There are 1,473 enabled payload/package li
 
 ## Source defects and verification limits
 
-- `binloader/702`, `restore/702d` and `restore/702N` Load entries are disabled because their original `offlinexmb.cache` is absent. The 5.05 XMB installer helper also has a missing original cache manifest and is blocked individually.
-- Empty `702/enablebrowser.bin` and three malformed PS5 ELFs are retained as invalid-original evidence, with Download disabled: `ps5/UMTX/payloads/OnionHENv1.11.elf`, `ps5/UMTX/payloads/psplay.elf`, `ps5/pr/payloads/CheatRunner_v0.17.2.elf`.
+- The original native loaders for `binloader/702`, `restore/702d` and `restore/702N` start independently of the absent cache manifests. These three reviewed entries now work online, with no offline-cache claim. The cache-only5.05 XMB installer remains unavailable.
+- Invalid originals remain retained as evidence. The active paths for Enable Browser7.02, PSPlay and CheatRunner0.17.2 now use separately verified original publisher/LFS files; their exact identity and provenance are in original-payload-repairs.json. The unused OnionHENv1.11.elf placeholder stays unavailable; the existing actual OnionHENv0.9.0 with kstuff1.11 build retains its correct name.
 - Windows Defender event 1116 quarantined `900NM/payload.js` and `900New/payload.js` with a `Trojan:JS/Cryxos.AIDB!MTB` detection. Their optional WebActivator paths are blocked. They were not restored, refetched, renamed, encoded or otherwise recovered to bypass protection. The remaining root loader chains do not require these optional files.
 - Other missing menu controls, cache entries, decorative references and dormant code are listed separately in [dependency-audit.json](dependency-audit.json). Missing assets are not replaced with a different firmware's files.
 - Original optional server APIs and external libraries retain their original requirements. Offline AppCache behaviour, TLS, kernel execution and actual game/menu effects require physical console testing. No downloaded native source or payload was executed and no console was contacted during this work.
@@ -28,3 +28,7 @@ Download saves to the viewing device. There are 1,473 enabled payload/package li
 - [Download checks](download-verification.json), [browser checks](browser-verification.json), [archive inventory](download-inventory.json), [final verification](verification.json).
 
 For future work, use `build.json`, the current receiver metadata and the sender manifest as authoritative. Do not reactivate older snapshots or refetch quarantined dependencies. Rebuilds retain prior immutable artifacts and archive jobs; update the handoff after verification. The central console receiver catalogue has not been expanded beyond its existing bound for these separate KARO web-host downloads.
+
+## Independent repository
+
+This host site now lives at https://speedy-away.github.io/WWB-HOST/. The actual home page is root index.html. All71 native entries are enabled through their exact console gates; no hardware execution was performed. The main site links to this separate repository. Older copied runtimes and ZIPs remain in Git and in the organized F: archive; Pages deploys the active runtime and maps large downloads to exact repository revisions.

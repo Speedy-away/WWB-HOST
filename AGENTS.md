@@ -41,7 +41,7 @@ HEN builds. Preserve each original file, version and compatibility requirement.
 
 # Resume ongoing console expansion
 
-Read `docs/console-expansion-handoff.json` before resuming the current console
+Read `docs/migration/status.json` before resuming the current console
 expansion. It records completed work, exact final helper versions, archive
 verification, remaining checks and the latest user clarifications. Update it
 after finishing work so a later session can continue without replacing shared
