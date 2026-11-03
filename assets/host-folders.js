@@ -14,8 +14,8 @@
  var search=document.querySelector('.host-search');if(search)search.hidden=selected==='connection'||selected==='sender';
  var options=document.querySelector('.host-options'),setup=document.querySelector('.host-connection-details');if(options&&setup)setup.appendChild(options);
  var warning=document.querySelector('#host-transfer-warning');if(warning)fileToolbar.parentNode.insertBefore(warning,fileToolbar.nextSibling);
- var status=document.querySelector('#host-status'),initialStatus=status.textContent;status.hidden=true;
- new MutationObserver(function(){status.hidden=status.textContent===initialStatus;}).observe(status,{childList:true,characterData:true,subtree:true});
+ var status=document.querySelector('#host-status'),initialStatus=status.textContent;status.hidden=status.getAttribute('data-host-catalog-error')!=='true';
+ new MutationObserver(function(){status.hidden=status.textContent===initialStatus&&status.getAttribute('data-host-catalog-error')!=='true';}).observe(status,{childList:true,characterData:true,subtree:true});
  var library=document.getElementById('host-folder-library');
  library.hidden=!selected||selected==='connection'||selected==='sender';
  document.querySelectorAll('[data-host-folder-panel]').forEach(function(panel){panel.hidden=panel.getAttribute('data-host-folder-panel')!==selected;});

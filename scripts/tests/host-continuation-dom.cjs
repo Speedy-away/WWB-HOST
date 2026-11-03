@@ -8,7 +8,7 @@ function deferred() {
   const promise = new Promise((yes,no)=>{resolve=yes;reject=no;});
   return {promise,resolve,reject};
 }
-function fixture({platform='ps4',storage=new Map(),sessionStore=new Map(),actions,pairDeferred=false,fileListView=false,catalogGrid=false,firmwareButtons,userAgent='Fixture desktop browser',initialCategory='mods'}={}) {
+function fixture({platform='ps4',storage=new Map(),sessionStore=new Map(),actions,pairDeferred=false,fileListView=false,catalogGrid=false,firmwareButtons,userAgent='Fixture desktop browser',initialCategory='mods',sharedCatalogue}={}) {
   const created=[],opened=[],anchorClicks=[],checks=[],sends=[],pairs=[],windowEvents={};
   let gestureDepth=0,document;
   function matches(node, selector) {
@@ -59,7 +59,7 @@ function fixture({platform='ps4',storage=new Map(),sessionStore=new Map(),action
   ids['host-bridge-url'].value='http://127.0.0.1:8766';ids['host-bridge-token'].value='fixture-token';
   const defaultAction={id:platform+'-fixture-menu-157',label:'Fixture menu',menuFamily:'Fixture menu',platform,category:'mods',game:'Fixture game',gameVersion:'1.57',menuVersion:'2.0',firmwares:[platform==='ps4'?'9.00':'4.51'],format:platform==='ps4'?'BIN':'ELF',run:{type:platform==='ps4'?'goldhen-http':'elf-http',port:platform==='ps4'?9090:9021},downloadURL:'/downloads/fixture/menu.'+(platform==='ps4'?'bin':'elf'),consoleFileId:platform+'-exact-file-157',requirements:[]};
   actions=actions||[defaultAction];
-  ids['host-actions-data'].textContent=JSON.stringify({platform,actions,fileListView,catalogGrid,initialCategory});
+  ids['host-actions-data'].textContent=JSON.stringify({platform,actions:sharedCatalogue?undefined:actions,actionsKey:sharedCatalogue?sharedCatalogue.expectedKey||sharedCatalogue.key:undefined,fileListView,catalogGrid,initialCategory});
   const storageKey='whatwhatboy.host.'+platform;
   if(!storage.has(storageKey))storage.set(storageKey,JSON.stringify({address:'192.168.1.40',firmware:platform==='ps4'?'9.00':'4.51'}));
   const sender=element('details'),info=element('div');
@@ -77,6 +77,7 @@ function fixture({platform='ps4',storage=new Map(),sessionStore=new Map(),action
   };
   const window={HostConsoleClient:client,navigator:{userAgent},location:{href:'http://127.0.0.1:8766/hosts/'+platform+'/',origin:'http://127.0.0.1:8766'},sessionStorage:{getItem(key){return sessionStore.get(key)||null;},setItem(key,value){sessionStore.set(key,value);},removeItem(key){sessionStore.delete(key);}},localStorage:{getItem(key){return storage.get(key)||null;},setItem(key,value){storage.set(key,value);}},open(url,target,features){opened.push({url,target,features,duringGesture:gestureDepth>0});return{};},addEventListener(type,handler){(windowEvents[type]||=[]).push(handler);}};
   if(catalogGrid&&require('node:fs').existsSync(require('node:path').join(__dirname,'../../assets/host-catalog-grid.js')))window.HostCatalogGrid=require('../../assets/host-catalog-grid.js');
+  if(sharedCatalogue)window.WWB_HOST_ACTION_DATA=sharedCatalogue;
   dashboard.install(document,window);
   function clickWithin(container,selector){const target=container.querySelector(selector);if(!target)throw Error('Missing fixture control '+selector);return container.fire('click',{target});}
   return {platform,actions,ids,storage,storageKey,checks,sends,pairs,opened,anchorClicks,document,window,created,

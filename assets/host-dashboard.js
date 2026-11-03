@@ -202,7 +202,7 @@
       if (browser.platform && detectedLink) { detectedLink.href = '/hosts/' + browser.platform + '/'; detectedLink.textContent = 'Open ' + browser.device + ' host'; detectedLink.hidden = false; }
     }
     var source = doc.querySelector('#host-actions-data'); if (!source) return;
-    var catalog; try { catalog = JSON.parse(source.textContent); win.WWB_HOST_CATALOG=catalog; } catch (_) { return; }
+    var catalog; try { catalog = JSON.parse(source.textContent); if(catalog.actionsKey){var shared=win.WWB_HOST_ACTION_DATA;if(!shared||shared.key!==catalog.actionsKey||!Array.isArray(shared.actions)){var unavailable=doc.querySelector('#host-status');if(unavailable){unavailable.textContent='The file catalogue could not load. Reload this page.';unavailable.hidden=false;unavailable.setAttribute('data-host-catalog-error','true');}return;}catalog.actions=shared.actions;}win.WWB_HOST_CATALOG=catalog; } catch (_) { return; }
     var actions = catalog.actions || [], platform = catalog.platform;
     var fileListView=Boolean(catalog.fileListView);
     var gameScope = catalog.gameScope || '', gamesLanding = Boolean(catalog.gamesLanding)&&!fileListView;
