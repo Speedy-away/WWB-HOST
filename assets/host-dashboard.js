@@ -366,6 +366,7 @@
     }
     function catalogMarkup(visible) {
       grid.classList.add('host-catalog-grid');
+      if(category==='loaders')grid.classList.add('host-catalog-grid--loaders');else grid.classList.remove('host-catalog-grid--loaders');
       var allGames=catalogUI.gameGroups(scopeActions(actions,gameScope).filter(function(a){return a.category==='mods';}));
       if (!catalogGame && (gameScope==='gta5'||gameScope==='rdr2')) catalogGame=gameScope;
       var selected=allGames.filter(function(g){return g.key===catalogGame;})[0];
