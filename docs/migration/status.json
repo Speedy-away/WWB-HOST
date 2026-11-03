@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-03T21:12:59.633Z",
+  "updatedAt": "2026-11-03T21:30:57.500Z",
   "repository": "Speedy-away/WWB-HOST",
   "site": "https://speedy-away.github.io/WWB-HOST/",
   "mainSite": "https://whatwhatboy.com/",
@@ -33,8 +33,8 @@
     "homeDeployment": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41705919245",
     "cacheFix": "Keep every existing CACHE resource on the Pages origin; offload only files that original caches do not require.",
     "cacheMimeAliasPending": false,
-    "productionCommit": "166665902edfd386daf0fb249473648c0d382035",
-    "productionDeployment": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41718999722",
+    "productionCommit": "2b2cbb563491698019f1a487d3eb2a62499d8e5f",
+    "productionDeployment": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41721967832",
     "mainCommit": "fe5386a1738bc9d3d40a9c77c81313fb2d9a4d11",
     "mainLinkVerified": true
   },
@@ -228,7 +228,7 @@
   },
   "consolePerformance20261103": {
     "updatedAt": "2026-11-03T21:25:34.459Z",
-    "status": "Verified locally; publishing",
+    "status": "published-and-verified",
     "baseline": "bf348610c9ab6a6cf3819833d2eb5d6ebacb86d4",
     "changes": [
       "Console catalogue first batch:12 text entries; Show more keeps all entries reachable",
@@ -251,6 +251,60 @@
     "nativeRuntimeFilesChanged": 0,
     "downloadFilesChanged": 0,
     "hardwareMeasured": false,
-    "browserRenderVerified": false
+    "browserRenderVerified": false,
+    "checkedAt": "2026-11-03T21:30:57.500Z",
+    "revision": "2b2cbb563491698019f1a487d3eb2a62499d8e5f",
+    "deployment": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41721967832",
+    "publicPages": [
+      {
+        "path": "",
+        "status": 200,
+        "scriptCount": 2,
+        "deferredStaticImages": 5
+      },
+      {
+        "path": "hosts/ps4/",
+        "status": 200,
+        "scriptCount": 9,
+        "deferredStaticImages": 1
+      },
+      {
+        "path": "hosts/ps5/",
+        "status": 200,
+        "scriptCount": 9,
+        "deferredStaticImages": 1
+      },
+      {
+        "path": "hosts/ps4/gta5/",
+        "status": 200,
+        "scriptCount": 7,
+        "deferredStaticImages": 12
+      },
+      {
+        "path": "hosts/ps5/gta5/",
+        "status": 200,
+        "scriptCount": 7,
+        "deferredStaticImages": 12
+      },
+      {
+        "path": "hosts/tools/ps4-trainer/",
+        "status": 200,
+        "scriptCount": 3,
+        "deferredStaticImages": 1
+      }
+    ],
+    "pagesBuild": {
+      "revision": "2b2cbb563491698019f1a487d3eb2a62499d8e5f",
+      "base": "/WWB-HOST",
+      "origin": "https://speedy-away.github.io",
+      "bytes": 842382267,
+      "budget": 922746880,
+      "files": 5587,
+      "offloadedFiles": 274,
+      "nativeScriptsUnchanged": 848,
+      "cacheManifestAliases": 7,
+      "historicalLandings": 804,
+      "activeKaro": "hosts/runtime/karo-743646c9df9a-e3c0caf3db54/"
+    }
   }
 }

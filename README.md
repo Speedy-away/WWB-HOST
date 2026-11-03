@@ -19,3 +19,5 @@ Pages serves seven original `.cache` manifests through byte-identical `.manifest
 The 24 authored host pages share `assets/host-pages.css` and image headings. Run `node scripts/style-host-pages.cjs` after changing page generators; the Pages publisher also applies this theme during deployment. Native runtimes and ready downloads keep their original bytes.
 
 Original-source provenance tests use retained migration evidence from `WHATSITE_PROVENANCE_ROOT` (default: the sibling `whatsite` workspace). Public runtime and download file checks always use this repository. No native payload is executed by these tests.
+
+Console performance mode is automatic on PS4/PS5: the catalogue starts with 12 text entries and the trainer with 18; Show more and search retain access to the complete library. Large artwork is deferred on consoles and hydrated on desktop. Native runtime documents and immutable downloads are excluded from this presentation adaptation. Regression results and deployment verification are in `docs/migration/console-performance.json`; physical-console timing is unmeasured.
