@@ -24,7 +24,7 @@ function build(output,revision='main',root=ROOT){
   // Repair migrated image origins and absent social preview images.
   if(name.endsWith('.html'))text=text.replace(/https:\/\/whatwhatboy\.com(\/assets\/images\/[^\s"'<>\\]*)/g,(_,p)=>{const local=p.split(/[?#]/)[0];const fallback='/assets/images/'+require('./style-host-pages.cjs').artwork(name)[0];return ORIGIN+BASE+(fs.existsSync(path.join(root,local))?p:fallback);});
   if(/^hosts\/(?!runtime\/).+\.html$/.test(name)&&fs.existsSync(path.join(root,'assets/host-pages.css')))text=require('./style-host-pages.cjs').themeHTML(text,name);
-  if(name.endsWith('.html'))text=text.replace(/(host-dashboard\.js|host-catalog-grid\.js|host-folders\.js|host-trainer\.js|host-karo-builds\.js|i18n\.js)(?:\?v=[\w.-]+)?(?=["'])/g,'$1?v=20261103p4');
+  if(name.endsWith('.html'))text=text.replace(/(host-dashboard\.js|host-catalog-grid\.js|host-folders\.js|host-trainer\.js|host-karo-builds\.js|i18n\.js)(?:\?v=[\w.-]+)?(?=["'])/g,(_,asset)=>asset+'?v='+(asset==='host-folders.js'?'20261103p5':'20261103p4'));
   if(name==='assets/host-dashboard.js')text=text.replaceAll('^\\/hosts\\/runtime\\/','^\\/(?:WWB-HOST\\/)?hosts\\/runtime\\/');
   if((name==='index.html'||/^hosts\/(?!runtime\/).+\.html$/.test(name))&&fs.existsSync(path.join(root,'assets/host-performance.js'))){
    text=text.replace(/<link\b[^>]*href=["'][^"']*(?:font-awesome|fonts\.googleapis\.com)[^"']*["'][^>]*>/gi,'');

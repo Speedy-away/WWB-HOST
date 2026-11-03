@@ -8,7 +8,7 @@
  document.querySelectorAll('.host-file-tabs a').forEach(function(link){if(new URL(link.href).searchParams.get('view')===selected)link.setAttribute('aria-current','page');});
  var firmwareControl=document.querySelector('.host-firmware-control');
  if(firmwareControl)document.getElementById('host-file-firmware').appendChild(firmwareControl);
- if(firmwareControl)firmwareControl.hidden=selected==='sender';
+ if(firmwareControl)firmwareControl.hidden=selected==='sender'||selected==='goldhen';
  var fileToolbar=document.getElementById('host-file-firmware');
  ['.host-search','#host-game-filter'].forEach(function(selector){var item=document.querySelector(selector);if(item)fileToolbar.appendChild(item);});
  var search=document.querySelector('.host-search');if(search)search.hidden=selected==='connection'||selected==='sender';

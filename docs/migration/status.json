@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-03T23:15:09.152Z",
+  "updatedAt": "2026-11-03T23:17:07.603Z",
   "repository": "Speedy-away/WWB-HOST",
   "site": "https://speedy-away.github.io/WWB-HOST/",
   "mainSite": "https://whatwhatboy.com/",
@@ -410,6 +410,19 @@
     "run": 41737190646,
     "workflow": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41737190646",
     "livePages": 1104,
-    "liveGoldhenDownloadURLs": 34
+    "liveGoldhenDownloadURLs": 34,
+    "pageFirmwareControls": {
+      "status": "GoldHEN view hides the page-level firmware block; firmware selection remains inside its popup.",
+      "testsPassed": 16,
+      "viewsChecked": [
+        "goldhen",
+        "loaders",
+        "payloads",
+        "mods",
+        "tools",
+        "sender"
+      ],
+      "loadAndDownloadControlsUnchanged": true
+    }
   }
 }
