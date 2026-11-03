@@ -63,7 +63,7 @@ function fixture({platform='ps4',firmwareChoicesOnly=false,storage=new Map(),ses
   const storageKey='whatwhatboy.host.'+platform;
   if(!storage.has(storageKey))storage.set(storageKey,JSON.stringify({address:'192.168.1.40',firmware:platform==='ps4'?'9.00':'4.51'}));
   const sender=element('details'),info=element('div');
-  document={body:element('body'),activeElement:null,querySelector(selector){if(selector[0]==='#')return ids[selector.slice(1)]||null;if(selector==='.host-sender')return sender;if(selector==='.host-connection-info')return info;return null;},querySelectorAll(){return[];},createElement:element};
+  document={visibilityState:'visible',wasDiscarded:false,body:element('body'),activeElement:null,querySelector(selector){if(selector[0]==='#')return ids[selector.slice(1)]||null;if(selector==='.host-sender')return sender;if(selector==='.host-connection-info')return info;return null;},querySelectorAll(){return[];},createElement:element};
   for(const node of Object.values(ids))document.body.appendChild(node);
   document.documentElement=document.body;
   const queue=(list,record)=>{const pending=deferred();list.push({...record,...pending});return pending.promise;};
@@ -78,6 +78,7 @@ function fixture({platform='ps4',firmwareChoicesOnly=false,storage=new Map(),ses
   const window={HostConsoleClient:client,navigator:{userAgent},location:{href:'http://127.0.0.1:8766/hosts/'+platform+'/',origin:'http://127.0.0.1:8766'},sessionStorage:{getItem(key){return sessionStore.get(key)||null;},setItem(key,value){sessionStore.set(key,value);},removeItem(key){sessionStore.delete(key);}},localStorage:{getItem(key){return storage.get(key)||null;},setItem(key,value){storage.set(key,value);}},open(url,target,features){opened.push({url,target,features,duringGesture:gestureDepth>0});return{};},addEventListener(type,handler){(windowEvents[type]||=[]).push(handler);}};
   if(catalogGrid&&require('node:fs').existsSync(require('node:path').join(__dirname,'../../assets/host-catalog-grid.js')))window.HostCatalogGrid=require('../../assets/host-catalog-grid.js');
   if(sharedCatalogue)window.WWB_HOST_ACTION_DATA=sharedCatalogue;
+  window.document=document;window.top=window;window.self=window;window.HostSiteLoad=require('../../assets/host-site-load.js');window.WhatsiteKaro=require('../../assets/host-karo-builds.js');
   dashboard.install(document,window);
   function clickWithin(container,selector){const target=container.querySelector(selector);if(!target)throw Error('Missing fixture control '+selector);return container.fire('click',{target});}
   return {platform,actions,ids,storage,storageKey,checks,sends,pairs,opened,anchorClicks,document,window,created,

@@ -38,6 +38,8 @@ function hostActions(platform) {
     for(let i=rows.length-1;i>=0;i--)if(/^ps4-(?:original-)?goldhen-/.test(rows[i].id)&&String(rows[i].format).toUpperCase()==='BIN')rows.splice(i,1);
     const current=path.join(root,'docs/host-goldhen-current.json');
     if(fs.existsSync(current))rows.push(...JSON.parse(fs.readFileSync(current,'utf8')).actions);
+    const retained=path.join(root,'docs/host-goldhen-retained-versions.json');
+    if(fs.existsSync(retained))rows.push(...JSON.parse(fs.readFileSync(retained,'utf8')).actions);
   }
   const runtimeFile = path.join(root,'docs/host-runtime-builds.json');
   const runtimeDownloads = fs.existsSync(path.join(root,'docs/host-runtime-downloads.json')) ? JSON.parse(fs.readFileSync(path.join(root,'docs/host-runtime-downloads.json'),'utf8')).runtimes : [];
@@ -60,7 +62,7 @@ function hostActions(platform) {
     const build=JSON.parse(fs.readFileSync(path.join(root,'docs/afterglow-build.json'),'utf8'));
     rows.unshift({id:'built-in-ps4-afterglow',runtimeId:'ps4-afterglow',platform:'ps4',label:'Afterglow · ps4-hen / GoldHEN',category:'loaders',format:'Built-in browser loader',firmwares:['13.52','14.00'],launchURL:build.entry,image:image('ps4'),source:'https://github.com/well0nez/afterglow-web/tree/'+build.commit,instructionsURL:'/hosts/ps4/afterglow/',requirements:['PS4 browser required','13.52 / 14.00 only','Autostart is opt-in']});
   }
-  return require('./ps5-browser-hosts.cjs').prepare(require('./ps4-browser-hosts.cjs').prepare([...new Map(rows.map(action => [action.id, action])).values()],platform),platform).map(require('./host-first-party-navigation.cjs').bind).filter(Boolean);
+  return require('./host-compact-pages.cjs').actions(root,platform,require('./ps5-browser-hosts.cjs').prepare(require('./ps4-browser-hosts.cjs').prepare([...new Map(rows.map(action => [action.id, action])).values()],platform),platform).map(require('./host-first-party-navigation.cjs').bind).filter(Boolean));
 }
 
 const {dashboard,workspaceDashboard} = require('./host-dashboard-markup.cjs');
@@ -114,7 +116,7 @@ function buildHostSelector({hostOnly=false}={}) {
     '#consoles', 'Choose console', true);
 
   const chooserFile = path.join(root, 'hosts/index.html');
-  fs.writeFileSync(chooserFile, require('./search-page-output.cjs').finish(chooserFile, fs.readFileSync(chooserFile, 'utf8').replace('</body>', '<script defer src="/assets/host-catalog-grid.js?v=3"></script><script defer src="/assets/host-dashboard.js?v=22"></script></body>')));
+  fs.writeFileSync(chooserFile, require('./search-page-output.cjs').finish(chooserFile, fs.readFileSync(chooserFile, 'utf8').replace('</body>', '<script defer src="/assets/host-catalog-grid.js?v=3"></script><script defer src="/assets/host-karo-builds.js?v=site-load-1"></script><script defer src="/assets/host-site-load.js?v=1"></script><script defer src="/assets/host-dashboard.js?v=site-load-1"></script></body>')));
 
   for (const platform of ['ps4', 'ps5']) {
     const name = platform.toUpperCase();
@@ -147,7 +149,7 @@ function buildHostSelector({hostOnly=false}={}) {
     for (const relative of [`hosts/${platform}/index.html`,managerFile,filesPage,...gamePages]) {
       const hostFile = path.join(root,relative);
       let hostHtml = fs.readFileSync(hostFile, 'utf8').replace('console-guide host-selector', 'console-guide host-selector host-dashboard-page');
-      hostHtml = hostHtml.replace('</head>', '<link rel="stylesheet" href="/assets/host-dashboard.css?v=16"><link rel="stylesheet" href="/assets/host-webhost.css?v=2"><link rel="stylesheet" href="/assets/host-firmware-buttons.css?v=3"><link rel="stylesheet" href="/assets/host-catalog-grid.css?v=2">\n</head>').replace('</body>', '<script defer src="/assets/host-console-client.js?v=15"></script><script defer src="/assets/host-catalog-grid.js?v=3"></script><script defer src="/assets/host-dashboard.js?v=22"></script></body>');
+      hostHtml = hostHtml.replace('</head>', '<link rel="stylesheet" href="/assets/host-dashboard.css?v=16"><link rel="stylesheet" href="/assets/host-webhost.css?v=2"><link rel="stylesheet" href="/assets/host-firmware-buttons.css?v=3"><link rel="stylesheet" href="/assets/host-catalog-grid.css?v=2">\n</head>').replace('</body>', '<script defer src="/assets/host-console-client.js?v=15"></script><script defer src="/assets/host-catalog-grid.js?v=3"></script><script defer src="/assets/host-karo-builds.js?v=site-load-1"></script><script defer src="/assets/host-site-load.js?v=1"></script><script defer src="/assets/host-dashboard.js?v=site-load-1"></script></body>');
       if(relative===`hosts/${platform}/index.html`)hostHtml=require('./host-folder-markup.cjs').shell(hostHtml);
       fs.writeFileSync(hostFile, require('./search-page-output.cjs').finish(relative, hostHtml));
     }

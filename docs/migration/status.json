@@ -319,6 +319,239 @@
     "revision": "ec57a07f80677551739f0e36d90c1a67636c0924",
     "deployment": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41727111581"
   },
+  "ps5RemainingOriginalHosts": {
+    "updatedAt": "2026-11-03T22:20:45.175Z",
+    "status": "Published and live verified",
+    "report": "docs/qa/ps5-original-hosts.json",
+    "firmwareChoices": 61,
+    "selectionOnly": true,
+    "testsPassed": 49,
+    "hardwareTested": false,
+    "originalHostControl": "UMTX2 retains its own Start control; Relapse starts automatically.",
+    "checkedAt": "2026-11-03T22:27:43.896Z",
+    "revision": "0488479b84f9ca3ffe1c12c0a9fc44a23d7e67e4",
+    "deployment": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41730210213"
+  },
+  "compactBlueHosts20261103": {
+    "updatedAt": "2026-11-03T22:32:31.218Z",
+    "status": "Implemented and locally verified; not committed, pushed or deployed by this chat.",
+    "repository": "C:\\Users\\whatw\\Documents\\GitHub\\WWB-HOST",
+    "preview": "http://127.0.0.1:56842/WWB-HOST/",
+    "previewRoot": "C:\\Users\\whatw\\Documents\\GitHub\\whatsite\\tmp\\wwb-blue-host-final-20261103",
+    "changes": [
+      "Grey/blue homepage and authored page theme; larger contain-only images; outer catalogue box removed",
+      "Homepage matching-console firmware detection without a network probe; KARO homepage feature removed",
+      "Grouped populated firmware families; exact transfer firmware remains separate and unchanged",
+      "Local GamerHack5.05 and6.72 runtime closures; pinned native source bytes retained",
+      "Local PS5 Relapse7.00–13.60 with33exact versions; one-use local entry guard and Pages-prefix validation",
+      "Firmware-based PS4 launch titles; HEN choices retained; long source/hosting content moved to corner popup",
+      "Mods / Mod Menus label; PS4 trainer shortcut; Game patches tabs and98PS4/101PS5 game catalogues",
+      "33retained lower-firmware GoldHEN BIN variants; exact source/archive hashes verified",
+      "Requested WWB-HOST ad scripts replace old browsing-page ads; execution documents remain isolated",
+      "Console canvas and decoration/English-observer overhead removed; existing bounded catalogue/trainer batches preserved",
+      "20language packs preserve all existing entries and translate new labels"
+    ],
+    "families": [
+      {
+        "id": "karo-ps5-umtx",
+        "label": "PS5 WebKit Exploit - 1.00–5.50",
+        "platform": "ps5",
+        "firmwares": [
+          "1.00",
+          "1.01",
+          "1.02",
+          "1.05",
+          "1.10",
+          "1.11",
+          "1.12",
+          "1.13",
+          "1.14",
+          "2.00",
+          "2.20",
+          "2.25",
+          "2.26",
+          "2.30",
+          "2.50",
+          "2.70",
+          "3.00",
+          "3.10",
+          "3.20",
+          "3.21",
+          "4.00",
+          "4.02",
+          "4.03",
+          "4.50",
+          "4.51",
+          "5.00",
+          "5.02",
+          "5.10",
+          "5.50"
+        ],
+        "entry": "/hosts/ps5/exploit/karo-ps5-umtx/"
+      },
+      {
+        "id": "gamerhack-505",
+        "label": "PS4 WebKit Exploit - 5.05",
+        "platform": "ps4",
+        "firmwares": [
+          "5.05"
+        ],
+        "entry": "/hosts/ps4/exploit/gamerhack-505/"
+      },
+      {
+        "id": "gamerhack-672goldhen",
+        "label": "PS4 WebKit Exploit - 6.72",
+        "platform": "ps4",
+        "firmwares": [
+          "6.72"
+        ],
+        "entry": "/hosts/ps4/exploit/gamerhack-672goldhen/"
+      },
+      {
+        "id": "ps4-psfree-700-960",
+        "label": "PS4 WebKit Exploit - 7.00–9.60",
+        "platform": "ps4",
+        "firmwares": [
+          "7.00",
+          "7.01",
+          "7.02",
+          "7.50",
+          "7.51",
+          "7.55",
+          "8.00",
+          "8.01",
+          "8.03",
+          "8.50",
+          "8.52",
+          "9.00",
+          "9.03",
+          "9.04",
+          "9.50",
+          "9.51",
+          "9.60"
+        ],
+        "entry": "/hosts/runtime/ps4-psfree-700-960/"
+      },
+      {
+        "id": "karo-g2allpro-modern",
+        "label": "PS4 WebKit Exploit - 10.00–13.52",
+        "platform": "ps4",
+        "firmwares": [
+          "10.00",
+          "11.00",
+          "11.02",
+          "11.50",
+          "11.52",
+          "12.00",
+          "12.02",
+          "12.50",
+          "12.52",
+          "13.00",
+          "13.02",
+          "13.04",
+          "13.50",
+          "13.52"
+        ],
+        "entry": "/hosts/ps4/exploit/karo-g2allpro-modern/"
+      },
+      {
+        "id": "ps4-afterglow",
+        "label": "PS4 WebKit Exploit - 13.52–14.00",
+        "platform": "ps4",
+        "firmwares": [
+          "13.52",
+          "14.00"
+        ],
+        "entry": "/hosts/ps4/afterglow/"
+      },
+      {
+        "id": "ps5-webkit-dd8e4e0914c5",
+        "label": "PS5 WebKit Exploit - 7.00–13.60",
+        "platform": "ps5",
+        "firmwares": [
+          "13.60",
+          "13.42",
+          "13.40",
+          "13.20",
+          "13.00",
+          "12.70",
+          "12.60",
+          "12.40",
+          "12.20",
+          "12.02",
+          "12.00",
+          "11.60",
+          "11.20",
+          "11.00",
+          "10.60",
+          "10.40",
+          "10.20",
+          "10.01",
+          "10.00",
+          "9.60",
+          "9.40",
+          "9.20",
+          "9.00",
+          "8.60",
+          "8.40",
+          "8.20",
+          "8.00",
+          "7.61",
+          "7.60",
+          "7.40",
+          "7.20",
+          "7.01",
+          "7.00"
+        ],
+        "entry": "/hosts/runtime/ps5-webkit-dd8e4e0914c5/"
+      }
+    ],
+    "ps5Source": {
+      "repository": "https://github.com/ntfargo/Relapse-Exploit",
+      "commit": "dd8e4e0914c5e9d066ee1f9b056be76cb992c8e0",
+      "report": "docs/ps5-webkit-build.json",
+      "readyBundle": "/downloads/hosts/ps5-webkit/ps5-webkit-dd8e4e0914c5-8f6ff8455428.zip",
+      "sha256": "8f6ff84554285ca339a00914948c14c322262675dabb4b924a4593197786e795"
+    },
+    "archive": {
+      "report": "docs/host-compact-download-inventory.json",
+      "newRecords": 42,
+      "newBytes": 22534356,
+      "allRecordedFilePathsPresent": 8550,
+      "missingPaths": 0,
+      "indexRefreshed": true
+    },
+    "validation": {
+      "focusedTests": 58,
+      "consoleRegressionTests": 99,
+      "ps5AuthoredGuardTests": 5,
+      "totalPassing": 162,
+      "publicLinksChecked": 3660,
+      "nativeScriptBytesPreserved": 897,
+      "cacheResourcesRetained": 1536,
+      "issues": 0,
+      "buildBytes": 858508581,
+      "consoleContact": false,
+      "nativeCodeExecuted": false,
+      "browserRenderVerified": false,
+      "hardwareExecutionVerified": false
+    },
+    "reports": [
+      "docs/host-home-blue-review.json",
+      "docs/host-console-lite-hooks-applied.json",
+      "docs/host-language-labels-review.json",
+      "docs/host-ads-patches-handoff.json",
+      "docs/host-modern-firmware-evidence.json",
+      "docs/host-gamerhack-local-build.json",
+      "docs/trainer-cover-provenance.json"
+    ],
+    "remainingChecks": [
+      "Visual render review is pending because browser automation is disabled in Work settings.",
+      "Physical PS4/PS5 exploit execution, offline cache persistence and console performance require hardware verification.",
+      "Publish through the independent WWB-HOST repository when authorized; do not regenerate main whatsite host redirects."
+    ],
+    "preservation": "Older runtime files, ready ZIPs, native helpers and downloads remain preserved. No downloaded native module or payload was executed."
+  },
   "remainingConsolePerformance20261103": {
     "status": "Published and live verified",
     "report": "docs/migration/remaining-console-performance.json",
@@ -362,17 +595,203 @@
     "livePages": 1104,
     "liveSharedCatalogueFiles": 4
   },
-  "ps5RemainingOriginalHosts": {
-    "updatedAt": "2026-11-03T22:20:45.175Z",
-    "status": "Published and live verified",
-    "report": "docs/qa/ps5-original-hosts.json",
-    "firmwareChoices": 61,
-    "selectionOnly": true,
-    "testsPassed": 49,
-    "hardwareTested": false,
-    "originalHostControl": "UMTX2 retains its own Start control; Relapse starts automatically.",
-    "checkedAt": "2026-11-03T22:27:43.896Z",
-    "revision": "0488479b84f9ca3ffe1c12c0a9fc44a23d7e67e4",
-    "deployment": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41730210213"
+  "sameOriginConsoleLoads20261103": {
+    "status": "validated before publication",
+    "updatedAt": "2026-11-03T23:18:32.830Z",
+    "tests": {
+      "passed": 103,
+      "failed": 0
+    },
+    "artifact": {
+      "revision": "main",
+      "base": "/WWB-HOST",
+      "origin": "https://speedy-away.github.io",
+      "bytes": 859002270,
+      "budget": 922746880,
+      "files": 6178,
+      "offloadedFiles": 282,
+      "nativeScriptsUnchanged": 898,
+      "cacheManifestAliases": 7,
+      "historicalLandings": 804,
+      "activeKaro": "hosts/runtime/karo-743646c9df9a-e3c0caf3db54/",
+      "routingBytes": {
+        "full": 1081669,
+        "runtime": 238872
+      },
+      "sharedCatalogueFiles": 5
+    },
+    "verification": {
+      "status": "passed",
+      "bytes": 859002270,
+      "pagesLinks": 3815,
+      "nativeScriptsUnchanged": 898,
+      "cachedResourcesRetained": 1536,
+      "runtimeDocumentsOptimized": 218,
+      "offloadedFiles": 282,
+      "compactAliasesVerified": 6907,
+      "sharedCatalogueFiles": 5,
+      "routingBytes": {
+        "full": 1081669,
+        "runtime": 238872
+      },
+      "issues": 0
+    },
+    "platforms": {
+      "ps4": {
+        "firmwares": [
+          "5.05",
+          "6.72",
+          "7.00",
+          "7.01",
+          "7.02",
+          "7.50",
+          "7.51",
+          "7.55",
+          "8.00",
+          "8.01",
+          "8.03",
+          "8.50",
+          "8.52",
+          "9.00",
+          "9.03",
+          "9.04",
+          "9.50",
+          "9.51",
+          "9.60",
+          "10.00",
+          "11.00",
+          "11.02",
+          "11.50",
+          "11.52",
+          "12.00",
+          "12.02",
+          "12.50",
+          "12.52",
+          "13.00",
+          "13.02",
+          "13.04",
+          "13.50",
+          "13.52",
+          "14.00"
+        ],
+        "count": 34,
+        "localRoutes": [
+          {
+            "id": "local-gamerhack-505",
+            "url": "/WWB-HOST/hosts/runtime/gamerhack-23c946a7f85f-706ca871d370/web/505/index.html",
+            "kind": "karo"
+          },
+          {
+            "id": "local-gamerhack-672goldhen",
+            "url": "/WWB-HOST/hosts/runtime/gamerhack-23c946a7f85f-706ca871d370/web/672goldhen/index.html",
+            "kind": "karo"
+          },
+          {
+            "id": "local-karo-g2all",
+            "url": "/WWB-HOST/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/g2all/index.html",
+            "kind": "karo"
+          },
+          {
+            "id": "local-karo-g2allpro-modern",
+            "url": "/WWB-HOST/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/g2allpro/index.html",
+            "kind": "karo"
+          },
+          {
+            "id": "local-ps4-afterglow",
+            "url": "/WWB-HOST/hosts/runtime/ps4-afterglow-acf25a831725/web/index.html",
+            "kind": "afterglow"
+          }
+        ],
+        "firmwareGridOnly": "Choose firmware"
+      },
+      "ps5": {
+        "firmwares": [
+          "1.00",
+          "1.01",
+          "1.02",
+          "1.05",
+          "1.10",
+          "1.11",
+          "1.12",
+          "1.13",
+          "1.14",
+          "2.00",
+          "2.20",
+          "2.25",
+          "2.26",
+          "2.30",
+          "2.50",
+          "2.70",
+          "3.00",
+          "3.10",
+          "3.20",
+          "3.21",
+          "4.00",
+          "4.02",
+          "4.03",
+          "4.50",
+          "4.51",
+          "5.00",
+          "5.02",
+          "5.10",
+          "5.50",
+          "7.00",
+          "7.01",
+          "7.20",
+          "7.40",
+          "7.60",
+          "7.61",
+          "8.00",
+          "8.20",
+          "8.40",
+          "8.60",
+          "9.00",
+          "9.20",
+          "9.40",
+          "9.60",
+          "10.00",
+          "10.01",
+          "10.20",
+          "10.40",
+          "10.60",
+          "11.00",
+          "11.20",
+          "11.60",
+          "12.00",
+          "12.02",
+          "12.20",
+          "12.40",
+          "12.60",
+          "12.70",
+          "13.00",
+          "13.20",
+          "13.40",
+          "13.42",
+          "13.60"
+        ],
+        "count": 62,
+        "localRoutes": [
+          {
+            "id": "local-karo-ps5-umtx",
+            "url": "/WWB-HOST/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/ps5/UMTX/index.html",
+            "kind": "karo"
+          },
+          {
+            "id": "local-ps5-webkit-dd8e4e0914c5",
+            "url": "/WWB-HOST/hosts/runtime/ps5-webkit-dd8e4e0914c5/web/index.html",
+            "kind": "ps5-native"
+          }
+        ],
+        "firmwareGridOnly": "Choose firmware"
+      }
+    },
+    "limits": [
+      "Physical PS4/PS5 execution has not been tested",
+      "Native exploit and payload code was not executed; handoff tests use inert mocks",
+      "Legacy private KARO acquisition tests require local source-review files absent from isolated worktree"
+    ],
+    "report": "docs/qa/site-hosted-loads.json",
+    "request": "All active PS4 and PS5 Load routes hosted on WWB-HOST; firmware grid only in Choose firmware; payloads, game mods and tools show directly",
+    "preservation": "Reused pinned local builds; older builds, downloads and game mods retained. No new upstream downloads required."
   }
 }

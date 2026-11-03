@@ -53,9 +53,9 @@ test('every pinned original and deployed file matches recorded bytes; kernel cod
 test('runtime isolation, dependency closure, honest firmware pins and ad separation',()=>{
  const run=read(build.base+'/web/jb.html');assert.doesNotMatch(run,/src=|site-ads|i18n|analytics|invoke\.js/);assert.match(run,/import\('\.\/jb.js'\)/);
  for(const f of build.files.filter(f=>f.path.startsWith('web/')&&/\.js$/.test(f.path))){const text=read(build.base+'/'+f.path);for(const m of text.matchAll(/(?:from\s+|import\s*\(\s*)["']\.\/([^"']+)["']/g))assert.ok(fs.existsSync(path.join(root,build.base,'web',m[1])),m[1]);}
- for(const page of ['firmware','afterglow']){const html=read('hosts/ps4/'+page+'/index.html');assert.match(html,/BEGIN SITE AD/);assert.match(html,/Advertisement/);assert.doesNotMatch(html,/<(?:video|iframe)\b/);}
- const routes=JSON.parse(read('docs/ps4-firmware-routes.json'));assert.deepEqual(routes.routes.find(r=>r.id==='afterglow').firmwares,['13.52','14.00']);assert.equal(routes.routes.filter(r=>r.firmwares.includes('14.00')).length,1);assert.equal(routes.versions.includes('13.51'),false);
- const action=require('../build-host-selector.cjs').hostActions('ps4').find(a=>a.id==='built-in-ps4-afterglow');assert.deepEqual(action.firmwares,['13.52','14.00']);assert.equal(action.run,undefined);assert.equal(require('../build-host-selector.cjs').hostActions('ps5').some(a=>a.id==='built-in-ps4-afterglow'),false);
+ for(const page of ['firmware','afterglow']){const raw=read('hosts/ps4/'+page+'/index.html'),html=require('../host-ads.cjs').apply('hosts/ps4/'+page+'/index.html',raw,{base:'/WWB-HOST'});assert.match(html,/BEGIN WWB HOST AD/);assert.match(html,/Advertisement/);assert.doesNotMatch(html,/<(?:video|iframe)\b/);}
+ const groups=require('../host-compact-pages.cjs').groups(root),route=groups.find(r=>r.id==='ps4-afterglow');assert.deepEqual(route.firmwares,['13.52','14.00']);assert.equal(groups.filter(r=>r.platform==='ps4'&&r.firmwares.includes('14.00')).length,1);assert.equal(route.firmwares.includes('13.51'),false);
+ const action=require('../build-host-selector.cjs').hostActions('ps4').find(a=>a.id==='local-ps4-afterglow');assert.deepEqual(action.firmwares,['13.52','14.00']);assert.equal(action.run,undefined);assert.equal(require('../build-host-selector.cjs').hostActions('ps5').some(a=>a.id==='local-ps4-afterglow'),false);
 });
 test('runtime ZIPs use their own folder; sender ZIP default stays unchanged',()=>{
  const {zip}=require('../package-console-payload-sender.cjs');
@@ -65,15 +65,14 @@ test('runtime ZIPs use their own folder; sender ZIP default stays unchanged',()=
   assert.equal(bytes.subarray(30,30+length).toString(),prefix+'web/index.html');
  }
 });
-test('firmware folders cover each exact supported version and use full-page top navigation',()=>{
- const html=read('hosts/ps4/firmware/index.html');
- const routes=JSON.parse(read('docs/ps4-firmware-routes.json'));
- assert.deepEqual([...html.matchAll(/data-folder="([^"]+)"/g)].map(m=>m[1]),[...routes.versions].reverse());
- assert.match(html,/class="firmware-taskbar"/);assert.doesNotMatch(html,/id="sidebar"|<header class="guide-hero">/);
- for(const r of routes.routes)assert.ok(html.includes('href="'+r.url.replaceAll('&','&amp;')+'"'),r.id);
- assert.match(read('assets/ps4-firmware.js'),/searchParams.get\('fw'\)/);
- assert.match(read('assets/ps4-firmware.js'),/firmware-back/);
+test('firmware families preserve exact supported sets behind local full-page buttons',()=>{
+ const html=read('hosts/ps4/firmware/index.html'),groups=require('../host-compact-pages.cjs').groups(root).filter(r=>r.platform==='ps4');
+ assert.equal((html.match(/class="host-firmware-family"/g)||[]).length,groups.length);
+ assert.match(html,/class="host-taskbar"/);assert.doesNotMatch(html,/id="sidebar"|<header class="guide-hero">|<select\b/);
+ for(const r of groups){assert.ok(html.includes('href="'+r.entry+'"'),r.id);assert.ok(html.includes('data-firmwares="'+r.firmwares.join(',')+'"'));}
+ assert.match(read('assets/host-firmware-families.js'),/navigator.userAgent/);
 });
+
 test('landing gains local top navigation and responsive layout without modifying the execution document',()=>{
  const landing=read(build.base+'/web/index.html');assert.match(landing,/id="brand"><nav/);assert.match(landing,/landing-layout.css/);
  assert.doesNotMatch(read(build.base+'/web/jb.html'),/landing-layout|firmware-taskbar|Page navigation/);

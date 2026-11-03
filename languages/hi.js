@@ -1192,7 +1192,16 @@
     "Technical lineage": "तकनीकी स्रोत",
     "PS4 firmware selection": "PS4 · फ़र्मवेयर चयन",
     "Browser firmware": "ब्राउज़र फ़र्मवेयर",
-    "Compatibility sources": "संगतता के स्रोत"
+    "Compatibility sources": "संगतता के स्रोत",
+    "Main site": "मुख्य साइट",
+    "Console tools": "कंसोल उपकरण",
+    "This browser": "यह ब्राउज़र",
+    "Console hosts": "कंसोल होस्ट",
+    "Site navigation": "साइट नेविगेशन",
+    "Payload managers": "पेलोड प्रबंधक",
+    "Console file managers": "कंसोल फ़ाइल प्रबंधक",
+    "Desktop tools": "डेस्कटॉप उपकरण",
+    "Game patches": "गेम पैच"
   };
 
   if (window.__scoobyI18n) window.__scoobyI18n.register("hi", t);

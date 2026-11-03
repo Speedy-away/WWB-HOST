@@ -28,6 +28,8 @@ function build(){
   fs.writeFileSync(path.join(root,f),require('./search-page-output.cjs').finish(f,html));
  }
  fs.writeFileSync(path.join(root,'docs/ps4-firmware-routes.json'),JSON.stringify({schemaVersion:1,versions,routes,notes:'Selector options derive from exact route lists; an option is not universal payload compatibility.'},null,2)+'\n');
+ require('./host-compact-pages.cjs').build(root);
+ require('./build-afterglow-public-launcher.cjs').build(root);
  return {versions:versions.length,routes:routes.length};
 }
 if(require.main===module)console.log(build());module.exports={build};

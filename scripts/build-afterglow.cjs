@@ -26,6 +26,8 @@ function build(){
  index=index.replace('</head>','<link rel="stylesheet" href="landing-layout.css"></head>');
  write(base+'/web/landing-layout.css',read('assets/afterglow-landing-layout.css'));
  index=index.replace('<script src="launch.js">','<script src="entry-i18n.js"></script><script src="launch.js">');
+ index=index.replace('</head>','<script defer src="site-load-receipt.js"></script></head>');
+ write(base+'/web/site-load-receipt.js',read('assets/host-site-load-receipt.js'));
  write(base+'/web/index.html',index);
  const translations=Object.assign({},require('../i18n-tools/console-translations.cjs'),require('../i18n-tools/host-repository-translations.cjs'),require('../i18n-tools/afterglow-translations.cjs'));
  const keys=['Back','PS4 host','Start','Cancel','Autostart','Firmware selection','Source & licenses','PS4 browser required','Waiting for cache','Reopen to update cache','Session storage required','PS4 kernel exploit · firmware 13.52 and 14.00'];

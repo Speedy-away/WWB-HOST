@@ -209,7 +209,7 @@
     var source = doc.querySelector('#host-actions-data'); if (!source) return;
     var catalog; try { catalog = JSON.parse(source.textContent); if(catalog.actionsKey){var shared=win.WWB_HOST_ACTION_DATA;if(!shared||shared.key!==catalog.actionsKey||!Array.isArray(shared.actions)){var unavailable=doc.querySelector('#host-status');if(unavailable){unavailable.textContent='The file catalogue could not load. Reload this page.';unavailable.hidden=false;unavailable.setAttribute('data-host-catalog-error','true');}return;}catalog.actions=shared.actions;}win.WWB_HOST_CATALOG=catalog; } catch (_) { return; }
     var actions = catalog.actions || [], platform = catalog.platform;
-    var availableFirmwares=availableBrowserFirmwares(actions),restrictFirmware=platform==='ps5'&&Boolean(catalog.firmwareChoicesOnly);
+    var availableFirmwares=availableBrowserFirmwares(actions),restrictFirmware=Boolean(catalog.firmwareChoicesOnly);
     var fileListView=Boolean(catalog.fileListView);
     var gameScope = catalog.gameScope || '', gamesLanding = Boolean(catalog.gamesLanding)&&!fileListView;
     var client = win.HostConsoleClient, category = catalog.initialCategory || (catalog.managerView ? 'payloads' : 'mods'), bridge = null, loading = false;
@@ -395,7 +395,7 @@
       if (category!=='mods') {
         renderedGroups=groupActions(visible);
         count.textContent=String(renderedGroups.length);
-        return windowed(renderedGroups).map(function(group){var first=group.actions[0];if(category==='loaders'&&first.browserHost)return catalogTile({id:first.id,label:'Load',image:'',detail:group.label+(platform==='ps5'&&detection.platform!==platform?' · Open on PS5':''),attribute:'data-launch',disabled:detection.platform!==platform||!firmware.value||!firmwareMatches(first,firmware.value)||Boolean(platform==='ps5'&&detection.firmware&&detection.firmware!==firmware.value)});return catalogTile({id:group.id,label:group.label,image:category==='loaders'?'':catalogUI.representativeImage(group.actions),detail:[first.format,first.version||first.menuVersion||''].filter(Boolean).join(' · '),attribute:'data-choose-group'});}).join('');
+        return windowed(renderedGroups).map(function(group){var first=group.actions[0];if(category==='loaders'&&first.browserHost)return catalogTile({id:first.id,label:'Load',image:'',detail:group.label+(detection.platform!==platform?' · Open on '+platform.toUpperCase():''),attribute:'data-launch',disabled:detection.platform!==platform||!firmware.value||!firmwareMatches(first,firmware.value)||Boolean(detection.firmware&&detection.firmware!==firmware.value)});return catalogTile({id:group.id,label:group.label,image:category==='loaders'?'':catalogUI.representativeImage(group.actions),detail:[first.format,first.version||first.menuVersion||''].filter(Boolean).join(' · '),attribute:'data-choose-group'});}).join('');
       }
       var groups=catalogUI.gameGroups(visible),path='<nav class="host-catalog-path" aria-label="Game mods">'+(gameScope?'<a href="/hosts/'+platform+'/?view=mods">Game mods</a>':'<button type="button" data-catalog-back="games">Game mods</button>')+(selected?'<span aria-hidden="true">/</span><button type="button" data-catalog-back="updates" translate="no">'+escape(selected.label)+'</button>':'')+(selected&&catalogUpdate?'<span aria-hidden="true">/</span><strong translate="no">'+escape(catalogUpdate==='unspecified'?'Not provided':catalogUpdate)+'</strong>':'')+'</nav>';
       if (!selected) {
@@ -572,7 +572,7 @@
       if (action.category === 'mods' && !loadCapability(action).available) { tell(loadCapability(action).reason,true); return; }
       if (loadCapability(action).kind === 'browser' && detection.platform !== platform) { tell(loadCapability(action).reason,true); return; }
       var url; try { url = launchURL(action); } catch (error) { tell(error.message, true); return; }
-      if (url && action.browserHost) { if(action.platform==='ps5'&&detection.firmware!==firmware.value){tell('Choose the firmware detected on this PS5.',true);return;} if(action.platform==='ps5'&&action.runtimeId==='ps5-umtx'){try{win.sessionStorage.setItem('wwb.ps5.load.request.v1',JSON.stringify({firmware:firmware.value,createdAt:Date.now()}));}catch(e){tell('Session storage is unavailable. Enable it to load.',true);return;}} tell('Loading ' + action.label + ' on ' + platform.toUpperCase() + '…'); win.location.href=url; }
+      if (url && action.browserHost) { if(detection.firmware!==firmware.value){tell('Choose the firmware detected on this '+platform.toUpperCase()+'.',true);return;} if(action.nativeRoute){try{if(!win.HostSiteLoad)throw Error('The local Load controller is unavailable. Reload this page.');url=win.HostSiteLoad.start(win,doc,action,event.isTrusted===true);}catch(error){tell(error.message,true);return;}} else if(action.platform==='ps5'&&action.runtimeId==='ps5-umtx'){try{win.sessionStorage.setItem('wwb.ps5.load.request.v1',JSON.stringify({firmware:firmware.value,createdAt:Date.now()}));}catch(e){tell('Session storage is unavailable. Enable it to load.',true);return;}} tell('Loading ' + action.label + ' on ' + platform.toUpperCase() + '…'); win.location.href=url; }
       else if (url) { win.open(url, '_blank', 'noopener'); tell('Opening ' + action.label + '. Follow the loader status on that page.'); }
       else service('files');
     }

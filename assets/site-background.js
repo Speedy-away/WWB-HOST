@@ -3,6 +3,9 @@
 (() => {
     'use strict';
 
+    // Public console pages use static presentation; return before canvas/DOM work.
+    if (window.WWB_HOST_CONSOLE === true || window.WhatsiteConsoleLite && window.WhatsiteConsoleLite.enabled) return;
+
     if (!document.body || window.__siteFlowBackground) return;
     window.__siteFlowBackground = true;
     document.body.classList.add('site-atmosphere');

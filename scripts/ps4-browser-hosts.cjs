@@ -14,9 +14,12 @@ function refreshLegacyEntries(root){
  for(const id of ['ps4-900','ps4-psfree-700-960']){
   const runtime=doc.runtimes.find(r=>r.id===id);if(!runtime)continue;
   const dir=path.join(root,'hosts/runtime',id),title=id==='ps4-900'?'PS4 9.00':'PS4 7.00–9.60';
-  const html='<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+title+' · Load</title><link rel="stylesheet" href="style.css"></head><body><main><a href="/hosts/ps4/">← PS4 host</a><h1>'+title+'</h1><p class="status" id="runtime-status">Checking console…</p><button type="button" id="runtime-start" disabled>Load</button><details><summary>Details</summary><p>GamerHack · GoldHEN</p><p><a href="web/index.html">Advanced BIN listener</a> · <a href="README.md">Source &amp; licenses</a></p></details></main><script src="guard.js"></script><script>document.getElementById("runtime-start").onclick=function(){if(window.whatsiteRuntimeAllowed){document.getElementById("runtime-status").textContent="Loading GoldHEN…";location.href="https://gamerhack.github.io/g2all/";}};</script></body></html>\n';
+  const group=require('./host-compact-pages.cjs').actions(root,'ps4',[]).find(a=>a.runtimeId==='karo-g2all');
+  if(!group)throw Error('Missing reviewed local PS4 runtime');
+  const action={...group,id:'local-legacy-'+id,firmwares:id==='ps4-900'?['9.00']:group.firmwares};
+  const html=fs.readFileSync(path.join(__dirname,'ps4-legacy-load-template.html'),'utf8').replace('__ACTION__',JSON.stringify(action).replaceAll('<','\\u003c'));
   fs.writeFileSync(path.join(dir,'index.html'),html);const bytes=Buffer.from(html),file=runtime.files.find(f=>f.path==='index.html');Object.assign(file,{bytes:bytes.length,sha256:crypto.createHash('sha256').update(bytes).digest('hex')});
-  const localPath=path.join(dir,'build.json'),local=JSON.parse(fs.readFileSync(localPath,'utf8'));local.files=runtime.files;local.entryFlow={type:'original-browser-host',url:originals['gamerhack-g2all'],advancedEntry:'web/index.html'};fs.writeFileSync(localPath,JSON.stringify(local,null,2)+'\n');runtime.entryFlow=local.entryFlow;
+  const localPath=path.join(dir,'build.json'),local=JSON.parse(fs.readFileSync(localPath,'utf8'));local.files=runtime.files;local.entryFlow={type:'same-origin-native-host',url:group.launchURL,advancedEntry:'web/index.html'};fs.writeFileSync(localPath,JSON.stringify(local,null,2)+'\n');runtime.entryFlow=local.entryFlow;
  }
  fs.writeFileSync(manifestPath,JSON.stringify(doc,null,2)+'\n');
 }

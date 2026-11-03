@@ -1192,7 +1192,16 @@
     "Technical lineage": "ტექნიკური წარმომავლობა",
     "PS4 firmware selection": "PS4 · პროგრამული ვერსიის არჩევა",
     "Browser firmware": "ბრაუზერის ვერსია",
-    "Compatibility sources": "თავსებადობის წყაროები"
+    "Compatibility sources": "თავსებადობის წყაროები",
+    "Main site": "მთავარი საიტი",
+    "Console tools": "კონსოლის ხელსაწყოები",
+    "This browser": "ეს ბრაუზერი",
+    "Console hosts": "კონსოლის ჰოსტები",
+    "Site navigation": "საიტის ნავიგაცია",
+    "Payload managers": "პეილოუდების მმართველები",
+    "Console file managers": "კონსოლის ფაილების მმართველები",
+    "Desktop tools": "კომპიუტერის ხელსაწყოები",
+    "Game patches": "თამაშის პატჩები"
   };
 
   if (window.__scoobyI18n) window.__scoobyI18n.register("ka", t);

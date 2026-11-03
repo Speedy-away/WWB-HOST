@@ -8,7 +8,7 @@
  document.querySelectorAll('.host-file-tabs a').forEach(function(link){if(new URL(link.href).searchParams.get('view')===selected)link.setAttribute('aria-current','page');});
  var firmwareControl=document.querySelector('.host-firmware-control');
  if(firmwareControl)document.getElementById('host-file-firmware').appendChild(firmwareControl);
- if(firmwareControl)firmwareControl.hidden=selected==='sender';
+ if(firmwareControl)firmwareControl.hidden=selected!=='loaders';
  var fileToolbar=document.getElementById('host-file-firmware');
  ['.host-search','#host-game-filter'].forEach(function(selector){var item=document.querySelector(selector);if(item)fileToolbar.appendChild(item);});
  var search=document.querySelector('.host-search');if(search)search.hidden=selected==='connection'||selected==='sender';
@@ -17,6 +17,7 @@
  var status=document.querySelector('#host-status'),initialStatus=status.textContent;status.hidden=status.getAttribute('data-host-catalog-error')!=='true';
  new MutationObserver(function(){status.hidden=status.textContent===initialStatus&&status.getAttribute('data-host-catalog-error')!=='true';}).observe(status,{childList:true,characterData:true,subtree:true});
  var library=document.getElementById('host-folder-library');
+ if(selected==='mods'&&platform==='ps4'){var trainer=document.createElement('a');trainer.className='host-trainer-shortcut';trainer.href='/hosts/tools/ps4-trainer/';trainer.innerHTML='<img src="/assets/images/home/ps4-offline-trainer-cover-v1.jpg" width="144" height="90" alt=""><span><strong>PS4 Offline Trainer</strong><span>Browse games and exact updates →</span></span>';library.parentNode.insertBefore(trainer,library);}
  library.hidden=!selected||selected==='connection'||selected==='sender';
  document.querySelectorAll('[data-host-folder-panel]').forEach(function(panel){panel.hidden=panel.getAttribute('data-host-folder-panel')!==selected;});
  if(selected){

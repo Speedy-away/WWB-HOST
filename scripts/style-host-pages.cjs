@@ -3,6 +3,7 @@
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict');
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 function artwork(name){
+ if(name.includes('/ps4-trainer/'))return ['home/ps4-offline-trainer-cover-v1.jpg','PS4 Offline Trainer illustration'];
  if(name.includes('/karo/'))return ['exploit-hosts/ps4-KaroIMG.png','KARO host'];
  if(name.includes('/gta5/'))return ['gta52.png','Grand Theft Auto V artwork'];
  if(name.includes('/rdr2/'))return ['rdr2.png','Red Dead Redemption 2 artwork'];
@@ -25,6 +26,8 @@ function themeHTML(html,name){
  html=html.replace(/(<a\b[^>]*class="host-taskbar-brand"[^>]*>)[^<]*(<\/a>)/g,'$1WWB HOST$2');
  html=html.replace(/(<a\b[^>]*class="host-top-brand"[^>]*>)[\s\S]*?<\/a>/g,'$1<img src="/assets/images/logo.png" alt="" width="32" height="32"><span>WWB HOST</span></a>');
  html=html.replace(/<a\b[^>]*class="(?:host-taskbar-brand|host-top-brand)"[^>]*>/g,tag=>tag.replace(/href="[^"]*"/,'href="https://speedy-away.github.io/WWB-HOST/"'));
+ // compact-launcher-heading: firmware families and launch controls need no decorative hero.
+ if(/\/(?:exploit|afterglow|firmware)\//.test(name))return html;
  const start=html.indexOf('<main');if(start<0||html.includes('data-wwb-image-heading'))return html;
  let before=html.slice(0,start),content=html.slice(start),[src,alt]=artwork(name);const image='<figure class="wwb-heading-art"><img src="/assets/images/'+src+'" alt="'+alt+'" decoding="async" width="640" height="360"></figure>';
  if(/<header\b/.test(content))content=content.replace(/<header([^>]*)>([\s\S]*?)<\/header>/,(_,attrs,inner)=>'<header'+attrs+' data-wwb-image-heading><div class="wwb-heading-copy">'+inner+'</div>'+image+'</header>');

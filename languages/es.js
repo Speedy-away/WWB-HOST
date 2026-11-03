@@ -1192,7 +1192,16 @@
     "Technical lineage": "Origen técnico",
     "PS4 firmware selection": "PS4 · Selección de firmware",
     "Browser firmware": "Firmware del navegador",
-    "Compatibility sources": "Fuentes de compatibilidad"
+    "Compatibility sources": "Fuentes de compatibilidad",
+    "Main site": "Sitio principal",
+    "Console tools": "Herramientas de consola",
+    "This browser": "Este navegador",
+    "Console hosts": "Hosts de consola",
+    "Site navigation": "Navegación del sitio",
+    "Payload managers": "Gestores de payloads",
+    "Console file managers": "Gestores de archivos de consola",
+    "Desktop tools": "Herramientas de escritorio",
+    "Game patches": "Parches de juegos"
   };
 
   if (window.__scoobyI18n) window.__scoobyI18n.register("es", t);

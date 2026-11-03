@@ -34,12 +34,15 @@ function build(output,revision='main',root=ROOT){
    text=text.replace(/<head\b[^>]*>/i,m=>m+'<script src="/assets/host-performance.js?v=2"></script>');
    text=text.replace('</head>','<link rel="stylesheet" href="/assets/host-performance.css?v=2"></head>');
   }
+  if(name.endsWith('.html'))text=require('./host-compact-pages.cjs').apply(text,name,{root});
+  if(/^hosts\/(?!runtime\/).+\.html$/.test(name))text=text.replace('</head>','<link rel="stylesheet" href="/assets/host-compact.css?v=1"><link rel="stylesheet" href="/assets/host-blue-theme.css?v=1"></head>');
   // Prefix authored root-relative strings, including concatenated directory roots.
   text=text.replace(/https:\/\/whatwhatboy\.com\/(hosts\/[^\s"'<>\\]*)/g,(_,p)=>{const url=target(p);return /^https?:/.test(url)?url:ORIGIN+url;});
   text=text.replace(/(["'`=\s(])\/(hosts|assets|languages|downloads|console|docs)\/([^\s"'`<>)]*)/g,(whole,lead,dir,rest)=>{const p=dir+'/'+rest;if((!rest&&name.endsWith('.js'))||/^\$\{|\+/.test(rest))return lead+BASE+'/'+p;return lead+target(p);});
   text=text.replace(/((?:href|action)\s*=\s*["'])\/(["'])/g,'$1'+MAIN+'/$2');
   text=text.replace(/((?:href|src|action|poster)\s*=\s*["'])\/([^"']*)(["'])/gi,(whole,start,p,end)=>p.startsWith('WWB-HOST/')?whole:start+target(p)+end);
   if(name.endsWith('.html'))text=text.replace(/<!-- BEGIN SITE AD -->[\s\S]*?<!-- END SITE AD -->/g,'').replace(/<script\b[^>]*src=["'][^"']*site-ads\.js[^"']*["'][^>]*><\/script>/g,'');
+  if(name.endsWith('.html'))text=require('./host-ads.cjs').apply(name,text,{base:BASE});
   if(name.endsWith('.html'))text=text.replace(/<link\b[^>]*rel=["']canonical["'][^>]*>/i,'<link rel="canonical" href="'+ORIGIN+BASE+'/'+name.replace(/index\.html$/,'')+'">');
   if(name==='hosts/karo/index.html'||name==='hosts/karo/versions.html')text=require('./split-karo-file-lists.cjs').split(text,name,{base:BASE,revision,emit:(p,content)=>{assert.ok(!selected.includes(p),'Generated list collides with source: '+p);const dest=path.join(output,p);fs.mkdirSync(path.dirname(dest),{recursive:true});fs.writeFileSync(dest,content);hosted.add(p);}});
   if(/^hosts\/(?!runtime\/).+\.html$/.test(name)&&fs.existsSync(path.join(root,'assets/host-dashboard.js'))&&fs.readFileSync(path.join(root,'assets/host-dashboard.js'),'utf8').includes('WWB_HOST_ACTION_DATA'))text=require('./share-host-catalogues.cjs').share(text,{base:BASE,emit:(p,content)=>{assert.ok(!selected.includes(p),'Generated catalogue collides with source');const dest=path.join(output,p);fs.mkdirSync(path.dirname(dest),{recursive:true});if(fs.existsSync(dest))assert.equal(fs.readFileSync(dest,'utf8'),content);else fs.writeFileSync(dest,content);hosted.add(p);}});
@@ -50,7 +53,7 @@ function build(output,revision='main',root=ROOT){
   const runtime=f.name.startsWith('hosts/runtime/'),immutable=f.name.startsWith('downloads/')||/^console\/ps[45]\/whatsite-ps[45]\.html$/.test(f.name);
   if(runtime&&/\.m?js$/i.test(f.name)){nativeFiles++;}
   else if(!immutable&&/\.(?:html|js|css|json|xml|md|txt)$/i.test(f.name)){let text=original.toString('utf8');if(!runtime)text=rewrite(text,f.name);
-   if(runtime&&f.name.endsWith('.html')){text=text.replace(/("original"\s*:\s*)("(?:\\.|[^"\\])*")/g,(whole,key,value)=>key+JSON.stringify(manifestHTML(JSON.parse(value),f.name)).replaceAll('<','\\u003c'));text=manifestHTML(text,f.name);const inject='<script src="'+BASE+'/host-runtime-map.js?v='+revision+'"></script><script src="'+BASE+'/assets/host-project-routing.js?v=2"></script>';text=/<head\b[^>]*>/i.test(text)?text.replace(/<head\b[^>]*>/i,h=>h+inject):inject+text;}
+   if(runtime&&f.name.endsWith('.html')){text=require('./host-compact-pages.cjs').apply(text,f.name,{base:BASE,root});text=text.replace(/("original"\s*:\s*)("(?:\\.|[^"\\])*")/g,(whole,key,value)=>key+JSON.stringify(manifestHTML(JSON.parse(value),f.name)).replaceAll('<','\\u003c'));text=manifestHTML(text,f.name);const inject='<script src="'+BASE+'/host-runtime-map.js?v='+revision+'"></script><script src="'+BASE+'/assets/host-project-routing.js?v=2"></script>';text=/<head\b[^>]*>/i.test(text)?text.replace(/<head\b[^>]*>/i,h=>h+inject):inject+text;}
    data=Buffer.from(text);
   }fs.writeFileSync(destination,data);
  }

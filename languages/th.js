@@ -1192,7 +1192,16 @@
     "Technical lineage": "ที่มาทางเทคนิค",
     "PS4 firmware selection": "PS4 · เลือกเฟิร์มแวร์",
     "Browser firmware": "เฟิร์มแวร์ของเบราว์เซอร์",
-    "Compatibility sources": "แหล่งข้อมูลความเข้ากันได้"
+    "Compatibility sources": "แหล่งข้อมูลความเข้ากันได้",
+    "Main site": "เว็บไซต์หลัก",
+    "Console tools": "เครื่องมือคอนโซล",
+    "This browser": "เบราว์เซอร์นี้",
+    "Console hosts": "โฮสต์คอนโซล",
+    "Site navigation": "การนำทางเว็บไซต์",
+    "Payload managers": "ตัวจัดการเพย์โหลด",
+    "Console file managers": "ตัวจัดการไฟล์คอนโซล",
+    "Desktop tools": "เครื่องมือบนคอมพิวเตอร์",
+    "Game patches": "แพตช์เกม"
   };
 
   if (window.__scoobyI18n) window.__scoobyI18n.register("th", t);

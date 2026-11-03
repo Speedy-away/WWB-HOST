@@ -1,7 +1,7 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('fs'),path=require('path'),vm=require('vm'),crypto=require('crypto');
 const root=path.resolve(__dirname,'../..'),read=p=>fs.readFileSync(path.join(root,p),'utf8'),{fixture}=require('./host-continuation-dom.cjs'),key='wwb.ps5.load.request.v1',ua='Mozilla/5.0 (PlayStation; PlayStation 5/4.51)';
-const actions=()=>require('../build-host-selector.cjs').hostActions('ps5');
+const actions=()=>{const r=require('../../docs/host-runtime-builds.json').runtimes.find(r=>r.id==='ps5-umtx');return require('../ps5-browser-hosts.cjs').prepare([{id:'built-in-ps5-umtx',platform:'ps5',category:'loaders',runtimeId:r.id,launchURL:r.entry,firmwares:r.firmwares},{id:'ps5-elfldr',platform:'ps5',category:'loaders',categories:['loaders','payloads']}],'ps5');};
 function runtime({agent=ua,request={firmware:'4.51',createdAt:100000},ref='https://example.test/WWB-HOST/hosts/ps5/',nav='navigate',pathname='/WWB-HOST/hosts/runtime/ps5-umtx/web/index.html',storageFails=false}={}){
  const saved=new Map(request===null?[]:[[key,typeof request==='string'?request:JSON.stringify(request)]]),nodes={};
  function node(id){if(!nodes[id]){const classes=new Set(id==='pre-jb-view'?['selected']:[]);nodes[id]={value:'',textContent:'',innerHTML:'',disabled:false,classList:{add:x=>classes.add(x),remove:x=>classes.delete(x),contains:x=>classes.has(x)}};}return nodes[id];}

@@ -306,8 +306,8 @@
     },
     {
       "path": "web/cache.appcache",
-      "bytes": 1414,
-      "sha256": "db264b3521c616995f7cca96f8c5e63150542d341f11634a5c64c96e0e0bba63"
+      "bytes": 1502,
+      "sha256": "6d4e599f5cb43e69a96f9ba040582348ab0aeeecc25ab6aefe63a44041021f53"
     },
     {
       "path": "web/core.js",
@@ -331,8 +331,8 @@
     },
     {
       "path": "web/index.html",
-      "bytes": 2089,
-      "sha256": "68b73a93c1e59ad13fe539a97ac19ea9e65f7516c3c4388d8d33705ac57c5148"
+      "bytes": 2139,
+      "sha256": "98d23aaa714334d17aca8a259bb036a9de98356ddfec208490f17f0f62bca8b3"
     },
     {
       "path": "web/int64.js",
@@ -428,6 +428,11 @@
       "path": "README.md",
       "bytes": 2793,
       "sha256": "b09d632c73830890dce0de8b04363cdd6e5d81c70c84283cf9c5060b4ae49532"
+    },
+    {
+      "path": "web/site-load-receipt.js",
+      "bytes": 1618,
+      "sha256": "bcd45daac36cd8cfe3f288caba8ce63c8e9f261ea57723735405467a867d1698"
     }
   ],
   "limitations": [
@@ -435,5 +440,10 @@
     "GoldHEN numeric release unknown",
     "Primitive files have no separate declared license; see upstream TECHNICAL.md",
     "GoldHEN permission is upstream author statement, not independent correspondence"
-  ]
+  ],
+  "siteLoadHandoff": {
+    "controller": "/assets/host-site-load-receipt.js",
+    "type": "one-use explicit same-origin Load",
+    "originalNativeScriptsChanged": 0
+  }
 }

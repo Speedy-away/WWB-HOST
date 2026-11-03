@@ -1192,7 +1192,16 @@
     "Technical lineage": "기술 계보",
     "PS4 firmware selection": "PS4 · 펌웨어 선택",
     "Browser firmware": "브라우저 펌웨어",
-    "Compatibility sources": "호환성 출처"
+    "Compatibility sources": "호환성 출처",
+    "Main site": "메인 사이트",
+    "Console tools": "콘솔 도구",
+    "This browser": "이 브라우저",
+    "Console hosts": "콘솔 호스트",
+    "Site navigation": "사이트 탐색",
+    "Payload managers": "페이로드 관리자",
+    "Console file managers": "콘솔 파일 관리자",
+    "Desktop tools": "데스크톱 도구",
+    "Game patches": "게임 패치"
   };
 
   if (window.__scoobyI18n) window.__scoobyI18n.register("ko", t);

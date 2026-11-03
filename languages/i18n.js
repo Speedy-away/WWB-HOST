@@ -328,7 +328,7 @@
   // ------------------------------------------------------- dynamic content ---
 
   function startObserver() {
-    if (window.WWB_HOST_CONSOLE === true && current === DEFAULT_LANG) {
+    if ((window.WWB_HOST_CONSOLE === true || window.WhatsiteConsoleLite && window.WhatsiteConsoleLite.enabled) && current === DEFAULT_LANG) {
       if (observer) observer.disconnect();
       observer = null;
       return;
