@@ -31,7 +31,7 @@ function build(output,revision='main',root=ROOT){
    text=text.replace(/<script\b[^>]*src=["'][^"']*(?:\/script\.js|\/assets\/site-background\.js)(?:\?[^"']*)?["'][^>]*><\/script>/gi,'');
    text=text.replace(/<img\b[^>]*>/gi,tag=>/\bwidth=["'](?:24|32)["']/.test(tag)?tag:tag.replace(/\bsrc=/i,'data-host-src='));
    text=text.replace(/<head\b[^>]*>/i,m=>m+'<script src="/assets/host-performance.js?v=1"></script>');
-   text=text.replace('</head>','<link rel="stylesheet" href="/assets/host-performance.css?v=1"></head>');
+   text=text.replace('</head>','<link rel="stylesheet" href="/assets/host-performance.css?v=2"></head>');
   }
   // Prefix authored root-relative strings, including concatenated directory roots.
   text=text.replace(/https:\/\/whatwhatboy\.com\/(hosts\/[^\s"'<>\\]*)/g,(_,p)=>{const url=target(p);return /^https?:/.test(url)?url:ORIGIN+url;});

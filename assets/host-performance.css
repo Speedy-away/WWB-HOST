@@ -10,3 +10,5 @@
 #host-show-more{margin:18px 0;padding:12px 20px;background:#18291e;border:1px solid #56745f;color:#e7ede9;cursor:pointer}
 .host-console-browser .trainer-game{min-height:72px;padding:14px}.host-console-browser #trainer-games{gap:10px}
 @media(max-width:640px){.host-console-browser .host-catalog-grid,.host-console-browser .host-reset #host-action-grid.host-catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+
+.host-console-browser .console-visual{display:none!important}.host-console-browser .console-copy{border-top:0}.host-console-browser .game-links>a{grid-template-columns:minmax(0,1fr) auto}.host-console-browser .karo-feature{grid-template-columns:1fr;min-height:0;padding:20px}.host-console-browser .intro h1{font-size:2.2rem}
