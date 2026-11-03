@@ -474,7 +474,8 @@
       "actions": 185,
       "releaseTag": "sender-2.1.0-8d8bda70ee88",
       "publicDownloadURL": "https://github.com/Speedy-away/WWB-HOST/releases/download/sender-2.1.0-8d8bda70ee88/console-payload-sender-2.1.0-8d8bda70ee88.zip",
-      "originalSource": "https://speedy-away.github.io/WWB-HOST/downloads/helpers/console-payload-sender/console-payload-sender-2.1.0-8d8bda70ee88.zip"
+      "originalSource": "https://speedy-away.github.io/WWB-HOST/downloads/helpers/console-payload-sender/console-payload-sender-2.1.0-8d8bda70ee88.zip",
+      "releaseAssetId": 706948768
     }
   ],
   "latest": "/downloads/helpers/console-payload-sender/console-payload-sender-2.1.0-8d8bda70ee88.zip"
