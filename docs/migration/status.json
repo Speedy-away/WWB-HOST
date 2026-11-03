@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-03T21:30:57.500Z",
+  "updatedAt": "2026-11-03T22:08:15.272Z",
   "repository": "Speedy-away/WWB-HOST",
   "site": "https://speedy-away.github.io/WWB-HOST/",
   "mainSite": "https://whatwhatboy.com/",
@@ -315,5 +315,21 @@
     "testsPassed": 31,
     "hardwareTested": false,
     "concurrentIntegration": "Unfinished compact/local-launcher work remains in the working folder. When integrating that pipeline, retain direct browserHost Load and the ps5-umtx one-use request gate; a WebKit-only entry must not be represented as an established complete jailbreak."
+  },
+  "remainingConsolePerformance20261103": {
+    "status": "Local checks passed; publication verification pending",
+    "report": "docs/migration/remaining-console-performance.json",
+    "tests": 215,
+    "authoredPagesChecked": 24,
+    "karoInitialHtmlBytes": 94646,
+    "karoSourceHtmlBytes": 933837,
+    "preservedPayloadRows": 1446,
+    "retainedOlderDownloads": 165,
+    "nativeScriptsUnchanged": 849,
+    "cachedResourcesRetained": 1491,
+    "limits": [
+      "Physical PS4/PS5 performance and native execution not tested",
+      "Browser automation unavailable in current Work settings"
+    ]
   }
 }

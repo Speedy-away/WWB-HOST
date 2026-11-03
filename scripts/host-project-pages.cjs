@@ -16,7 +16,7 @@ function build(output,revision='main',root=ROOT){
  const candidates=files.filter(f=>/^downloads\//.test(f.name)&&!(/\.(?:html|json|js|css|txt|md|ini|xml)$/i.test(f.name))||/^hosts\/runtime\/.*\/(?:_decoded|_unavailable)\//.test(f.name)||/^hosts\/runtime\/.*\.(?:bin|elf|bz2|zip)$/i.test(f.name)).sort((a,b)=>b.bytes-a.bytes);
  for(const f of candidates){if(mapping['/'+f.name])continue;if(cached.has(f.name)||bytes<LIMIT&& !/^downloads\/.+\.zip$/.test(f.name))continue;mapping['/'+f.name]=raw(f.name);bytes-=f.bytes;}
  assert.ok(bytes<LIMIT,'Active runtime deployment exceeds Pages budget');
- const hosted=new Set(files.filter(f=>!mapping['/'+f.name]).map(f=>f.name));function target(value){const original=value.replace(/^\//,''),parts=original.match(/^([^?#]*)(.*)$/),p=parts[1],suffix=parts[2];let lookup=p;try{lookup=decodeURIComponent(p);}catch{}if(p===''||p==='index.html')return MAIN+'/'+suffix;if(mapping['/'+lookup])return mapping['/'+lookup]+suffix;if(hosted.has(lookup)||hosted.has(lookup.replace(/\/$/,'')+'/index.html')||['assets/','languages/','hosts/','downloads/'].includes(p))return BASE+'/'+p+suffix;return MAIN+'/'+p+suffix;}
+ const hosted=new Set(files.filter(f=>!mapping['/'+f.name]).map(f=>f.name)),directories=new Set();for(const p of hosted){let dir=path.posix.dirname(p);while(dir!=='.'){directories.add(dir+'/');dir=path.posix.dirname(dir);}}function target(value){const original=value.replace(/^\//,''),parts=original.match(/^([^?#]*)(.*)$/),p=parts[1],suffix=parts[2];let lookup=p;try{lookup=decodeURIComponent(p);}catch{}if(p===''||p==='index.html')return MAIN+'/'+suffix;if(mapping['/'+lookup])return mapping['/'+lookup]+suffix;if(hosted.has(lookup)||(/^hosts\/runtime\//.test(lookup)&&directories.has(lookup))||hosted.has(lookup.replace(/\/$/,'')+'/index.html')||['assets/','languages/','hosts/','downloads/'].includes(p))return BASE+'/'+p+suffix;return MAIN+'/'+p+suffix;}
  const manifestAliases=new Map(selected.filter(p=>/^hosts\/runtime\/.+\.cache$/i.test(p)&&/^\uFEFF?CACHE MANIFEST/.test(fs.readFileSync(path.join(root,p),'utf8'))).map(p=>[p,p.replace(/\.cache$/i,'.manifest')]));
  function manifestHTML(html,name){return html.replace(/(<html\b[^>]*?\bmanifest\s*=\s*)(?:"([^"]+)"|'([^']+)'|([^\s>]+))/gi,(whole,start,a,b,c)=>{try{const u=new URL(a||b||c,'https://host.invalid/'+name),alias=manifestAliases.get(decodeURIComponent(u.pathname.slice(1)));return alias?start+'"'+BASE+'/'+alias+u.search+u.hash+'"':whole;}catch{return whole;}});}
  const internalRoots=['hosts','assets','languages','downloads','console','docs'];
@@ -24,13 +24,14 @@ function build(output,revision='main',root=ROOT){
   // Repair migrated image origins and absent social preview images.
   if(name.endsWith('.html'))text=text.replace(/https:\/\/whatwhatboy\.com(\/assets\/images\/[^\s"'<>\\]*)/g,(_,p)=>{const local=p.split(/[?#]/)[0];const fallback='/assets/images/'+require('./style-host-pages.cjs').artwork(name)[0];return ORIGIN+BASE+(fs.existsSync(path.join(root,local))?p:fallback);});
   if(/^hosts\/(?!runtime\/).+\.html$/.test(name)&&fs.existsSync(path.join(root,'assets/host-pages.css')))text=require('./style-host-pages.cjs').themeHTML(text,name);
-  if(name.endsWith('.html'))text=text.replace(/(host-dashboard\.js|host-catalog-grid\.js|host-folders\.js|host-trainer\.js|i18n\.js)\?v=[0-9.]+/g,'$1?v=20261103p1');
+  if(name.endsWith('.html'))text=text.replace(/(host-dashboard\.js|host-catalog-grid\.js|host-folders\.js|host-trainer\.js|host-karo-builds\.js|i18n\.js)(?:\?v=[\w.-]+)?(?=["'])/g,'$1?v=20261103p2');
   if(name==='assets/host-dashboard.js')text=text.replaceAll('^\\/hosts\\/runtime\\/','^\\/(?:WWB-HOST\\/)?hosts\\/runtime\\/');
   if((name==='index.html'||/^hosts\/(?!runtime\/).+\.html$/.test(name))&&fs.existsSync(path.join(root,'assets/host-performance.js'))){
    text=text.replace(/<link\b[^>]*href=["'][^"']*(?:font-awesome|fonts\.googleapis\.com)[^"']*["'][^>]*>/gi,'');
    text=text.replace(/<script\b[^>]*src=["'][^"']*(?:\/script\.js|\/assets\/site-background\.js)(?:\?[^"']*)?["'][^>]*><\/script>/gi,'');
+   text=text.replace(/<script\b([^>]*?)type=["']module["']([^>]*?)src=["']([^"']*host-esp-flasher\.js[^"']*)["']([^>]*)><\/script>/gi,(_,a,b,src)=>'<meta data-host-desktop-module="'+src+'">');
    text=text.replace(/<img\b[^>]*>/gi,tag=>/\bwidth=["'](?:24|32)["']/.test(tag)?tag:tag.replace(/\bsrc=/i,'data-host-src='));
-   text=text.replace(/<head\b[^>]*>/i,m=>m+'<script src="/assets/host-performance.js?v=1"></script>');
+   text=text.replace(/<head\b[^>]*>/i,m=>m+'<script src="/assets/host-performance.js?v=2"></script>');
    text=text.replace('</head>','<link rel="stylesheet" href="/assets/host-performance.css?v=2"></head>');
   }
   // Prefix authored root-relative strings, including concatenated directory roots.
@@ -40,6 +41,7 @@ function build(output,revision='main',root=ROOT){
   text=text.replace(/((?:href|src|action|poster)\s*=\s*["'])\/([^"']*)(["'])/gi,(whole,start,p,end)=>p.startsWith('WWB-HOST/')?whole:start+target(p)+end);
   if(name.endsWith('.html'))text=text.replace(/<!-- BEGIN SITE AD -->[\s\S]*?<!-- END SITE AD -->/g,'').replace(/<script\b[^>]*src=["'][^"']*site-ads\.js[^"']*["'][^>]*><\/script>/g,'');
   if(name.endsWith('.html'))text=text.replace(/<link\b[^>]*rel=["']canonical["'][^>]*>/i,'<link rel="canonical" href="'+ORIGIN+BASE+'/'+name.replace(/index\.html$/,'')+'">');
+  if(name==='hosts/karo/index.html'||name==='hosts/karo/versions.html')text=require('./split-karo-file-lists.cjs').split(text,name,{base:BASE,revision,emit:(p,content)=>{assert.ok(!selected.includes(p),'Generated list collides with source: '+p);const dest=path.join(output,p);fs.mkdirSync(path.dirname(dest),{recursive:true});fs.writeFileSync(dest,content);hosted.add(p);}});
   return text;
  }
  fs.mkdirSync(output,{recursive:true});let nativeFiles=0;

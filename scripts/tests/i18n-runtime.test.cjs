@@ -72,6 +72,7 @@ function fixture(options = {}) {
   class Observer {
     constructor(callback) { this.callback = callback; this.records = []; observers.push(this); }
     observe(root, options) { this.root = root; this.options = options; }
+    disconnect() { this.root = null; this.records = []; }
     takeRecords() { const records = this.records; this.records = []; return records; }
   }
   doc = {
@@ -102,7 +103,7 @@ function fixture(options = {}) {
   title.textContent = 'Console downloads';
   Object.defineProperty(doc, 'title', {get: () => title.textContent, set: value => { title.textContent = value; }});
   const context = {
-    document: doc, navigator: {languages: ['en']}, NodeFilter: {SHOW_TEXT: 4}, WeakMap, MutationObserver: Observer, Intl: options.intl === false ? undefined : Intl,
+    WWB_HOST_CONSOLE: options.console === true, document: doc, navigator: {languages: ['en']}, NodeFilter: {SHOW_TEXT: 4}, WeakMap, MutationObserver: Observer, Intl: options.intl === false ? undefined : Intl,
     localStorage: {getItem: key => storage.get(key) || null, setItem: (key, value) => storage.set(key, value), removeItem: key => storage.delete(key)},
     setTimeout: () => 1, clearTimeout() {}, CustomEvent: class { constructor(name, options) { this.type = name; this.detail = options.detail; } },
     dispatchEvent() {}
@@ -110,7 +111,7 @@ function fixture(options = {}) {
   context.window = context;
   vm.runInNewContext(source, context, {filename: 'languages/i18n.js'});
   const api = context.__scoobyI18n;
-  return {doc, api, storage,
+  return {doc, api, storage, observers,
     element(tag, text, attrs = {}) {
       const el = new Element(tag);
       if (text !== undefined) el.textContent = text;
@@ -260,3 +261,5 @@ test('date template captures retain their literal source when Intl is unavailabl
   f.api.set('en');
   assert.equal(footer.textContent, 'Reviewed 2 November 2026.');
 });
+
+test('console English releases the mutation observer and restores dynamic translation on language change',()=>{const f=fixture({console:true}),label=f.element('p','Download');f.api.set('en');assert.equal(f.observers.filter(o=>o.root).length,0);f.api.register('es',{Download:'Descargar'});f.api.set('es');assert.equal(label.textContent,'Descargar');assert.equal(f.observers.filter(o=>o.root).length,1);const dynamic=f.element('p','Download');f.flush();assert.equal(dynamic.textContent,'Descargar');f.api.set('en');assert.equal(label.textContent,'Download');assert.equal(dynamic.textContent,'Download');assert.equal(f.observers.filter(o=>o.root).length,0);});

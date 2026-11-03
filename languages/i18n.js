@@ -328,6 +328,11 @@
   // ------------------------------------------------------- dynamic content ---
 
   function startObserver() {
+    if (window.WWB_HOST_CONSOLE === true && current === DEFAULT_LANG) {
+      if (observer) observer.disconnect();
+      observer = null;
+      return;
+    }
     if (observer || !window.MutationObserver) return;
     observer = new MutationObserver(function (records) {
       if (applying || current === DEFAULT_LANG) return;

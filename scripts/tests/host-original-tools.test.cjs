@@ -4,7 +4,7 @@ const root=path.resolve(__dirname,'../..'),read=f=>JSON.parse(fs.readFileSync(pa
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 const ui=require('../../assets/host-dashboard.js'),bridge=require('../console-payload-bridge.cjs'),{hostActions}=require('../build-host-selector.cjs');
 const actions=read('docs/host-original-tool-actions.json').actions,jobs=read('docs/host-original-tool-jobs.json').jobs;
-const catalogue=read('docs/console-download-catalog.json').items,baseline=read('docs/qa/host-original-tool-baseline.json');
+const catalogue=read('docs/console-download-catalog.json').items,baseline=JSON.parse(fs.readFileSync(fs.existsSync(path.join(root,'docs/qa/host-original-tool-baseline.json'))?path.join(root,'docs/qa/host-original-tool-baseline.json'):path.join(process.env.WHATSITE_PROVENANCE_ROOT||path.resolve(root,'../whatsite'),'docs/qa/host-original-tool-baseline.json'),'utf8'));
 const builds=[
   ['505','5.05',626472,'657aad360767ce7f9cef3c374f8ea448870df8d3cf6534a582930bbec0b400ce'],
   ['672','6.72',626504,'c19e3f0d549b241aa31febd5a5223d0bf0156bdc4e419e1083f795ea90d5ce30'],
@@ -58,11 +58,12 @@ test('all seven archived release jobs have exact source, version, size and hash 
   }
 });
 
-test('all readers expose the original release data while selected-file loading remains distinct from unsupported game-menu ABI',()=>{
+test('readers retain original releases while the active selector uses the separately reviewed current GoldHEN listing',()=>{
   const selected=hostActions('ps4'),loaded=bridge.loadActions();
   for(const action of actions){
-    const normalized=selected.find(a=>a.id===action.id),sender=loaded.find(a=>a.id===action.id);assert.ok(normalized);assert.ok(sender);
-    assert.equal(normalized.sha256,action.sha256);assert.equal(sender.downloadURL,action.downloadURL);assert.equal(normalized.consoleFileId,action.id);
+    const normalized=selected.find(a=>a.id===action.id),sender=loaded.find(a=>a.id===action.id);assert.ok(sender);
+    if(action.id==='ps4-original-goldhen-2-4b18-900'){assert.equal(normalized,undefined);for(const current of read('docs/host-goldhen-current.json').actions){const visible=selected.find(a=>a.id===current.id);assert.ok(visible);assert.equal(visible.sha256,current.sha256);assert.equal(visible.downloadURL,current.downloadURL);}}else{assert.ok(normalized);assert.equal(normalized.sha256,action.sha256);assert.equal(normalized.consoleFileId,action.id);}
+    assert.equal(sender.downloadURL,action.downloadURL);
     const file=catalogue.find(i=>i.id===action.id);assert.ok(file);assert.equal(file.sha256,action.sha256);assert.equal(file.url,action.downloadURL);assert.equal(file.filename,path.posix.basename(action.downloadURL));assert.deepEqual(file.platforms,['ps4']);
     const availability=bridge.availability(sender);
     if(action.run){assert.equal(availability.available,true);assert.equal(availability.requiresFile,true);assert.equal(availability.bytes,action.bytes);assert.throws(()=>bridge.localFileFor(sender),{code:'user-file-required'});}

@@ -47,7 +47,7 @@
   load.addEventListener('click',function(event){try{var base=new win.URL(data.runtime,win.location.href).pathname,target=authorize(win,selected(),base,consent.checked,event.isTrusted===true);load.disabled=true;win.location.href=target;}catch(e){status.textContent=e.message;load.disabled=true;}});
   clearButton.addEventListener('click',function(){try{clear(win,restarted.checked);restarted.checked=false;consent.checked=false;update();}catch(e){status.textContent=e.message;}});
   win.addEventListener('pageshow',function(e){if(e.persisted){load.disabled=true;status.textContent='Restored page: open a fresh entry after checking the console.';}});
-  if(filter)filter.addEventListener('input',function(){var term=filter.value.toLowerCase();Array.prototype.forEach.call(doc.querySelectorAll('[data-karo-file]'),function(row){row.hidden=row.textContent.toLowerCase().indexOf(term)<0;});});
+  if(filter)filter.addEventListener('input',function(){if(win.HostKaroFiles&&typeof win.HostKaroFiles.search==='function'){win.HostKaroFiles.search(filter.value);return;}var term=filter.value.toLowerCase();Array.prototype.forEach.call(doc.querySelectorAll('[data-karo-file]'),function(row){row.hidden=row.textContent.toLowerCase().indexOf(term)<0;});});
   var query=new win.URLSearchParams(win.location.search||''),key=query.get('entry');if(data.entries.some(function(e){return e.id===key;}))chooser.value=key;update();
  }
  return{TICKET:TICKET,LOCK:LOCK,consoleInfo:consoleInfo,numeric:numeric,supports:supports,authorize:authorize,runtimeAllowed:runtimeAllowed,openOriginal:openOriginal,clear:clear,mount:mount};
