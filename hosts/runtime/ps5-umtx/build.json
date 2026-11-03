@@ -109,18 +109,23 @@
     },
     {
       "path": "guard.js",
-      "bytes": 865,
-      "sha256": "9193416d9403c81e4cde71cb0aa156cf8d6de7e7114696c497efcb61cfdad417"
+      "bytes": 898,
+      "sha256": "29ddc60f0c5cd3a5370d3dab5e3063f4f02858fcbd0ca09819fefa17917141b1"
     },
     {
       "path": "index.html",
-      "bytes": 1547,
-      "sha256": "9440873ffb6d6dc519d47872fca424ff6fa1a6e891bffa715898e36c26a934fe"
+      "bytes": 897,
+      "sha256": "7be7b2e6ab154d4982271f746eb43343cc3018c81be988bdcdd7b32d97e653c9"
     },
     {
       "path": "LICENSE-elfldr",
       "bytes": 35149,
       "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "load-request.js",
+      "bytes": 1382,
+      "sha256": "03167762979ac3205a4832ed64a5648159e45caa0dd3dda2f6cf34184eaaa709"
     },
     {
       "path": "README.md",
@@ -454,8 +459,8 @@
     },
     {
       "path": "web/index.html",
-      "bytes": 3897,
-      "sha256": "f2456fa0d5588c0bcc8517454f1e7a4f4493b25b9661f394d400b8eda866071c"
+      "bytes": 4583,
+      "sha256": "6074e2c1d443cc2764951f84dfe31048659e98924b5332b5431b3075ad7ef5e0"
     },
     {
       "path": "web/int64.js",
@@ -752,5 +757,11 @@
       "bytes": 24199,
       "sha256": "332a3a3da1dc4da85165ae02d093932f25c5478f71ab1ca9dad52bd0937622aa"
     }
-  ]
+  ],
+  "entryFlow": {
+    "type": "console-browser-load",
+    "runEntry": "/hosts/runtime/ps5-umtx/web/index.html",
+    "request": "One-use same-tab session request; exact detected firmware required.",
+    "progress": "Original PS5 console log; original native retry behavior retained."
+  }
 }

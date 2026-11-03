@@ -561,7 +561,7 @@
       if (action.category === 'mods' && !loadCapability(action).available) { tell(loadCapability(action).reason,true); return; }
       if (loadCapability(action).kind === 'browser' && detection.platform !== platform) { tell(loadCapability(action).reason,true); return; }
       var url; try { url = launchURL(action); } catch (error) { tell(error.message, true); return; }
-      if (url && action.browserHost) { tell('Loading ' + action.label + ' on ' + platform.toUpperCase() + '…'); win.location.href=url; }
+      if (url && action.browserHost) { if(action.platform==='ps5'&&action.runtimeId==='ps5-umtx'){if(detection.firmware!==firmware.value){tell('Choose the firmware detected on this PS5.',true);return;}try{win.sessionStorage.setItem('wwb.ps5.load.request.v1',JSON.stringify({firmware:firmware.value,createdAt:Date.now()}));}catch(e){tell('Session storage is unavailable. Enable it to load.',true);return;}} tell('Loading ' + action.label + ' on ' + platform.toUpperCase() + '…'); win.location.href=url; }
       else if (url) { win.open(url, '_blank', 'noopener'); tell('Opening ' + action.label + '. Follow the loader status on that page.'); }
       else service('files');
     }
