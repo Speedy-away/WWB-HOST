@@ -114,8 +114,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 897,
-      "sha256": "7be7b2e6ab154d4982271f746eb43343cc3018c81be988bdcdd7b32d97e653c9"
+      "bytes": 1001,
+      "sha256": "5ea5f224505acdb7527c04c024e566baf66eccec93601381c233988ac7bc6831"
     },
     {
       "path": "LICENSE-elfldr",

@@ -14,7 +14,7 @@ const BACKUP = path.resolve('F:/whatsite-backup-downloads-etc');
 const OUT = 'downloads/helpers/console-payload-sender';
 const VERSION = '2.1.0';
 const PREFIX = 'whatwhatboy-console-payload-sender/';
-const ORIGIN = fs.existsSync(path.join(ROOT,'docs/migration/status.json')) ? 'https://speedy-away.github.io/WWB-HOST' : 'https://whatwhatboy.com';
+const ORIGIN = fs.existsSync(path.join(ROOT,'docs/migration/status.json')) ? 'https://speedy-away.github.io/wwb-host' : 'https://whatwhatboy.com';
 const CATALOGUES = ['docs/host-actions-ps4.json', 'docs/host-actions-ps5.json', 'docs/host-game-actions.json', 'docs/host-modern-plugin-actions.json', 'docs/host-current-cheat-actions.json', 'docs/host-legacy-menu-actions.json', 'docs/host-extra-game-actions.json', 'docs/host-native-payload-actions.json', 'docs/host-web-utility-actions.json', 'docs/host-repository-menu-actions.json', 'docs/host-original-tool-actions.json', 'docs/host-legacy-firmware-menu-actions.json', 'docs/host-next-utility-actions.json', 'docs/host-gta505-continuation-actions.json', 'docs/host-arabicguy-672-actions.json'];
 const sha = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
 const slash = value => value.split(path.sep).join('/');
@@ -52,7 +52,7 @@ function references(text, from) {
 function packagedHTML(text) {
   // Public browser runtimes remain outside the loopback helper. Only their
   // presentation URLs change; run contracts and local payload URLs stay pinned.
-  if (!['https://speedy-away.github.io/WWB-HOST','https://whatwhatboy.com'].includes(ORIGIN)) throw Error('Unknown public host origin');
+  if (!['https://speedy-away.github.io/wwb-host','https://speedy-away.github.io/WWB-HOST','https://whatwhatboy.com'].includes(ORIGIN)) throw Error('Unknown public host origin');
   function publicURL(value) {
     if (typeof value !== 'string' || !value.startsWith('/')) return value;
     if (value.startsWith('//') || /[\\\x00-\x20]/.test(value) || /%(?:2e|2f|5c)/i.test(value) || value.split(/[?#]/)[0].split('/').some(part=>part==='.'||part==='..')) throw Error('Invalid public host route');

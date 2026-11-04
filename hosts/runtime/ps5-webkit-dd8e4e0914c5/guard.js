@@ -20,10 +20,10 @@
     return entry && entry.type || '';
   }
   function exactRunPath(win, value) {
-    var match = String(win.location.pathname).match(/^(\/(?:WWB-HOST\/)?hosts\/runtime\/ps5-webkit-dd8e4e0914c5\/)(?:index\.html|web\/index\.html)?$/);
+    var match = String(win.location.pathname).match(/^(\/(?:(?:WWB-HOST|wwb-host)\/)?hosts\/runtime\/ps5-webkit-dd8e4e0914c5\/)(?:index\.html|web\/index\.html)?$/);
     if (!match) throw Error('Invalid local entry path');
     var expected = match[1] + 'web/index.html', declared = new URL(value, win.location.href);
-    var unprefixed = expected.replace(/^\/WWB-HOST/, '');
+    var unprefixed = expected.replace(/^\/(?:WWB-HOST|wwb-host)/, '');
     if (declared.origin !== win.location.origin || declared.search || declared.hash || (declared.pathname !== expected && declared.pathname !== unprefixed)) throw Error('Invalid local run path');
     return expected;
   }

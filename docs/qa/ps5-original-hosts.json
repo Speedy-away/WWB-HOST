@@ -1,6 +1,6 @@
 {
   "updatedAt": "2026-11-03T22:17:28.394Z",
-  "status": "Published and live verified",
+  "status": "Historical original-host publication retained; superseded by same-origin native Load routes per user correction",
   "hosts": [
     {
       "id": "ps5-umtx2",
@@ -194,5 +194,6 @@
     "payloadsExecuted": false,
     "hardwareTested": false
   },
-  "deployment": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41730210213"
+  "deployment": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41730210213",
+  "supersededBy": "docs/qa/site-hosted-loads.json"
 }

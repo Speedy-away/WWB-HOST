@@ -2,13 +2,13 @@
  'use strict';
  var data=document.getElementById('host-actions-data');if(!data)return;
  var platform=(window.WWB_HOST_CATALOG||JSON.parse(data.textContent)).platform,base='/hosts/'+platform+'/';
- var labels={loaders:'Choose firmware',payloads:'Payloads',mods:'Mods / Mod Menus',tools:'Tools',goldhen:'Goldhen PS4',connection:'Connection & setup',sender:'Desktop sender · connect from a PC'};
+ var labels={loaders:'Choose firmware',payloads:'Payloads',mods:'Game mods',tools:'Tools',goldhen:'Goldhen PS4',connection:'Connection & setup',sender:'Desktop sender · connect from a PC'};
  var params=new URL(location.href).searchParams,selected=params.get('view')||params.get('folder')||'loaders';
  if(!Object.prototype.hasOwnProperty.call(labels,selected))selected='loaders';
  document.querySelectorAll('.host-file-tabs a').forEach(function(link){if(new URL(link.href).searchParams.get('view')===selected)link.setAttribute('aria-current','page');});
  var firmwareControl=document.querySelector('.host-firmware-control');
  if(firmwareControl)document.getElementById('host-file-firmware').appendChild(firmwareControl);
- if(firmwareControl)firmwareControl.hidden=selected!=='connection';
+ if(firmwareControl)firmwareControl.hidden=selected!=='loaders';
  var fileToolbar=document.getElementById('host-file-firmware');
  ['.host-search','#host-game-filter'].forEach(function(selector){var item=document.querySelector(selector);if(item)fileToolbar.appendChild(item);});
  var search=document.querySelector('.host-search');if(search)search.hidden=selected==='connection'||selected==='sender';

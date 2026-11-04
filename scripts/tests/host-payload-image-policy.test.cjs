@@ -23,6 +23,8 @@ test('GoldHEN and game-mod artwork remains available while payload art is omitte
   const gold=fixture({actions:goldhen,catalogGrid:true,initialCategory:'goldhen'});
   assert.match(gold.ids['host-action-grid'].innerHTML,/<img\b/);
   gold.openMenu();
+  assert.match(gold.ids['host-version-detail'].innerHTML,/Choose your PS4 firmware/);
+  const choices=gold.ids['host-version-choices'],firmware=choices.querySelector('[data-goldhen-firmware="9.00"]');assert.ok(firmware);choices.fire('click',{target:firmware});
   assert.match(gold.ids['host-version-detail'].innerHTML,/<img\b/);
 
   const mod=hostActions('ps4').find(a=>a.category==='mods'&&a.game&&a.gameVersion);

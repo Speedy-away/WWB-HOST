@@ -34,7 +34,7 @@ test('every downloadable host action has an exact native file ID without broaden
   const {hostActions} = require('../build-host-selector.cjs');
   const catalogue=read('docs/console-download-catalog.json').items;
   for(const platform of ['ps4','ps5']) for(const action of hostActions(platform).filter(a=>a.downloadURL)) {
-    if(action.downloadOnDevice){assert.equal(action.id,'ps4-goldhen-user-supplied');assert.equal(action.browserHost,true);assert.deepEqual(ui.downloadPlan(action,platform,'192.168.1.42',ui.detectBrowser('Windows NT 10.0'),normalize),{destination:'device',address:'',url:action.downloadURL});continue;}
+    if(action.downloadOnDevice){if(action.id==='ps4-goldhen-user-supplied')assert.equal(action.browserHost,true);else{const retained=read('docs/host-goldhen-retained-versions.json').actions.find(a=>a.id===action.id);assert.ok(retained,action.id);assert.equal(retained.sha256,action.sha256);assert.deepEqual(retained.firmwares,action.firmwares);assert.equal(action.category,'goldhen');assert.equal(Boolean(action.browserHost),false);}assert.deepEqual(ui.downloadPlan(action,platform,'192.168.1.42',ui.detectBrowser('Windows NT 10.0'),normalize),{destination:'device',address:'',url:action.downloadURL});continue;}
     assert.ok(action.consoleFileId,action.id);
     const file=catalogue.find(f=>f.id===action.consoleFileId);
     assert.equal(file.sha256,action.sha256,action.id);

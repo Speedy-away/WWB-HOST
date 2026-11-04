@@ -14,23 +14,30 @@ function ps5RemainingRoute(rows){
 function groups(root){
  const localFile=path.join(root,'docs/host-local-launchers.json');
  let rows=fs.existsSync(localFile)?JSON.parse(fs.readFileSync(localFile)).groups:[],remaining=ps5RemainingRoute(rows);
- rows=rows.filter(g=>['ps4-afterglow','karo-g2allpro'].includes(g.id)).map(g=>g.id==='karo-g2allpro'?{...g,id:'karo-g2allpro-modern',label:'PS4 WebKit Exploit - 10.00–13.52',firmwares:MODERN_PS4.slice(),entry:'/hosts/ps4/exploit/karo-g2allpro-modern/'}:g.id==='ps4-afterglow'?{...g,label:'PS4 WebKit Exploit - 13.52–14.00'}:{...g,label:'PS5 WebKit Exploit - '+g.firmwares[0]+'–'+g.firmwares[g.firmwares.length-1]});
+ rows=rows.filter(g=>['ps4-afterglow','karo-g2all','karo-g2allpro'].includes(g.id)).map(g=>g.id==='karo-g2allpro'?{...g,id:'karo-g2allpro-modern',label:'PS4 WebKit Exploit - 10.00–13.52',firmwares:MODERN_PS4.slice(),entry:'/hosts/ps4/exploit/karo-g2allpro-modern/',originalEntry:{...g.originalEntry,firmwares:MODERN_PS4.slice(),ranges:[]}}:g.id==='ps4-afterglow'?{...g,label:'PS4 WebKit Exploit - 13.52–14.00'}:{...g,label:g.platform.toUpperCase()+' WebKit Exploit - '+g.firmwares[0]+'–'+g.firmwares[g.firmwares.length-1]});
  if(remaining)rows.push(remaining);
+ const rawFile=path.join(root,'docs/host-runtime-builds.json');
+ if(fs.existsSync(rawFile)){const r=(JSON.parse(fs.readFileSync(rawFile)).runtimes||[]).find(r=>r.id==='ps5-umtx');if(r)rows.push({id:r.id,label:'PS5 WebKit Exploit - '+r.firmwares[0]+'–'+r.firmwares[r.firmwares.length-1],platform:'ps5',firmwares:r.firmwares.slice(),entry:r.entry,runtimeEntry:r.runEntry,preferred:true,source:r.source});}
  const gamerFile=path.join(root,'docs/host-gamerhack-local-build.json');
  if(fs.existsSync(gamerFile))rows.push(...JSON.parse(fs.readFileSync(gamerFile)).groups);
  const ps5File=path.join(root,'docs/ps5-webkit-build.json');
- if(fs.existsSync(ps5File)){const b=JSON.parse(fs.readFileSync(ps5File));rows.push({id:b.id,label:'PS5 WebKit Exploit - 7.00–13.60',platform:'ps5',firmwares:b.firmwares,entry:b.entry,runtimeEntry:b.entry,preferred:true,source:b.source});}
- const rawFile=path.join(root,'docs/host-runtime-builds.json');
- if(fs.existsSync(rawFile))for(const r of JSON.parse(fs.readFileSync(rawFile)).runtimes||[]){
-  if(r.id==='ps5-umtx')rows.push({id:r.id,label:'PS5 WebKit Exploit - '+r.firmwares[0]+'–'+r.firmwares[r.firmwares.length-1],platform:'ps5',firmwares:r.firmwares.slice(),entry:r.entry,runtimeEntry:r.entry,preferred:true,source:r.source});
-  if(r.id==='ps4-psfree-700-960')rows.push({id:r.id,label:'PS4 WebKit Exploit - 7.00–9.60',platform:'ps4',firmwares:r.firmwares,entry:r.entry,runtimeEntry:r.entry,preferred:true,source:r.source});
- }
+ if(fs.existsSync(ps5File)){const b=JSON.parse(fs.readFileSync(ps5File));rows.push({id:b.id,label:'PS5 WebKit Exploit - 7.00–13.60',platform:'ps5',firmwares:b.firmwares,entry:b.entry,runtimeEntry:b.runEntry,preferred:true,source:b.source,siteNative:true});}
  // A family label is presentation; compatibility remains the exact source array.
  return rows.filter(g=>g.firmwares?.length&&/^\/hosts\//.test(g.entry)&&fs.existsSync(path.join(root,g.entry.replace(/^\//,'').replace(/\/$/,'/index.html')))).sort((a,b)=>Number(a.firmwares[0])-Number(b.firmwares[0]));
 }
 function actions(root,platform,previous){
- const local=groups(root).filter(g=>g.platform===platform).map(g=>g.id==='ps5-umtx'?{...previous.find(a=>a.id==='built-in-ps5-umtx'),label:g.label,firmwareLabel:g.label.replace(/^PS5 WebKit Exploit - /,'')}:{id:'local-'+g.id,platform,category:'loaders',label:g.label,firmwareLabel:g.label.replace(/^PS[45] WebKit Exploit - /,''),firmwares:g.firmwares.slice(),format:'Local browser exploit',launchURL:g.entry,launchLabel:'Choose HEN / Load',runtimeId:g.id,localLauncher:true,source:g.source.repository+'/tree/'+g.source.commit,requirements:['Open this local launcher on the matching console. Firmware is checked again before Load.']});
- return [...local,...previous.filter(a=>a.category!=='loaders'),...previous.filter(a=>a.category==='loaders'&&a.browserHost&&/^https:\/\//.test(a.launchURL||'')).map(a=>({...a,secondaryHost:true}))];
+ const local=groups(root).filter(g=>g.platform===platform).map(g=>{
+  if(g.id==='ps5-umtx'){
+   const builtin=previous.find(a=>a.id==='built-in-ps5-umtx');if(!builtin)throw Error('Missing verified PS5 UMTX browser action.');
+   return {...builtin,label:g.label,firmwareLabel:g.label.replace(/^PS5 WebKit Exploit - /,''),firmwares:g.firmwares.slice(),launchURL:g.runtimeEntry};
+  }
+  let route,target;
+  if(g.id==='ps4-afterglow'){target=g.runtimeEntry;route={kind:'afterglow',target};}
+  else if(g.siteNative){target=g.runtimeEntry;route={kind:'ps5-native',target};}
+  else{const entry=g.originalEntry;if(!entry)throw Error('Missing local native entry: '+g.id);target=g.runtime+entry.path;route={kind:'karo',runtime:g.runtime,entry:{platform:g.platform,path:entry.path,scope:entry.scope,firmwares:g.firmwares.slice(),ranges:[],...(entry.blockedReason?{blockedReason:entry.blockedReason}:{})},...(entry.path==='ps5/UMTX/index.html'?{autorun:'umtx2'}:{})};}
+  return {id:'local-'+g.id,platform,category:'loaders',label:g.label,firmwareLabel:g.label.replace(/^PS[45] WebKit Exploit - /,''),firmwares:g.firmwares.slice(),format:'Local browser loader',launchURL:target,launchLabel:'Load',runtimeId:g.id,localLauncher:true,browserHost:true,nativeRoute:route,source:g.source.repository+'/tree/'+g.source.commit,requirements:['Open on the matching console. Load starts the local runtime and its console progress.']};
+ });
+ return [...local,...previous.filter(a=>a.category!=='loaders').map(a=>a.id==='ps4-goldhen-user-supplied'?{...a,nativeRoute:{kind:'afterglow',target:a.launchURL}}:a)];
 }
 function directory(root,platform){
  const rows=groups(root).filter(g=>g.platform===platform),name=platform.toUpperCase();

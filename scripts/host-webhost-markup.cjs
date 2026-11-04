@@ -2,7 +2,7 @@
 const esc=value=>String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('"','&quot;');
 function dashboard(platform,actions,{manager=false,gameScope='',gamesLanding=false}={}){
   const name=platform.toUpperCase(),ui=require('../assets/host-dashboard.js');
-  const firmwareChoicesOnly=platform==='ps5'&&!manager&&!gameScope;
+  const firmwareChoicesOnly=!manager&&!gameScope;
   const versions=firmwareChoicesOnly?ui.availableBrowserFirmwares(actions):[...new Set([...(platform==='ps4'?['5.05','6.72','7.02','7.55','9.00','9.60','11.00','12.02','13.00','13.02','13.04','13.50','13.52','14.00']:['1.00','2.00','3.00','4.00','4.51','5.00','6.00','7.61','8.40','9.00','10.00','11.00','12.00','13.00','13.60']),...actions.flatMap(a=>a.firmwares||[]).filter(v=>/^\d+\.\d{2}$/.test(v))])].sort((a,b)=>Number(a)-Number(b));
   const initialCategory=manager?'payloads':gameScope?'mods':'loaders';
   const data=JSON.stringify({platform,actions,managerView:manager,gameScope,gamesLanding,initialCategory,catalogGrid:true,firmwareChoicesOnly}).replace(/</g,'\\u003c');

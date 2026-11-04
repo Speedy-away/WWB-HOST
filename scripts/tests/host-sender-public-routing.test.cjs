@@ -3,7 +3,7 @@
 // network, console operation, native module or downloaded payload is executed.
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const pack=require('../package-console-payload-sender.cjs'),ui=require('../../assets/host-dashboard.js'),{fixture}=require('./host-continuation-dom.cjs');
-const root=path.resolve(__dirname,'../..'),origin='https://speedy-away.github.io/WWB-HOST';
+const root=path.resolve(__dirname,'../..'),origin='https://speedy-away.github.io/wwb-host',legacyOrigin='https://speedy-away.github.io/WWB-HOST';
 function html(actions,extra=''){return '<!doctype html><html><head><meta name="whatwhatboy-public-host" content="https://untrusted.example"></head><body>'+extra+'<script id="host-actions-data" type="application/json">'+JSON.stringify({platform:'ps4',actions})+'</script></body></html>';}
 function embedded(text){return JSON.parse(text.match(/<script id="host-actions-data" type="application\/json">([\s\S]*?)<\/script>/)[1]).actions;}
 function senderFixture(action,publicOrigin,options={}){
@@ -35,8 +35,8 @@ test('package public route mapping rejects protocol-relative, traversal, encoded
 
 test('sender dynamic navigation uses only predetermined public hosts and leaves local helper pages and payload links local',()=>{
  const action={id:'source-fixture',label:'Source fixture',platform:'ps4',category:'payloads',format:'BIN',firmwares:['9.00'],downloadURL:'/downloads/fixture/ready.bin',run:null,source:'/hosts/runtime/preserved/?source=1#read',instructionsURL:'/hosts/ps4/unknown-instructions/',requirements:[]};
- for(const supplied of [origin,'https://whatwhatboy.com','https://evil.example','https://speedy-away.github.io/WWB-HOST.evil',undefined]){
-  const expected=supplied==='https://whatwhatboy.com'?supplied:origin,f=senderFixture(action,supplied);const output=f.ids['host-action-grid'].innerHTML;
+ for(const supplied of [origin,legacyOrigin,'https://whatwhatboy.com','https://evil.example','https://speedy-away.github.io/wwb-host.evil',undefined]){
+  const expected=supplied==='https://whatwhatboy.com'||supplied===legacyOrigin?supplied:origin,f=senderFixture(action,supplied);const output=f.ids['host-action-grid'].innerHTML;
   assert.ok(output.includes('href="'+expected+'/hosts/runtime/preserved/?source=1#read"'));assert.ok(output.includes('href="'+expected+'/hosts/ps4/unknown-instructions/"'));assert.ok(output.includes('href="http://127.0.0.1:8766/downloads/fixture/ready.bin"'));assert.doesNotMatch(output,/https:\/\/evil\.example/);assert.equal(f.sends.length+f.opened.length+f.checks.length,0);
   const launcher={id:'launcher-fixture',label:'Local launcher',platform:'ps4',category:'loaders',format:'HTML host',localLauncher:true,launchURL:'/hosts/ps4/exploit/new/',firmwares:['9.00'],requirements:[]};
   const catalogue=senderFixture(launcher,supplied,{catalogGrid:true});assert.ok(catalogue.ids['host-action-grid'].innerHTML.includes('href="'+expected+'/hosts/ps4/exploit/new/"'));assert.equal(catalogue.sends.length+catalogue.opened.length+catalogue.checks.length,0);

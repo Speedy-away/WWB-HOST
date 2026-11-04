@@ -43,7 +43,7 @@ test('authored subset page uses only the same-origin native runtime and exact6 l
 });
 
 test('all6 exact browser versions authorize the unchanged local native entry at root and Pages prefix without evaluating it',()=>{
-  for(const prefix of ['', '/WWB-HOST'])for(const firmware of exact){
+  for(const prefix of ['', '/WWB-HOST', '/wwb-host'])for(const firmware of exact){
     const route=subset(),data={runtime:prefix+route.runtime,entry:route.originalEntry};
     const config=launcher.config(data,new URL('https://example.test'+prefix+route.entry));
     const win={navigator:{userAgent:'PlayStation 5/'+firmware},document:{visibilityState:'visible'},sessionStorage:storage(),localStorage:storage()};win.top=win.self=win;
@@ -61,7 +61,7 @@ test('primary catalogue links the remaining versions to the guarded local subset
   const rows=require('../build-host-selector.cjs').hostActions('ps5');
   const action=rows.find(a=>a.id==='local-karo-ps5-umtx-remaining');
   assert.ok(action);assert.equal(action.localLauncher,true);assert.equal(action.secondaryHost,undefined);
-  assert.equal(action.launchURL,subset().entry);assert.deepEqual(action.firmwares,exact);
+  assert.equal(action.launchURL,subset().runtimeEntry);assert.deepEqual(action.firmwares,exact);assert.deepEqual(action.nativeRoute.entry.firmwares,exact);assert.equal(action.nativeRoute.autorun,'umtx2');
   const data=JSON.parse(fs.readFileSync(path.join(root,'hosts/ps5/index.html'),'utf8').match(/<script id="host-actions-data"[^>]*>([\s\S]*?)<\/script>/)[1]);
   assert.deepEqual(data.actions.find(a=>a.id===action.id).firmwares,exact);
 });

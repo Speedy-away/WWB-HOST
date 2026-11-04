@@ -36,8 +36,8 @@
         },
         {
           "path": "index.html",
-          "bytes": 867,
-          "sha256": "c63b727a352ded29dad291b0a5daddd29ae27278c88481c794d52e60be42b73d"
+          "bytes": 2420,
+          "sha256": "0c57e228914892c177312882a14974abce1af074b6fd0221e45e288481efb97e"
         },
         {
           "path": "README.md",
@@ -391,8 +391,8 @@
         }
       ],
       "entryFlow": {
-        "type": "original-browser-host",
-        "url": "https://gamerhack.github.io/g2all/",
+        "type": "same-origin-native-host",
+        "url": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/g2all/index.html",
         "advancedEntry": "web/index.html"
       }
     },
@@ -512,8 +512,8 @@
         },
         {
           "path": "index.html",
-          "bytes": 897,
-          "sha256": "7be7b2e6ab154d4982271f746eb43343cc3018c81be988bdcdd7b32d97e653c9"
+          "bytes": 1001,
+          "sha256": "5ea5f224505acdb7527c04c024e566baf66eccec93601381c233988ac7bc6831"
         },
         {
           "path": "LICENSE-elfldr",
@@ -1681,8 +1681,8 @@
         },
         {
           "path": "index.html",
-          "bytes": 881,
-          "sha256": "082bd371fed61c35e20c8934b592340ef55a8859b4e7d4879923d1f4c1ce7259"
+          "bytes": 2543,
+          "sha256": "a521fa28136d4383bc5f704889d8cf1612923080c156bf813115b3f3ff49f9f2"
         },
         {
           "path": "source-record.json",
@@ -1956,8 +1956,8 @@
         }
       ],
       "entryFlow": {
-        "type": "original-browser-host",
-        "url": "https://gamerhack.github.io/g2all/",
+        "type": "same-origin-native-host",
+        "url": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/g2all/index.html",
         "advancedEntry": "web/index.html"
       }
     }

@@ -89,16 +89,15 @@ test('the integrated catalogues preserve historical actions from their separate 
   assert.ok(checked>100,'The preservation test must cover the historical collection');
 });
 
-test('RAW GAME source record keeps its exact external contract as a labelled secondary host',()=>{
+test('RAW GAME source record keeps its exact external contract while active loading stays fully local',()=>{
   const raw = read('docs/host-actions-ps4.json').actions.find(action=>action.id==='raw13g-1302-1352');
   assert.ok(raw);assert.deepEqual(raw.firmwares,['13.02','13.04','13.50','13.52']);
   assert.equal(raw.launchURL,'https://raw13g.github.io/');assert.equal(raw.format,'HTML host');assert.equal(raw.automatic,true);
   assert.equal(raw.sourceCommit,'9ba2f0719591d6900d91aba6cc5291f8fff97e6d');
   assert.ok(!raw.runtimeId);assert.ok(!raw.run);assert.ok(!raw.downloadURL);
   assert.equal(ui.loadCapability(raw).available,false);
-  const secondary=all.ps4.find(action=>action.id===raw.id);assert.ok(secondary);assert.equal(secondary.secondaryHost,true);assert.equal(secondary.browserHost,true);
-  for(const field of ['launchURL','sourceCommit','firmwares','license'])assert.deepEqual(secondary[field],raw[field]);
-  assert.ok(!secondary.runtimeId&&!secondary.run&&!secondary.downloadURL);
+  assert.equal(all.ps4.some(action=>action.id===raw.id),false,'The external-only source record must not appear in the fully hosted active selector');
+  const localLoaders=all.ps4.filter(action=>action.category==='loaders');assert.ok(localLoaders.length>0);for(const action of localLoaders){assert.equal(action.browserHost,true);assert.ok(action.nativeRoute,action.id);assert.ok(action.launchURL.startsWith('/hosts/runtime/'),action.id);}
   for (const firmware of ['13.00','13.51','14.00','12.52']) assert.equal(ui.firmwareMatches(raw,firmware),false,firmware);
   assert.ok(!all.ps5.some(action=>action.id===raw.id));
   const runtimes = read('docs/host-runtime-builds.json').runtimes;

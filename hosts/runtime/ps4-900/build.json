@@ -32,8 +32,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 867,
-      "sha256": "c63b727a352ded29dad291b0a5daddd29ae27278c88481c794d52e60be42b73d"
+      "bytes": 2420,
+      "sha256": "0c57e228914892c177312882a14974abce1af074b6fd0221e45e288481efb97e"
     },
     {
       "path": "README.md",
@@ -387,8 +387,8 @@
     }
   ],
   "entryFlow": {
-    "type": "original-browser-host",
-    "url": "https://gamerhack.github.io/g2all/",
+    "type": "same-origin-native-host",
+    "url": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/g2all/index.html",
     "advancedEntry": "web/index.html"
   }
 }
