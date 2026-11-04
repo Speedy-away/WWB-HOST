@@ -23,6 +23,7 @@ const oysterPins = [
 const ftpId = 'ps4-original-hippie68-ftp-1-08b-900';
 const ftpHash = '695082f37c5cfdce14a06fbd567fa8651017ee2e31f3e95ae7a769b4287cb0e9';
 const read = file => JSON.parse(fs.readFileSync(path.join(root,file),'utf8'));
+function historical(file){const local=path.join(root,file);return JSON.parse(fs.readFileSync(fs.existsSync(local)?local:path.join(process.env.WHATSITE_PROVENANCE_ROOT||path.resolve(root,'../whatsite'),file),'utf8'));}
 const sha = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
 const blob = bytes => crypto.createHash('sha1').update(Buffer.from(`blob ${bytes.length}\0`)).update(bytes).digest('hex');
 function local(url) {
@@ -47,7 +48,7 @@ function receiverItems(bytes) {
 }
 function context() {
   return {
-    baseline:read('docs/qa/host-next-batch-baseline.json'),
+    baseline:historical('docs/qa/host-next-batch-baseline.json'),
     catalogue:read('docs/console-download-catalog.json').items,
     audit:read('docs/download-audit.json').items,
     actions:actionFiles.flatMap(file=>read(file).actions),
@@ -95,7 +96,7 @@ function verifyActionPins(c) {
   return {actions:5,oysters:4,ftp:1,bytes:c.actions.reduce((n,a)=>n+a.bytes,0)};
 }
 function verifyExcludedJavaScript(c) {
-  const review = read('docs/qa/host-remaining-menu-review.json');
+  const review = historical('docs/qa/host-remaining-menu-review.json');
   const excluded = review.explicitExclusions.find(a=>a.path==='505/arabic-guy127.bin');assert.ok(excluded);
   assert.equal(excluded.sha256,excludedJavaScriptHash);assert.equal(excluded.bytes,2432450);
   assert.equal(excluded.first16Hex,'766172207061796c6f6164203d205b32');assert.match(excluded.detectedFormat,/JavaScript/);

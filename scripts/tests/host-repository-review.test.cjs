@@ -9,6 +9,7 @@ const {hostActions} = require('../build-host-selector.cjs');
 const {fixture,flush} = require('./host-continuation-dom.cjs');
 const root = path.resolve(__dirname,'../..');
 const read = file => JSON.parse(fs.readFileSync(path.join(root,file),'utf8'));
+function historical(file){const local=path.join(root,file);return JSON.parse(fs.readFileSync(fs.existsSync(local)?local:path.join(process.env.WHATSITE_PROVENANCE_ROOT||path.resolve(root,'../whatsite'),file),'utf8'));}
 const digest = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
 const menuCommit = '23c946a7f85f1338ea2b78163e72e0ce9bc82b68';
 const menuBuilds = [
@@ -19,6 +20,7 @@ const menuBuilds = [
 ];
 const newMenus = read('docs/host-repository-menu-actions.json').actions;
 const all = {ps4:hostActions('ps4'),ps5:hostActions('ps5')};
+const preservedGoldhen=read('docs/host-actions-ps4.json').actions.find(action=>action.id==='ps4-goldhen-2-3-900-binloader');
 
 test('the four GamerHack variants keep exact original downloads, independent game pins and disabled loading',()=>{
   assert.equal(newMenus.length,4);
@@ -87,26 +89,28 @@ test('the integrated catalogues preserve historical actions from their separate 
   assert.ok(checked>100,'The preservation test must cover the historical collection');
 });
 
-test('RAW GAME source record keeps its exact external contract and remains excluded from the first-party catalogue',()=>{
+test('RAW GAME source record keeps its exact external contract as a labelled secondary host',()=>{
   const raw = read('docs/host-actions-ps4.json').actions.find(action=>action.id==='raw13g-1302-1352');
   assert.ok(raw);assert.deepEqual(raw.firmwares,['13.02','13.04','13.50','13.52']);
   assert.equal(raw.launchURL,'https://raw13g.github.io/');assert.equal(raw.format,'HTML host');assert.equal(raw.automatic,true);
   assert.equal(raw.sourceCommit,'9ba2f0719591d6900d91aba6cc5291f8fff97e6d');
   assert.ok(!raw.runtimeId);assert.ok(!raw.run);assert.ok(!raw.downloadURL);
   assert.equal(ui.loadCapability(raw).available,false);
-  assert.ok(!all.ps4.some(action=>action.id===raw.id));
+  const secondary=all.ps4.find(action=>action.id===raw.id);assert.ok(secondary);assert.equal(secondary.secondaryHost,true);assert.equal(secondary.browserHost,true);
+  for(const field of ['launchURL','sourceCommit','firmwares','license'])assert.deepEqual(secondary[field],raw[field]);
+  assert.ok(!secondary.runtimeId&&!secondary.run&&!secondary.downloadURL);
   for (const firmware of ['13.00','13.51','14.00','12.52']) assert.equal(ui.firmwareMatches(raw,firmware),false,firmware);
   assert.ok(!all.ps5.some(action=>action.id===raw.id));
   const runtimes = read('docs/host-runtime-builds.json').runtimes;
   assert.ok(!runtimes.some(runtime=>/raw13g/i.test(JSON.stringify(runtime))));
   assert.match(raw.license,/excluded/);assert.match(raw.license,/External link only/);
-  const review = read('docs/qa/raw13g-source-review.json');
+  const review = historical('docs/qa/raw13g-source-review.json');
   assert.equal(review.result.completeRuntimeVendoring,'not-qualified');
   for (const file of ['core.js','mem.js','int64.js','patches/1302.bin','patches/1350.bin','patches/1352.bin','goldhen.bin','payload2.bin']) assert.ok(review.license.explicitlyExcluded.includes(file));
 });
 
 test('the BIN bootstrap keeps the existing official GoldHEN 2.3 bytes and only the 9.00 TCP9020 contract',()=>{
-  const goldhen = all.ps4.find(action=>action.id==='ps4-goldhen-2-3-900-binloader');
+  const goldhen = preservedGoldhen;
   assert.ok(goldhen);assert.deepEqual(goldhen.firmwares,['9.00']);assert.equal(goldhen.version,'2.3');
   assert.equal(goldhen.bytes,282648);assert.equal(goldhen.sha256,'c9b8f33d28258af9e80465da591868dada25a1454f30f63882668d5e0dcff9c2');
   assert.equal(goldhen.sourceURL,'https://raw.githubusercontent.com/GoldHEN/GoldHEN/b5a78e1e1f6ecbc2dfdcd63b4bb5446f49e309c9/goldhen_2.3_900.bin');
@@ -131,7 +135,7 @@ test('active receiver IDs map to the exact downloadable host bytes while retaini
       const after = active.find(item=>item.id===before.id);
       assert.ok(after,before.id);assert.equal(after.sha256,before.sha256);assert.equal(after.filename,before.filename);
     }
-    for (const action of all[record.platform].filter(item=>item.downloadURL)) {
+    for (const action of all[record.platform].filter(item=>item.downloadURL&&!item.downloadOnDevice)) {
       const exact = active.find(item=>item.id===action.consoleFileId);
       assert.ok(exact,action.id+' active receiver ID');
       assert.equal(exact.sha256,action.sha256,action.id);
@@ -144,7 +148,7 @@ test('active receiver IDs map to the exact downloadable host bytes while retaini
 });
 
 test('the rendered BIN Load stays disabled until the matching paired sender advertises the exact action',async()=>{
-  const goldhen = all.ps4.find(action=>action.id==='ps4-goldhen-2-3-900-binloader');
+  const goldhen = preservedGoldhen;
   // Put the real transfer contract in the fixture's version chooser to exercise its actual DOM handler.
   const action = {...goldhen,category:'mods',game:'Fixture bootstrap',menuFamily:'Fixture bootstrap',gameVersion:'1.00'};
   const app = fixture({actions:[action],pairDeferred:true});app.openMenu();

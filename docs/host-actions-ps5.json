@@ -50,8 +50,10 @@
         "This navigation starts the external host on the device where it is opened. Use the console browser to run its exploit chain.",
         "9.05, 10.60 and 11.40 are not in this host's firmware whitelist. Its integrated payload menu operates after a successful jailbreak."
       ],
-      "source": "https://github.com/soniciso1/relapse",
-      "license": "No license was declared in the reviewed repository README; external launch link only. No runtime is bundled here."
+      "source": "https://github.com/soniciso1/relapse/tree/112dbe5949e9c3de923bb0909289c58a9c082151",
+      "license": "No license was declared in the reviewed repository README; external launch link only. No runtime is bundled here.",
+      "sourceCommit": "112dbe5949e9c3de923bb0909289c58a9c082151",
+      "sourceReview": "/docs/qa/ps5-original-hosts.json"
     },
     {
       "id": "ps5-umtx2",
@@ -96,9 +98,11 @@
         "Open in the PS5 browser on an exact supported firmware.",
         "The official host provides a payload menu and automatic loader. This browser chain supports only its listed versions through 5.50."
       ],
-      "source": "https://github.com/idlesauce/umtx2",
+      "source": "https://github.com/idlesauce/umtx2/tree/a080beb74d9e4bc34f3563798b716bd86b2d6ee0",
       "license": "Unlicense; linked upstream build.",
-      "licenseURL": "https://github.com/idlesauce/umtx2/blob/main/LICENSE"
+      "licenseURL": "https://github.com/idlesauce/umtx2/blob/main/LICENSE",
+      "sourceCommit": "a080beb74d9e4bc34f3563798b716bd86b2d6ee0",
+      "sourceReview": "/docs/qa/ps5-original-hosts.json"
     },
     {
       "id": "ps5-payload-manager",

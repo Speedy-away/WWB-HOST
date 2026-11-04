@@ -14,7 +14,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/505/goldhen_2.1_505.bin",
-      "downloadOnDevice": true,
       "bytes": 228408,
       "sha256": "c623f4b074e5de08ae70c9e3f21ee0c56c8f198b4d9156c0ac6d5b4f32b2c75e",
       "image": "/assets/images/console-software/goldhen.png",
@@ -24,7 +23,9 @@
         "Preserved source-labelled GoldHEN 2.1 BIN for PS4 5.05.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "ps4-goldhen-retained-5-05-c623f4b074e5",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/505/goldhen_2.1_505.bin"
     },
     {
       "id": "ps4-goldhen-retained-5-05-19cabf51f31b",
@@ -37,7 +38,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/505/goldhen_2.1.1_505.bin",
-      "downloadOnDevice": true,
       "bytes": 230744,
       "sha256": "19cabf51f31bd3636c3c2855086e31280fa8b5a819722165796347c469613786",
       "image": "/assets/images/console-software/goldhen.png",
@@ -47,7 +47,9 @@
         "Preserved source-labelled GoldHEN 2.1.1 BIN for PS4 5.05.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "ps4-goldhen-retained-5-05-19cabf51f31b",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/505/goldhen_2.1.1_505.bin"
     },
     {
       "id": "ps4-goldhen-retained-5-05-4f0c28e4fb44",
@@ -60,7 +62,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/505/goldhen_2.2_505.bin",
-      "downloadOnDevice": true,
       "bytes": 250072,
       "sha256": "4f0c28e4fb44bc83d71951177c0608717e77920706f194bf4cfa85ac0af1948d",
       "image": "/assets/images/console-software/goldhen.png",
@@ -70,7 +71,9 @@
         "Preserved source-labelled GoldHEN 2.2 BIN for PS4 5.05.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "ps4-goldhen-retained-5-05-4f0c28e4fb44",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/505/goldhen_2.2_505.bin"
     },
     {
       "id": "ps4-goldhen-retained-5-05-a6fef74429bf",
@@ -83,7 +86,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/505/goldhen_2.2.1_505.bin",
-      "downloadOnDevice": true,
       "bytes": 251448,
       "sha256": "a6fef74429bf2cc6ceab33933fad3edc01b280a4e058992b9657b335498a07bd",
       "image": "/assets/images/console-software/goldhen.png",
@@ -93,7 +95,9 @@
         "Preserved source-labelled GoldHEN 2.2.1 BIN for PS4 5.05.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "ps4-goldhen-retained-5-05-a6fef74429bf",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/505/goldhen_2.2.1_505.bin"
     },
     {
       "id": "ps4-goldhen-retained-5-05-07d5a3e25b4a",
@@ -106,7 +110,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/505/goldhen_2.2.2_505.bin",
-      "downloadOnDevice": true,
       "bytes": 252024,
       "sha256": "07d5a3e25b4a3d30e58732d35213c20eea856d44df18409add7a7b0d5ba45d24",
       "image": "/assets/images/console-software/goldhen.png",
@@ -116,7 +119,9 @@
         "Preserved source-labelled GoldHEN 2.2.2 BIN for PS4 5.05.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "ps4-goldhen-retained-5-05-07d5a3e25b4a",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/505/goldhen_2.2.2_505.bin"
     },
     {
       "id": "ps4-goldhen-retained-5-05-04be8dcf6988",
@@ -129,7 +134,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/505/goldhen_2.2.3_505.bin",
-      "downloadOnDevice": true,
       "bytes": 267960,
       "sha256": "04be8dcf69884894deef8ed3c98f0bb63de206202e00154e60284306a78656eb",
       "image": "/assets/images/console-software/goldhen.png",
@@ -139,7 +143,9 @@
         "Preserved source-labelled GoldHEN 2.2.3 BIN for PS4 5.05.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "ps4-goldhen-retained-5-05-04be8dcf6988",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/505/goldhen_2.2.3_505.bin"
     },
     {
       "id": "ps4-goldhen-retained-5-05-528c2247e729",
@@ -152,7 +158,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/505/goldhen_2.2.4_505.bin",
-      "downloadOnDevice": true,
       "bytes": 272472,
       "sha256": "528c2247e729c891d99ff17d7ecb2bdf8f376e731e572a50082c8e51bf683739",
       "image": "/assets/images/console-software/goldhen.png",
@@ -162,7 +167,9 @@
         "Preserved source-labelled GoldHEN 2.2.4 BIN for PS4 5.05.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "ps4-goldhen-retained-5-05-528c2247e729",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/505/goldhen_2.2.4_505.bin"
     },
     {
       "id": "ps4-goldhen-retained-5-05-a58e3633c699",
@@ -175,7 +182,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/505/goldhen_2.3_505.bin",
-      "downloadOnDevice": true,
       "bytes": 280792,
       "sha256": "a58e3633c6992b0b392a572679ba56d2a5344d03ad715e0cf30df3341f17e6be",
       "image": "/assets/images/console-software/goldhen.png",
@@ -185,7 +191,9 @@
         "Preserved source-labelled GoldHEN 2.3 BIN for PS4 5.05.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "goldhen-2-3-5-05",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/GoldHEN/GoldHEN/b5a78e1e1f6ecbc2dfdcd63b4bb5446f49e309c9/goldhen_2.3_505.bin"
     },
     {
       "id": "ps4-goldhen-retained-5-05-dad90b0deded",
@@ -198,7 +206,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/505/goldhen_212_505.bin",
-      "downloadOnDevice": true,
       "bytes": 233304,
       "sha256": "dad90b0deded0f68bf792c2c398460e900013d198ef1a2cf01c0e1d9a054c734",
       "image": "/assets/images/console-software/goldhen.png",
@@ -208,7 +215,9 @@
         "Preserved source-labelled GoldHEN 212 BIN for PS4 5.05.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "ps4-goldhen-retained-5-05-dad90b0deded",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/505/goldhen_212_505.bin"
     },
     {
       "id": "ps4-goldhen-retained-6-72-92021d8ff479",
@@ -221,7 +230,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/672L/goldhen_2.1_672.bin",
-      "downloadOnDevice": true,
       "bytes": 228120,
       "sha256": "92021d8ff4796182e6e529e29796235e218c6364210abad80582bc75919c0fd2",
       "image": "/assets/images/console-software/goldhen.png",
@@ -231,7 +239,9 @@
         "Preserved source-labelled GoldHEN 2.1 BIN for PS4 6.72.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "ps4-goldhen-retained-6-72-92021d8ff479",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/672L/goldhen_2.1_672.bin"
     },
     {
       "id": "ps4-goldhen-retained-6-72-4ddd0f9c009e",
@@ -244,7 +254,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/672L/goldhen_2.1.1_672.bin",
-      "downloadOnDevice": true,
       "bytes": 233880,
       "sha256": "4ddd0f9c009e801ed7778ce9b69e00677faec46fde0ba2caec1e83f9a2f9e802",
       "image": "/assets/images/console-software/goldhen.png",
@@ -254,7 +263,9 @@
         "Preserved source-labelled GoldHEN 2.1.1 BIN for PS4 6.72.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "ps4-goldhen-retained-6-72-4ddd0f9c009e",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/672L/goldhen_2.1.1_672.bin"
     },
     {
       "id": "ps4-goldhen-retained-6-72-10242035e9fe",
@@ -267,7 +278,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/672L/goldhen_2.2_672.bin",
-      "downloadOnDevice": true,
       "bytes": 249592,
       "sha256": "10242035e9fea53e0d52ffb79656fb760d8d82482fd997f7449b89d023ca55d3",
       "image": "/assets/images/console-software/goldhen.png",
@@ -277,7 +287,9 @@
         "Preserved source-labelled GoldHEN 2.2 BIN for PS4 6.72.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "ps4-goldhen-retained-6-72-10242035e9fe",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/672L/goldhen_2.2_672.bin"
     },
     {
       "id": "ps4-goldhen-retained-6-72-6de99b7336d1",
@@ -290,7 +302,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/672L/goldhen_2.2.1_672.bin",
-      "downloadOnDevice": true,
       "bytes": 244792,
       "sha256": "6de99b7336d1d5a325f801856e04a7dda47da66c2a57860257d1bbdc52f8c936",
       "image": "/assets/images/console-software/goldhen.png",
@@ -300,7 +311,9 @@
         "Preserved source-labelled GoldHEN 2.2.1 BIN for PS4 6.72.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "ps4-goldhen-retained-6-72-6de99b7336d1",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/672L/goldhen_2.2.1_672.bin"
     },
     {
       "id": "ps4-goldhen-retained-6-72-76c3938ce754",
@@ -313,7 +326,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/672L/goldhen_2.2.2_672.bin",
-      "downloadOnDevice": true,
       "bytes": 252504,
       "sha256": "76c3938ce754e558b6b0dcfa4478237e27ba4082985335666fff8c494f1c9d02",
       "image": "/assets/images/console-software/goldhen.png",
@@ -323,7 +335,9 @@
         "Preserved source-labelled GoldHEN 2.2.2 BIN for PS4 6.72.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "ps4-goldhen-retained-6-72-76c3938ce754",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/672L/goldhen_2.2.2_672.bin"
     },
     {
       "id": "ps4-goldhen-retained-6-72-01e5a0d7e61f",
@@ -336,7 +350,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/672L/goldhen_2.2.3_672.bin",
-      "downloadOnDevice": true,
       "bytes": 268088,
       "sha256": "01e5a0d7e61f34c2f22faf7e432f2c0ffbacb215f743e2ade17e085e30c5deae",
       "image": "/assets/images/console-software/goldhen.png",
@@ -346,7 +359,9 @@
         "Preserved source-labelled GoldHEN 2.2.3 BIN for PS4 6.72.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "ps4-goldhen-retained-6-72-01e5a0d7e61f",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/672L/goldhen_2.2.3_672.bin"
     },
     {
       "id": "ps4-goldhen-retained-6-72-aa6e138c4211",
@@ -359,7 +374,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/672L/goldhen_2.2.4_672.bin",
-      "downloadOnDevice": true,
       "bytes": 272824,
       "sha256": "aa6e138c4211db4dee74473331a7103f5c71d056e38e4cf5ec12f0e5f63f21ac",
       "image": "/assets/images/console-software/goldhen.png",
@@ -369,7 +383,9 @@
         "Preserved source-labelled GoldHEN 2.2.4 BIN for PS4 6.72.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "ps4-goldhen-retained-6-72-aa6e138c4211",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/672L/goldhen_2.2.4_672.bin"
     },
     {
       "id": "ps4-goldhen-retained-6-72-75218e080d6a",
@@ -382,7 +398,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/672L/goldhen_2.3_672.bin",
-      "downloadOnDevice": true,
       "bytes": 285304,
       "sha256": "75218e080d6a46c3778ef1e4338d453e8c2ce8ff1bc368818943bd21a1d5e681",
       "image": "/assets/images/console-software/goldhen.png",
@@ -392,7 +407,9 @@
         "Preserved source-labelled GoldHEN 2.3 BIN for PS4 6.72.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "goldhen-2-3-6-72",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/GoldHEN/GoldHEN/b5a78e1e1f6ecbc2dfdcd63b4bb5446f49e309c9/goldhen_2.3_672.bin"
     },
     {
       "id": "ps4-goldhen-retained-6-72-9f5bdfb3db6d",
@@ -405,7 +422,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/672L/goldhen_212_672.bin",
-      "downloadOnDevice": true,
       "bytes": 235192,
       "sha256": "9f5bdfb3db6d93814ede54cb02824cc840fa58e9c1ecfb5cfe662673e4ff20dc",
       "image": "/assets/images/console-software/goldhen.png",
@@ -415,7 +431,9 @@
         "Preserved source-labelled GoldHEN 212 BIN for PS4 6.72.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "ps4-goldhen-retained-6-72-9f5bdfb3db6d",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/672L/goldhen_212_672.bin"
     },
     {
       "id": "ps4-goldhen-retained-7-02-2b8e1b21e74c",
@@ -428,7 +446,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/702/goldhen_2.2.2_702.bin",
-      "downloadOnDevice": true,
       "bytes": 251064,
       "sha256": "2b8e1b21e74c3a026f495aca43c778d5a663bc8379634be8b609c0f9c3ec2e97",
       "image": "/assets/images/console-software/goldhen.png",
@@ -438,7 +455,9 @@
         "Preserved source-labelled GoldHEN 2.2.2 BIN for PS4 7.02.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "ps4-goldhen-retained-7-02-2b8e1b21e74c",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/702/goldhen_2.2.2_702.bin"
     },
     {
       "id": "ps4-goldhen-retained-7-02-a38ec39705fa",
@@ -451,7 +470,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/702/goldhen_2.3_702.bin",
-      "downloadOnDevice": true,
       "bytes": 285560,
       "sha256": "a38ec39705fa9536a3e0a2031afdd10ed5a3680c9f7695935ee055c39f98d6ca",
       "image": "/assets/images/console-software/goldhen.png",
@@ -461,7 +479,9 @@
         "Preserved source-labelled GoldHEN 2.3 BIN for PS4 7.02.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "ps4-goldhen-retained-7-02-a38ec39705fa",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/702/goldhen_2.3_702.bin"
     },
     {
       "id": "ps4-goldhen-retained-7-55-32c378f4be2e",
@@ -474,7 +494,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/755/goldhen_2.3_755.bin",
-      "downloadOnDevice": true,
       "bytes": 297336,
       "sha256": "32c378f4be2e691f4fd6476c57b8c34bc469c6fcfba380e9deaa0f97d6658942",
       "image": "/assets/images/console-software/goldhen.png",
@@ -484,7 +503,9 @@
         "Preserved source-labelled GoldHEN 2.3 BIN for PS4 7.55.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "ps4-goldhen-retained-7-55-32c378f4be2e",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/755/goldhen_2.3_755.bin"
     },
     {
       "id": "ps4-goldhen-retained-9-00-a791ddff6ccb",
@@ -497,7 +518,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/900C/goldhen_2.2.2_900.bin",
-      "downloadOnDevice": true,
       "bytes": 251192,
       "sha256": "a791ddff6ccb5e8755682e3debdd62c191b9394efdd8c3b138575365c738e917",
       "image": "/assets/images/console-software/goldhen.png",
@@ -507,7 +527,9 @@
         "Preserved source-labelled GoldHEN 2.2.2 BIN for PS4 9.00.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "ps4-goldhen-retained-9-00-a791ddff6ccb",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/900C/goldhen_2.2.2_900.bin"
     },
     {
       "id": "ps4-goldhen-retained-9-00-cb135f5d8ae9",
@@ -520,7 +542,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/900C/goldhen_2.2.3_900.bin",
-      "downloadOnDevice": true,
       "bytes": 270424,
       "sha256": "cb135f5d8ae91b8d0a6e26f5e38642fae080e3067f08dd19ee4ce23b21c6c8e8",
       "image": "/assets/images/console-software/goldhen.png",
@@ -530,7 +551,9 @@
         "Preserved source-labelled GoldHEN 2.2.3 BIN for PS4 9.00.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "ps4-goldhen-retained-9-00-cb135f5d8ae9",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/900C/goldhen_2.2.3_900.bin"
     },
     {
       "id": "ps4-goldhen-retained-9-00-8371a836b634",
@@ -543,7 +566,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/900C/goldhen_2.2.4_900.bin",
-      "downloadOnDevice": true,
       "bytes": 275192,
       "sha256": "8371a836b634a09887ebc0c5714e567e7a1ec750edc203f9510352b2466560b9",
       "image": "/assets/images/console-software/goldhen.png",
@@ -553,7 +575,9 @@
         "Preserved source-labelled GoldHEN 2.2.4 BIN for PS4 9.00.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "ps4-goldhen-retained-9-00-8371a836b634",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/900C/goldhen_2.2.4_900.bin"
     },
     {
       "id": "ps4-goldhen-retained-9-00-c9b8f33d2825",
@@ -566,7 +590,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/900C/goldhen_2.3_900.bin",
-      "downloadOnDevice": true,
       "bytes": 282648,
       "sha256": "c9b8f33d28258af9e80465da591868dada25a1454f30f63882668d5e0dcff9c2",
       "image": "/assets/images/console-software/goldhen.png",
@@ -576,7 +599,9 @@
         "Preserved source-labelled GoldHEN 2.3 BIN for PS4 9.00.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "goldhen-2-3-9-00",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/GoldHEN/GoldHEN/b5a78e1e1f6ecbc2dfdcd63b4bb5446f49e309c9/goldhen_2.3_900.bin"
     },
     {
       "id": "ps4-goldhen-retained-9-00-c1b6b5cf2e2a",
@@ -589,7 +614,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/900C/goldhen_212_900.bin",
-      "downloadOnDevice": true,
       "bytes": 234872,
       "sha256": "c1b6b5cf2e2a54f0d5328d16f096f33616eabf1e1cdfbdb086a06b8092ed1fed",
       "image": "/assets/images/console-software/goldhen.png",
@@ -599,7 +623,9 @@
         "Preserved source-labelled GoldHEN 212 BIN for PS4 9.00.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "ps4-goldhen-retained-9-00-c1b6b5cf2e2a",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/900C/goldhen_212_900.bin"
     },
     {
       "id": "ps4-goldhen-retained-9-00-f2c1efc52e99",
@@ -612,7 +638,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/900N/goldhen_2.1_900.bin",
-      "downloadOnDevice": true,
       "bytes": 233912,
       "sha256": "f2c1efc52e99b34dfe31c7b46943ed6f965403ae67fa194fdbf3fe5df828a852",
       "image": "/assets/images/console-software/goldhen.png",
@@ -622,7 +647,9 @@
         "Preserved source-labelled GoldHEN 2.1 BIN for PS4 9.00.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "ps4-goldhen-retained-9-00-f2c1efc52e99",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/900N/goldhen_2.1_900.bin"
     },
     {
       "id": "ps4-goldhen-retained-9-00-61583ffb9dc2",
@@ -635,7 +662,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/900N/goldhen_2.1.1_900.bin",
-      "downloadOnDevice": true,
       "bytes": 227992,
       "sha256": "61583ffb9dc2e2a2f4ba0bc6c2e2f0e6ec8c8d5c439abec518d3211737ede36a",
       "image": "/assets/images/console-software/goldhen.png",
@@ -645,7 +671,9 @@
         "Preserved source-labelled GoldHEN 2.1.1 BIN for PS4 9.00.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "ps4-goldhen-retained-9-00-61583ffb9dc2",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/900N/goldhen_2.1.1_900.bin"
     },
     {
       "id": "ps4-goldhen-retained-9-00-e9bab80d7354",
@@ -658,7 +686,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/900N/goldhen_2.2_900.bin",
-      "downloadOnDevice": true,
       "bytes": 247160,
       "sha256": "e9bab80d735449a28a4b7a6bf94198bb4858e366542d495ba9f2eb63167342a8",
       "image": "/assets/images/console-software/goldhen.png",
@@ -668,7 +695,9 @@
         "Preserved source-labelled GoldHEN 2.2 BIN for PS4 9.00.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "ps4-goldhen-retained-9-00-e9bab80d7354",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/900N/goldhen_2.2_900.bin"
     },
     {
       "id": "ps4-goldhen-retained-9-00-574d4351470c",
@@ -681,7 +710,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/900N/goldhen_2.2.1_900.bin",
-      "downloadOnDevice": true,
       "bytes": 253464,
       "sha256": "574d4351470c4ebdef9d40809c9ca3e03f0a70a5f057b330afc037436c797c56",
       "image": "/assets/images/console-software/goldhen.png",
@@ -691,7 +719,9 @@
         "Preserved source-labelled GoldHEN 2.2.1 BIN for PS4 9.00.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "ps4-goldhen-retained-9-00-574d4351470c",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/900N/goldhen_2.2.1_900.bin"
     },
     {
       "id": "ps4-goldhen-retained-7-50-4b3d3ff8b6c9",
@@ -704,7 +734,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/_decoded/755/goldhen_2.2.2_750.bin",
-      "downloadOnDevice": true,
       "bytes": 253496,
       "sha256": "4b3d3ff8b6c938d329b227f9e3dae03a2dcb40b5d7fad60c4fb279c464099599",
       "image": "/assets/images/console-software/goldhen.png",
@@ -714,7 +743,9 @@
         "Preserved source-labelled GoldHEN 2.2.2 BIN for PS4 7.50.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "ps4-goldhen-retained-7-50-4b3d3ff8b6c9",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/Speedy-away/WWB-HOST/c07522f295dc9e0110d4cea5133ba26d41dc7ae1/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/_decoded/755/goldhen_2.2.2_750.bin"
     },
     {
       "id": "ps4-goldhen-retained-7-51-0887ae364511",
@@ -727,7 +758,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/_decoded/755/goldhen_2.2.2_751.bin",
-      "downloadOnDevice": true,
       "bytes": 252536,
       "sha256": "0887ae364511f860b155cce94b1e60fd7e265713bb0490230c9ed0be9a31a3af",
       "image": "/assets/images/console-software/goldhen.png",
@@ -737,7 +767,9 @@
         "Preserved source-labelled GoldHEN 2.2.2 BIN for PS4 7.51.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "ps4-goldhen-retained-7-51-0887ae364511",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/Speedy-away/WWB-HOST/c07522f295dc9e0110d4cea5133ba26d41dc7ae1/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/_decoded/755/goldhen_2.2.2_751.bin"
     },
     {
       "id": "ps4-goldhen-retained-7-55-1087f55d20aa",
@@ -750,7 +782,6 @@
       ],
       "format": "BIN",
       "downloadURL": "/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/_decoded/755/goldhen_2.2.2_755.bin",
-      "downloadOnDevice": true,
       "bytes": 251256,
       "sha256": "1087f55d20aa20a758870c2ff537ddf397e852e7544a5680835686d883d66324",
       "image": "/assets/images/console-software/goldhen.png",
@@ -760,7 +791,9 @@
         "Preserved source-labelled GoldHEN 2.2.2 BIN for PS4 7.55.",
         "Use the original firmware-matching host or its documented loader. Downloading this file does not launch a jailbreak; no new generic sender ABI is asserted.",
         "This is a retained older version. Source label and byte identity are recorded; no console execution was performed."
-      ]
+      ],
+      "consoleFileId": "ps4-goldhen-retained-7-55-1087f55d20aa",
+      "nativeDownloadURL": "https://raw.githubusercontent.com/Speedy-away/WWB-HOST/c07522f295dc9e0110d4cea5133ba26d41dc7ae1/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/_decoded/755/goldhen_2.2.2_755.bin"
     }
   ],
   "evidence": [
@@ -1446,5 +1479,342 @@
   ],
   "compatibilityMethod": "Filename version/firmware labels intersected with exact original entry firmware metadata; every selected ready BIN rehashed in both current runtime and F archive. No compatibility inferred from a family label.",
   "newFilesDownloaded": 0,
-  "nativeExecution": false
+  "nativeExecution": false,
+  "catalogMapping": {
+    "updatedAt": "2026-11-03T23:28:31.146Z",
+    "added": 30,
+    "reused": 3,
+    "mappings": [
+      {
+        "actionId": "ps4-goldhen-retained-5-05-c623f4b074e5",
+        "consoleFileId": "ps4-goldhen-retained-5-05-c623f4b074e5",
+        "firmwares": [
+          "5.05"
+        ],
+        "filename": "goldhen_2.1_505.bin",
+        "sha256": "c623f4b074e5de08ae70c9e3f21ee0c56c8f198b4d9156c0ac6d5b4f32b2c75e",
+        "url": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/505/goldhen_2.1_505.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-5-05-19cabf51f31b",
+        "consoleFileId": "ps4-goldhen-retained-5-05-19cabf51f31b",
+        "firmwares": [
+          "5.05"
+        ],
+        "filename": "goldhen_2.1.1_505.bin",
+        "sha256": "19cabf51f31bd3636c3c2855086e31280fa8b5a819722165796347c469613786",
+        "url": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/505/goldhen_2.1.1_505.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-5-05-4f0c28e4fb44",
+        "consoleFileId": "ps4-goldhen-retained-5-05-4f0c28e4fb44",
+        "firmwares": [
+          "5.05"
+        ],
+        "filename": "goldhen_2.2_505.bin",
+        "sha256": "4f0c28e4fb44bc83d71951177c0608717e77920706f194bf4cfa85ac0af1948d",
+        "url": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/505/goldhen_2.2_505.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-5-05-a6fef74429bf",
+        "consoleFileId": "ps4-goldhen-retained-5-05-a6fef74429bf",
+        "firmwares": [
+          "5.05"
+        ],
+        "filename": "goldhen_2.2.1_505.bin",
+        "sha256": "a6fef74429bf2cc6ceab33933fad3edc01b280a4e058992b9657b335498a07bd",
+        "url": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/505/goldhen_2.2.1_505.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-5-05-07d5a3e25b4a",
+        "consoleFileId": "ps4-goldhen-retained-5-05-07d5a3e25b4a",
+        "firmwares": [
+          "5.05"
+        ],
+        "filename": "goldhen_2.2.2_505.bin",
+        "sha256": "07d5a3e25b4a3d30e58732d35213c20eea856d44df18409add7a7b0d5ba45d24",
+        "url": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/505/goldhen_2.2.2_505.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-5-05-04be8dcf6988",
+        "consoleFileId": "ps4-goldhen-retained-5-05-04be8dcf6988",
+        "firmwares": [
+          "5.05"
+        ],
+        "filename": "goldhen_2.2.3_505.bin",
+        "sha256": "04be8dcf69884894deef8ed3c98f0bb63de206202e00154e60284306a78656eb",
+        "url": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/505/goldhen_2.2.3_505.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-5-05-528c2247e729",
+        "consoleFileId": "ps4-goldhen-retained-5-05-528c2247e729",
+        "firmwares": [
+          "5.05"
+        ],
+        "filename": "goldhen_2.2.4_505.bin",
+        "sha256": "528c2247e729c891d99ff17d7ecb2bdf8f376e731e572a50082c8e51bf683739",
+        "url": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/505/goldhen_2.2.4_505.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-5-05-a58e3633c699",
+        "consoleFileId": "goldhen-2-3-5-05",
+        "firmwares": [
+          "5.05"
+        ],
+        "filename": "goldhen_2.3_505.bin",
+        "sha256": "a58e3633c6992b0b392a572679ba56d2a5344d03ad715e0cf30df3341f17e6be",
+        "url": "https://raw.githubusercontent.com/GoldHEN/GoldHEN/b5a78e1e1f6ecbc2dfdcd63b4bb5446f49e309c9/goldhen_2.3_505.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-5-05-dad90b0deded",
+        "consoleFileId": "ps4-goldhen-retained-5-05-dad90b0deded",
+        "firmwares": [
+          "5.05"
+        ],
+        "filename": "goldhen_212_505.bin",
+        "sha256": "dad90b0deded0f68bf792c2c398460e900013d198ef1a2cf01c0e1d9a054c734",
+        "url": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/505/goldhen_212_505.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-6-72-92021d8ff479",
+        "consoleFileId": "ps4-goldhen-retained-6-72-92021d8ff479",
+        "firmwares": [
+          "6.72"
+        ],
+        "filename": "goldhen_2.1_672.bin",
+        "sha256": "92021d8ff4796182e6e529e29796235e218c6364210abad80582bc75919c0fd2",
+        "url": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/672L/goldhen_2.1_672.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-6-72-4ddd0f9c009e",
+        "consoleFileId": "ps4-goldhen-retained-6-72-4ddd0f9c009e",
+        "firmwares": [
+          "6.72"
+        ],
+        "filename": "goldhen_2.1.1_672.bin",
+        "sha256": "4ddd0f9c009e801ed7778ce9b69e00677faec46fde0ba2caec1e83f9a2f9e802",
+        "url": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/672L/goldhen_2.1.1_672.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-6-72-10242035e9fe",
+        "consoleFileId": "ps4-goldhen-retained-6-72-10242035e9fe",
+        "firmwares": [
+          "6.72"
+        ],
+        "filename": "goldhen_2.2_672.bin",
+        "sha256": "10242035e9fea53e0d52ffb79656fb760d8d82482fd997f7449b89d023ca55d3",
+        "url": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/672L/goldhen_2.2_672.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-6-72-6de99b7336d1",
+        "consoleFileId": "ps4-goldhen-retained-6-72-6de99b7336d1",
+        "firmwares": [
+          "6.72"
+        ],
+        "filename": "goldhen_2.2.1_672.bin",
+        "sha256": "6de99b7336d1d5a325f801856e04a7dda47da66c2a57860257d1bbdc52f8c936",
+        "url": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/672L/goldhen_2.2.1_672.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-6-72-76c3938ce754",
+        "consoleFileId": "ps4-goldhen-retained-6-72-76c3938ce754",
+        "firmwares": [
+          "6.72"
+        ],
+        "filename": "goldhen_2.2.2_672.bin",
+        "sha256": "76c3938ce754e558b6b0dcfa4478237e27ba4082985335666fff8c494f1c9d02",
+        "url": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/672L/goldhen_2.2.2_672.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-6-72-01e5a0d7e61f",
+        "consoleFileId": "ps4-goldhen-retained-6-72-01e5a0d7e61f",
+        "firmwares": [
+          "6.72"
+        ],
+        "filename": "goldhen_2.2.3_672.bin",
+        "sha256": "01e5a0d7e61f34c2f22faf7e432f2c0ffbacb215f743e2ade17e085e30c5deae",
+        "url": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/672L/goldhen_2.2.3_672.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-6-72-aa6e138c4211",
+        "consoleFileId": "ps4-goldhen-retained-6-72-aa6e138c4211",
+        "firmwares": [
+          "6.72"
+        ],
+        "filename": "goldhen_2.2.4_672.bin",
+        "sha256": "aa6e138c4211db4dee74473331a7103f5c71d056e38e4cf5ec12f0e5f63f21ac",
+        "url": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/672L/goldhen_2.2.4_672.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-6-72-75218e080d6a",
+        "consoleFileId": "goldhen-2-3-6-72",
+        "firmwares": [
+          "6.72"
+        ],
+        "filename": "goldhen_2.3_672.bin",
+        "sha256": "75218e080d6a46c3778ef1e4338d453e8c2ce8ff1bc368818943bd21a1d5e681",
+        "url": "https://raw.githubusercontent.com/GoldHEN/GoldHEN/b5a78e1e1f6ecbc2dfdcd63b4bb5446f49e309c9/goldhen_2.3_672.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-6-72-9f5bdfb3db6d",
+        "consoleFileId": "ps4-goldhen-retained-6-72-9f5bdfb3db6d",
+        "firmwares": [
+          "6.72"
+        ],
+        "filename": "goldhen_212_672.bin",
+        "sha256": "9f5bdfb3db6d93814ede54cb02824cc840fa58e9c1ecfb5cfe662673e4ff20dc",
+        "url": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/672L/goldhen_212_672.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-7-02-2b8e1b21e74c",
+        "consoleFileId": "ps4-goldhen-retained-7-02-2b8e1b21e74c",
+        "firmwares": [
+          "7.02"
+        ],
+        "filename": "goldhen_2.2.2_702.bin",
+        "sha256": "2b8e1b21e74c3a026f495aca43c778d5a663bc8379634be8b609c0f9c3ec2e97",
+        "url": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/702/goldhen_2.2.2_702.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-7-02-a38ec39705fa",
+        "consoleFileId": "ps4-goldhen-retained-7-02-a38ec39705fa",
+        "firmwares": [
+          "7.02"
+        ],
+        "filename": "goldhen_2.3_702.bin",
+        "sha256": "a38ec39705fa9536a3e0a2031afdd10ed5a3680c9f7695935ee055c39f98d6ca",
+        "url": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/702/goldhen_2.3_702.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-7-55-32c378f4be2e",
+        "consoleFileId": "ps4-goldhen-retained-7-55-32c378f4be2e",
+        "firmwares": [
+          "7.55"
+        ],
+        "filename": "goldhen_2.3_755.bin",
+        "sha256": "32c378f4be2e691f4fd6476c57b8c34bc469c6fcfba380e9deaa0f97d6658942",
+        "url": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/755/goldhen_2.3_755.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-9-00-a791ddff6ccb",
+        "consoleFileId": "ps4-goldhen-retained-9-00-a791ddff6ccb",
+        "firmwares": [
+          "9.00"
+        ],
+        "filename": "goldhen_2.2.2_900.bin",
+        "sha256": "a791ddff6ccb5e8755682e3debdd62c191b9394efdd8c3b138575365c738e917",
+        "url": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/900C/goldhen_2.2.2_900.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-9-00-cb135f5d8ae9",
+        "consoleFileId": "ps4-goldhen-retained-9-00-cb135f5d8ae9",
+        "firmwares": [
+          "9.00"
+        ],
+        "filename": "goldhen_2.2.3_900.bin",
+        "sha256": "cb135f5d8ae91b8d0a6e26f5e38642fae080e3067f08dd19ee4ce23b21c6c8e8",
+        "url": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/900C/goldhen_2.2.3_900.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-9-00-8371a836b634",
+        "consoleFileId": "ps4-goldhen-retained-9-00-8371a836b634",
+        "firmwares": [
+          "9.00"
+        ],
+        "filename": "goldhen_2.2.4_900.bin",
+        "sha256": "8371a836b634a09887ebc0c5714e567e7a1ec750edc203f9510352b2466560b9",
+        "url": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/900C/goldhen_2.2.4_900.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-9-00-c9b8f33d2825",
+        "consoleFileId": "goldhen-2-3-9-00",
+        "firmwares": [
+          "9.00"
+        ],
+        "filename": "goldhen_2.3_900.bin",
+        "sha256": "c9b8f33d28258af9e80465da591868dada25a1454f30f63882668d5e0dcff9c2",
+        "url": "https://raw.githubusercontent.com/GoldHEN/GoldHEN/b5a78e1e1f6ecbc2dfdcd63b4bb5446f49e309c9/goldhen_2.3_900.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-9-00-c1b6b5cf2e2a",
+        "consoleFileId": "ps4-goldhen-retained-9-00-c1b6b5cf2e2a",
+        "firmwares": [
+          "9.00"
+        ],
+        "filename": "goldhen_212_900.bin",
+        "sha256": "c1b6b5cf2e2a54f0d5328d16f096f33616eabf1e1cdfbdb086a06b8092ed1fed",
+        "url": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/900C/goldhen_212_900.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-9-00-f2c1efc52e99",
+        "consoleFileId": "ps4-goldhen-retained-9-00-f2c1efc52e99",
+        "firmwares": [
+          "9.00"
+        ],
+        "filename": "goldhen_2.1_900.bin",
+        "sha256": "f2c1efc52e99b34dfe31c7b46943ed6f965403ae67fa194fdbf3fe5df828a852",
+        "url": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/900N/goldhen_2.1_900.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-9-00-61583ffb9dc2",
+        "consoleFileId": "ps4-goldhen-retained-9-00-61583ffb9dc2",
+        "firmwares": [
+          "9.00"
+        ],
+        "filename": "goldhen_2.1.1_900.bin",
+        "sha256": "61583ffb9dc2e2a2f4ba0bc6c2e2f0e6ec8c8d5c439abec518d3211737ede36a",
+        "url": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/900N/goldhen_2.1.1_900.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-9-00-e9bab80d7354",
+        "consoleFileId": "ps4-goldhen-retained-9-00-e9bab80d7354",
+        "firmwares": [
+          "9.00"
+        ],
+        "filename": "goldhen_2.2_900.bin",
+        "sha256": "e9bab80d735449a28a4b7a6bf94198bb4858e366542d495ba9f2eb63167342a8",
+        "url": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/900N/goldhen_2.2_900.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-9-00-574d4351470c",
+        "consoleFileId": "ps4-goldhen-retained-9-00-574d4351470c",
+        "firmwares": [
+          "9.00"
+        ],
+        "filename": "goldhen_2.2.1_900.bin",
+        "sha256": "574d4351470c4ebdef9d40809c9ca3e03f0a70a5f057b330afc037436c797c56",
+        "url": "https://raw.githubusercontent.com/KAR0218/KAR0218.github.io/743646c9df9ab4c83821b660c12e23a3dda57b49/900N/goldhen_2.2.1_900.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-7-50-4b3d3ff8b6c9",
+        "consoleFileId": "ps4-goldhen-retained-7-50-4b3d3ff8b6c9",
+        "firmwares": [
+          "7.50"
+        ],
+        "filename": "goldhen_2.2.2_750.bin",
+        "sha256": "4b3d3ff8b6c938d329b227f9e3dae03a2dcb40b5d7fad60c4fb279c464099599",
+        "url": "https://raw.githubusercontent.com/Speedy-away/WWB-HOST/c07522f295dc9e0110d4cea5133ba26d41dc7ae1/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/_decoded/755/goldhen_2.2.2_750.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-7-51-0887ae364511",
+        "consoleFileId": "ps4-goldhen-retained-7-51-0887ae364511",
+        "firmwares": [
+          "7.51"
+        ],
+        "filename": "goldhen_2.2.2_751.bin",
+        "sha256": "0887ae364511f860b155cce94b1e60fd7e265713bb0490230c9ed0be9a31a3af",
+        "url": "https://raw.githubusercontent.com/Speedy-away/WWB-HOST/c07522f295dc9e0110d4cea5133ba26d41dc7ae1/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/_decoded/755/goldhen_2.2.2_751.bin"
+      },
+      {
+        "actionId": "ps4-goldhen-retained-7-55-1087f55d20aa",
+        "consoleFileId": "ps4-goldhen-retained-7-55-1087f55d20aa",
+        "firmwares": [
+          "7.55"
+        ],
+        "filename": "goldhen_2.2.2_755.bin",
+        "sha256": "1087f55d20aa20a758870c2ff537ddf397e852e7544a5680835686d883d66324",
+        "url": "https://raw.githubusercontent.com/Speedy-away/WWB-HOST/c07522f295dc9e0110d4cea5133ba26d41dc7ae1/hosts/runtime/karo-743646c9df9a-e3c0caf3db54/web/_decoded/755/goldhen_2.2.2_755.bin"
+      }
+    ]
+  }
 }

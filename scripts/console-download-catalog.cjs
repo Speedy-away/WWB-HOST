@@ -7,7 +7,7 @@ const {publicMirror} = require('./download-mirror-policy.cjs');
 const root = path.resolve(__dirname, '..');
 const output = path.join(root, 'docs/console-download-catalog.json');
 const backup = path.resolve('F:/whatsite-backup-downloads-etc');
-const MAX_PLATFORM_ITEMS = 512;
+const MAX_PLATFORM_ITEMS = 1024;
 function assertCatalogueBounds(items) {
   if (new Set(items.map(item => item.id)).size !== items.length) throw Error('Duplicate catalogue IDs');
   for (const platform of ['ps4', 'ps5']) {
@@ -296,8 +296,10 @@ function collect() {
       if (review) item.archiveSafety = review;
     }
   }
-  assertCatalogueBounds(result);
-  return result;
+  const retainedPath=path.join(root,'docs/host-goldhen-retained-versions.json');
+  const merged=fs.existsSync(retainedPath)?require('./prepare-host-goldhen-versions.cjs').mergeCatalogActions(result,read('docs/host-goldhen-retained-versions.json').actions,{root}).items:result;
+  assertCatalogueBounds(merged);
+  return merged;
 }
 
 function getCatalog(platform) {
@@ -313,6 +315,7 @@ function buildCatalog(options = {}) {
   const document = {schemaVersion: 1, reviewed: '2026-11-02',
     sources: ['docs/download-audit.json', 'docs/expansion-ps4-ps5.json', 'docs/ps4-ps5-customization.json', 'docs/console-prepared-archive-jobs.json', 'docs/console-ready-file-descriptors.json', 'docs/console-multicod-ready-files.json', 'docs/ps4-extra-game-downloads.json', 'docs/ps4-ps5-game-patches.json', 'docs/console-ready-software.json', 'docs/ps4-store-apps.json', 'docs/virusmike-ps4-next-resources.json', 'docs/ps5-native-extra-cheats.json', 'docs/ps5-native-batch5.json', 'docs/host-modern-plugin-actions.json', 'docs/host-current-cheat-actions.json', 'docs/host-game-actions.json', 'docs/host-legacy-menu-actions.json', 'docs/host-extra-game-actions.json', 'docs/host-web-utility-actions.json', 'docs/host-repository-menu-actions.json', 'docs/host-original-tool-actions.json', 'docs/host-legacy-firmware-menu-actions.json', 'docs/host-next-utility-actions.json', 'docs/host-gta505-continuation-actions.json', 'docs/host-arabicguy-672-actions.json', 'docs/console-archive-safety.json', 'docs/ps4-ps5-launcher-build.json', 'downloads/ps4/GTA5/manifest.json', 'downloads/ps4/BO3/manifest.json'], items};
   document.sources.push('docs/console-batch4-apps.json');
+  if(fs.existsSync(path.join(root,'docs/host-goldhen-retained-versions.json')))document.sources.push('docs/host-goldhen-retained-versions.json');
   const ps4 = items.filter(item => item.platforms.includes('ps4') && item.category === 'apps' && /\.pkg$/i.test(item.filename));
   const description = item => item.description === item.compatibility ? item.description : item.description + ' ' + item.compatibility;
   const artMetadata = read('docs/expansion-ps4-ps5.json').images || [];

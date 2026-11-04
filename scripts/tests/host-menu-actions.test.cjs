@@ -40,7 +40,9 @@ test('every downloadable host action has an exact native file ID without broaden
     assert.equal(file.sha256,action.sha256,action.id);
     assert.equal(file.filename,path.basename(action.downloadURL),action.id);
     assert.ok(file.platforms.includes(platform));
+    if(action.id.startsWith('ps4-goldhen-retained-')){assert.equal(action.downloadOnDevice,undefined);assert.deepEqual(file.platforms,['ps4']);assert.deepEqual(require('../prepare-host-goldhen-versions.cjs').exactFirmware(file),action.firmwares);assert.equal(file.version,action.version);assert.match(file.url,/^https:\/\/raw\.githubusercontent\.com\/[^/]+\/[^/]+\/[a-f0-9]{40}\//);const plan=ui.downloadPlan(action,platform,'192.168.1.42',ui.detectBrowser('Windows NT 10.0'),normalize);assert.equal(plan.destination,'console');assert.ok(plan.url.endsWith('?file='+action.consoleFileId));}
   }
+  assert.equal(hostActions('ps4').filter(a=>a.id.startsWith('ps4-goldhen-retained-')).length,33);
   const legacy=read('docs/host-legacy-menu-actions.json').actions;
   const conflict=legacy.find(a=>a.id==='ps4-legacy-kameleon-bq138-thief');
   assert.equal(conflict.gameVersion,'1.38');assert.equal(conflict.run,null);

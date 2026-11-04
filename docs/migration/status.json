@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-03T21:30:57.500Z",
+  "updatedAt": "2026-11-03T22:28:43.357Z",
   "repository": "Speedy-away/WWB-HOST",
   "site": "https://speedy-away.github.io/WWB-HOST/",
   "mainSite": "https://whatwhatboy.com/",
@@ -318,6 +318,49 @@
     "checkedAt": "2026-11-03T22:08:33.343Z",
     "revision": "ec57a07f80677551739f0e36d90c1a67636c0924",
     "deployment": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41727111581"
+  },
+  "remainingConsolePerformance20261103": {
+    "status": "Published and live verified",
+    "report": "docs/migration/remaining-console-performance.json",
+    "tests": 215,
+    "authoredPagesChecked": 24,
+    "karoInitialHtmlBytes": 94646,
+    "karoSourceHtmlBytes": 933837,
+    "preservedPayloadRows": 1446,
+    "retainedOlderDownloads": 165,
+    "nativeScriptsUnchanged": 849,
+    "cachedResourcesRetained": 1491,
+    "limits": [
+      "Physical PS4/PS5 performance and native execution not tested",
+      "Browser automation unavailable in current Work settings"
+    ],
+    "commit": "c6687a91f49ee688d3d6f4a5df7d07600c88dcad",
+    "run": 41728129691,
+    "workflow": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41728129691",
+    "liveAuthoredPages": 24,
+    "liveFragmentPairs": 62
+  },
+  "sitewideConsolePerformance20261103": {
+    "status": "Published and live verified",
+    "report": "docs/migration/sitewide-console-performance.json",
+    "tests": 227,
+    "runtimeDocumentsOptimized": 213,
+    "runtimeRoutingBytes": 222159,
+    "fullRoutingBytes": 1027171,
+    "exactAliasesVerified": 6395,
+    "cataloguePages": 13,
+    "sharedCatalogueFiles": 4,
+    "unchangedCatalogueRecords": 1028,
+    "limits": [
+      "Physical PS4/PS5 performance not measured",
+      "Browser UI automation unavailable in Work settings; no native console files executed"
+    ],
+    "performanceCommit": "4fa06f41d0de8e9f8e2921f781cf8b9b71916ea5",
+    "verifiedMergedCommit": "0488479b84f9ca3ffe1c12c0a9fc44a23d7e67e4",
+    "run": 41730210213,
+    "workflow": "https://github.com/Speedy-away/WWB-HOST/actions/runs/41730210213",
+    "livePages": 1104,
+    "liveSharedCatalogueFiles": 4
   },
   "ps5RemainingOriginalHosts": {
     "updatedAt": "2026-11-03T22:20:45.175Z",

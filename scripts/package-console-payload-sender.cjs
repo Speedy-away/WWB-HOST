@@ -50,11 +50,28 @@ function references(text, from) {
   return values;
 }
 function packagedHTML(text) {
-  // The compact sender does not include the rest of the website. Its other
-  // navigation links keep working by opening their public-site destination.
+  // Public browser runtimes remain outside the loopback helper. Only their
+  // presentation URLs change; run contracts and local payload URLs stay pinned.
+  if (!['https://speedy-away.github.io/WWB-HOST','https://whatwhatboy.com'].includes(ORIGIN)) throw Error('Unknown public host origin');
+  function publicURL(value) {
+    if (typeof value !== 'string' || !value.startsWith('/')) return value;
+    if (value.startsWith('//') || /[\\\x00-\x20]/.test(value) || /%(?:2e|2f|5c)/i.test(value) || value.split(/[?#]/)[0].split('/').some(part=>part==='.'||part==='..')) throw Error('Invalid public host route');
+    return ORIGIN + value;
+  }
+  const marker='<meta name="whatwhatboy-public-host" content="'+ORIGIN+'">';
+  text=text.replace(/<meta\b[^>]*\bname=['"]whatwhatboy-public-host['"][^>]*>/gi,'');
+  text=/<head\b[^>]*>/i.test(text)?text.replace(/<head\b[^>]*>/i,head=>head+marker):marker+text;
+  text=text.replace(/(<script\b[^>]*\bid="host-actions-data"[^>]*>)([\s\S]*?)(<\/script>)/gi,(whole,open,json,close)=>{
+    const catalogue=JSON.parse(json);
+    for(const action of catalogue.actions||[]){
+      if(action.localLauncher)for(const key of ['launchURL','instructionsURL'])if(action[key])action[key]=publicURL(action[key]);
+      if(!action.run&&(/^\/hosts\/runtime\//.test(action.downloadURL||'')||action.downloadOnDevice&&/^\/downloads\//.test(action.downloadURL||'')))action.downloadURL=publicURL(action.downloadURL);
+    }
+    return open+JSON.stringify(catalogue).replace(/</g,'\\u003c')+close;
+  });
   return text.replace(/href=(['"])(\/[^'"]*)\1/g, (whole, quote, target) => {
     const pathname = target.replace(/[?#].*$/, '');
-    return staticPath(pathname) || /^\/downloads\/.+\.(?:elf|bin)$/i.test(pathname) ? whole : 'href=' + quote + ORIGIN + target + quote;
+    return staticPath(pathname) || /^\/downloads\/.+\.(?:elf|bin)$/i.test(pathname) ? whole : 'href=' + quote + publicURL(target) + quote;
   });
 }
 function startupCMD() {

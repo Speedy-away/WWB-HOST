@@ -18,3 +18,5 @@ body.host-folder-page .host-firmware-buttons button:focus-visible {outline:2px s
 @media(max-width:380px){.host-firmware-buttons{grid-template-columns:repeat(3,minmax(0,1fr))}}
 
 body.host-folder-page .host-firmware-buttons button[aria-pressed="true"]{box-shadow:inset 0 0 0 2px #d6ffeb,0 0 0 2px #579d7b;position:relative}body.host-folder-page .host-firmware-buttons button[aria-pressed="true"]::after{content:"✓";margin-left:8px}
+
+.host-firmware-buttons button[hidden]{display:none!important}

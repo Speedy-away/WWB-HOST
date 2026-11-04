@@ -7,7 +7,7 @@ const {getCatalog, MAX_PLATFORM_ITEMS, assertCatalogueBounds} = require('../cons
 const {buildReceiverURL, buildPreparationURL, matchesFilter, matchesFormat, normalizeConsoleHost} = require('../../assets/console-downloads.js');
 
 const root = path.resolve(__dirname, '../..');
-const readJson = file => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
+const readJson = file => { let target=path.join(root,file); if(!fs.existsSync(target)&&['console/ps4/homebrew.json','console/ps5/payloads.json'].includes(file)){ const retained=path.resolve(root,'../whatsite',file); if(fs.existsSync(retained))target=retained; } return JSON.parse(fs.readFileSync(target,'utf8')); };
 const catalogue = readJson('docs/console-download-catalog.json').items;
 
 test('console catalogues contain only reviewed PS4/PS5 builds and keep platform scopes separate', () => {
@@ -68,7 +68,8 @@ test('console catalogues contain only reviewed PS4/PS5 builds and keep platform 
 });
 
 test('expanded catalogue retains bounded capacity and refuses missing platforms or duplicate identities', () => {
-  const ps4 = Array.from({length:512}, (_,index) => ({id:'ps4-'+index, platforms:['ps4']}));
+  assert.equal(MAX_PLATFORM_ITEMS,1024);
+  const ps4 = Array.from({length:1024}, (_,index) => ({id:'ps4-'+index, platforms:['ps4']}));
   const ps5 = {id:'ps5', platforms:['ps5']};
   assert.doesNotThrow(() => assertCatalogueBounds([...ps4, ps5]));
   assert.throws(() => assertCatalogueBounds([...ps4, ps5, {id:'overflow', platforms:['ps4']}]), /curated limit/);

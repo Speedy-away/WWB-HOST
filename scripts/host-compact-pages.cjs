@@ -4,24 +4,33 @@ const fs=require('node:fs'),path=require('node:path');
 const popup=require('./host-self-host-popup.cjs');
 const esc=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 const MODERN_PS4=['10.00','11.00','11.02','11.50','11.52','12.00','12.02','12.50','12.52','13.00','13.02','13.04','13.50','13.52'];
+const PS5_REMAINING=['3.10','3.21','5.00','5.02','5.10','5.50'];
+function ps5RemainingRoute(rows){
+ const source=rows.find(g=>g.id==='karo-ps5-umtx');
+ if(!source)return null;
+ if(source.platform!=='ps5'||source.ticket!=='existing-karo-guard'||source.originalEntry?.path!=='ps5/UMTX/index.html'||source.originalEntry.scope!=='ps5/UMTX/'||PS5_REMAINING.some(f=>!source.firmwares.includes(f)||!source.originalEntry.firmwares.includes(f)))throw Error('The preserved PS5 UMTX source no longer confirms the remaining firmware subset.');
+ return {...source,id:'karo-ps5-umtx-remaining',label:'PS5 WebKit Exploit - 3.10 / 3.21 / 5.00–5.50',firmwares:PS5_REMAINING.slice(),entry:'/hosts/ps5/exploit/karo-ps5-umtx-remaining/',preferred:true,sourceRanges:[],originalEntry:{...source.originalEntry,firmwares:PS5_REMAINING.slice(),ranges:[]}};
+}
 function groups(root){
  const localFile=path.join(root,'docs/host-local-launchers.json');
- let rows=fs.existsSync(localFile)?JSON.parse(fs.readFileSync(localFile)).groups:[];
- rows=rows.filter(g=>['ps4-afterglow','karo-g2allpro','karo-ps5-umtx'].includes(g.id)).map(g=>g.id==='karo-g2allpro'?{...g,id:'karo-g2allpro-modern',label:'PS4 WebKit Exploit - 10.00–13.52',firmwares:MODERN_PS4.slice(),entry:'/hosts/ps4/exploit/karo-g2allpro-modern/'}:g.id==='ps4-afterglow'?{...g,label:'PS4 WebKit Exploit - 13.52–14.00'}:{...g,label:'PS5 WebKit Exploit - '+g.firmwares[0]+'–'+g.firmwares[g.firmwares.length-1]});
+ let rows=fs.existsSync(localFile)?JSON.parse(fs.readFileSync(localFile)).groups:[],remaining=ps5RemainingRoute(rows);
+ rows=rows.filter(g=>['ps4-afterglow','karo-g2allpro'].includes(g.id)).map(g=>g.id==='karo-g2allpro'?{...g,id:'karo-g2allpro-modern',label:'PS4 WebKit Exploit - 10.00–13.52',firmwares:MODERN_PS4.slice(),entry:'/hosts/ps4/exploit/karo-g2allpro-modern/'}:g.id==='ps4-afterglow'?{...g,label:'PS4 WebKit Exploit - 13.52–14.00'}:{...g,label:'PS5 WebKit Exploit - '+g.firmwares[0]+'–'+g.firmwares[g.firmwares.length-1]});
+ if(remaining)rows.push(remaining);
  const gamerFile=path.join(root,'docs/host-gamerhack-local-build.json');
  if(fs.existsSync(gamerFile))rows.push(...JSON.parse(fs.readFileSync(gamerFile)).groups);
  const ps5File=path.join(root,'docs/ps5-webkit-build.json');
  if(fs.existsSync(ps5File)){const b=JSON.parse(fs.readFileSync(ps5File));rows.push({id:b.id,label:'PS5 WebKit Exploit - 7.00–13.60',platform:'ps5',firmwares:b.firmwares,entry:b.entry,runtimeEntry:b.entry,preferred:true,source:b.source});}
  const rawFile=path.join(root,'docs/host-runtime-builds.json');
  if(fs.existsSync(rawFile))for(const r of JSON.parse(fs.readFileSync(rawFile)).runtimes||[]){
+  if(r.id==='ps5-umtx')rows.push({id:r.id,label:'PS5 WebKit Exploit - '+r.firmwares[0]+'–'+r.firmwares[r.firmwares.length-1],platform:'ps5',firmwares:r.firmwares.slice(),entry:r.entry,runtimeEntry:r.entry,preferred:true,source:r.source});
   if(r.id==='ps4-psfree-700-960')rows.push({id:r.id,label:'PS4 WebKit Exploit - 7.00–9.60',platform:'ps4',firmwares:r.firmwares,entry:r.entry,runtimeEntry:r.entry,preferred:true,source:r.source});
  }
  // A family label is presentation; compatibility remains the exact source array.
  return rows.filter(g=>g.firmwares?.length&&/^\/hosts\//.test(g.entry)&&fs.existsSync(path.join(root,g.entry.replace(/^\//,'').replace(/\/$/,'/index.html')))).sort((a,b)=>Number(a.firmwares[0])-Number(b.firmwares[0]));
 }
 function actions(root,platform,previous){
- const local=groups(root).filter(g=>g.platform===platform).map(g=>({id:'local-'+g.id,platform,category:'loaders',label:g.label,firmwareLabel:g.label.replace(/^PS[45] WebKit Exploit - /,''),firmwares:g.firmwares.slice(),format:'Local browser exploit',launchURL:g.entry,launchLabel:'Choose HEN / Load',runtimeId:g.id,localLauncher:true,source:g.source.repository+'/tree/'+g.source.commit,requirements:['Open this local launcher on the matching console. Firmware is checked again before Load.']}));
- return [...local,...previous.filter(a=>a.category!=='loaders')];
+ const local=groups(root).filter(g=>g.platform===platform).map(g=>g.id==='ps5-umtx'?{...previous.find(a=>a.id==='built-in-ps5-umtx'),label:g.label,firmwareLabel:g.label.replace(/^PS5 WebKit Exploit - /,'')}:{id:'local-'+g.id,platform,category:'loaders',label:g.label,firmwareLabel:g.label.replace(/^PS[45] WebKit Exploit - /,''),firmwares:g.firmwares.slice(),format:'Local browser exploit',launchURL:g.entry,launchLabel:'Choose HEN / Load',runtimeId:g.id,localLauncher:true,source:g.source.repository+'/tree/'+g.source.commit,requirements:['Open this local launcher on the matching console. Firmware is checked again before Load.']});
+ return [...local,...previous.filter(a=>a.category!=='loaders'),...previous.filter(a=>a.category==='loaders'&&a.browserHost&&/^https:\/\//.test(a.launchURL||'')).map(a=>({...a,secondaryHost:true}))];
 }
 function directory(root,platform){
  const rows=groups(root).filter(g=>g.platform===platform),name=platform.toUpperCase();
@@ -30,6 +39,13 @@ function directory(root,platform){
 }
 function build(root){
  const localFile=path.join(root,'docs/host-local-launchers.json');
+ if(fs.existsSync(localFile)){
+  const remaining=ps5RemainingRoute(JSON.parse(fs.readFileSync(localFile)).groups);
+  if(remaining){
+   if(!fs.existsSync(path.join(root,remaining.runtimeEntry.slice(1))))throw Error('The preserved local PS5 UMTX entry is missing.');
+   const file=path.join(root,remaining.entry.slice(1),'index.html');fs.mkdirSync(path.dirname(file),{recursive:true});fs.writeFileSync(file,require('./host-local-launchers.cjs').render(remaining));
+  }
+ }
  if(fs.existsSync(localFile)){const source=JSON.parse(fs.readFileSync(localFile)).groups.find(g=>g.id==='karo-g2allpro');if(source){const modern={...source,id:'karo-g2allpro-modern',label:'PS4 WebKit Exploit - 10.00–13.52',firmwares:MODERN_PS4.slice(),entry:'/hosts/ps4/exploit/karo-g2allpro-modern/',originalEntry:{...source.originalEntry,firmwares:MODERN_PS4.slice(),ranges:[]}};const file=path.join(root,modern.entry.slice(1),'index.html');fs.mkdirSync(path.dirname(file),{recursive:true});fs.writeFileSync(file,require('./host-local-launchers.cjs').render(modern));fs.writeFileSync(path.join(root,'docs/host-modern-firmware-evidence.json'),JSON.stringify({group:modern.id,firmwares:MODERN_PS4,source:source.source,sourceOriginalHTMLSHA256:'6b233652aa780431db151d06b5fc52ef1900345b6909ea7827a3fe6c4643f784',evidence:'Explicit offset records intersected with the original HTML dispatcher:10.00–11.02 exploit10.js;11.50–12.02 1150_1202.js;12.50–13.00 1250_13.js;13.02–13.52 1302_1352.js. Nearest-lower fallback-only versions excluded. Original native bytes unchanged.'},null,2)+'\n');}}
  for(const p of ['ps4','ps5']){const file=path.join(root,'hosts',p,'firmware/index.html');fs.mkdirSync(path.dirname(file),{recursive:true});fs.writeFileSync(file,directory(root,p));}
 }
@@ -53,4 +69,4 @@ function apply(html,name,{base='',root}={}){
  // Never add site/popup code to execution documents, only authored landing controls.
  return popup.apply(nativeLanding?'hosts/launcher/index.html':name,html,options);
 }
-module.exports={MODERN_PS4,groups,actions,directory,build,apply};
+module.exports={MODERN_PS4,PS5_REMAINING,ps5RemainingRoute,groups,actions,directory,build,apply};

@@ -41,3 +41,6 @@ node_modules/
 /docs/host-compact-download-inventory.json
 
 /docs/host-game-patch-file-import.json
+
+# Sender ZIP retained locally and in F:; public download is a release asset.
+/downloads/helpers/console-payload-sender/console-payload-sender-2.1.0-4642d2affd19.zip

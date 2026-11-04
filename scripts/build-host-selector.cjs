@@ -116,7 +116,7 @@ function buildHostSelector({hostOnly=false}={}) {
     '#consoles', 'Choose console', true);
 
   const chooserFile = path.join(root, 'hosts/index.html');
-  fs.writeFileSync(chooserFile, require('./search-page-output.cjs').finish(chooserFile, fs.readFileSync(chooserFile, 'utf8').replace('</body>', '<script defer src="/assets/host-catalog-grid.js?v=3"></script><script defer src="/assets/host-dashboard.js?v=21"></script></body>')));
+  fs.writeFileSync(chooserFile, require('./search-page-output.cjs').finish(chooserFile, fs.readFileSync(chooserFile, 'utf8').replace('</body>', '<script defer src="/assets/host-catalog-grid.js?v=3"></script><script defer src="/assets/host-dashboard.js?v=22"></script></body>')));
 
   for (const platform of ['ps4', 'ps5']) {
     const name = platform.toUpperCase();
@@ -149,7 +149,7 @@ function buildHostSelector({hostOnly=false}={}) {
     for (const relative of [`hosts/${platform}/index.html`,managerFile,filesPage,...gamePages]) {
       const hostFile = path.join(root,relative);
       let hostHtml = fs.readFileSync(hostFile, 'utf8').replace('console-guide host-selector', 'console-guide host-selector host-dashboard-page');
-      hostHtml = hostHtml.replace('</head>', '<link rel="stylesheet" href="/assets/host-dashboard.css?v=16"><link rel="stylesheet" href="/assets/host-webhost.css?v=2"><link rel="stylesheet" href="/assets/host-firmware-buttons.css?v=2"><link rel="stylesheet" href="/assets/host-catalog-grid.css?v=2">\n</head>').replace('</body>', '<script defer src="/assets/host-console-client.js?v=15"></script><script defer src="/assets/host-catalog-grid.js?v=3"></script><script defer src="/assets/host-dashboard.js?v=21"></script></body>');
+      hostHtml = hostHtml.replace('</head>', '<link rel="stylesheet" href="/assets/host-dashboard.css?v=16"><link rel="stylesheet" href="/assets/host-webhost.css?v=2"><link rel="stylesheet" href="/assets/host-firmware-buttons.css?v=3"><link rel="stylesheet" href="/assets/host-catalog-grid.css?v=2">\n</head>').replace('</body>', '<script defer src="/assets/host-console-client.js?v=15"></script><script defer src="/assets/host-catalog-grid.js?v=3"></script><script defer src="/assets/host-dashboard.js?v=22"></script></body>');
       if(relative===`hosts/${platform}/index.html`)hostHtml=require('./host-folder-markup.cjs').shell(hostHtml);
       fs.writeFileSync(hostFile, require('./search-page-output.cjs').finish(relative, hostHtml));
     }

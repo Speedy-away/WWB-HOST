@@ -1,6 +1,9 @@
 'use strict';
 const fs=require('fs'),path=require('path'),crypto=require('crypto');
+const originals={'ps5-umtx2':'https://umtx2.pages.dev/','ps5-relapse':'https://soniciso1.github.io/relapse/relapse.html'};
+function isTrustedOriginal(a){return a.platform==='ps5'&&Object.prototype.hasOwnProperty.call(originals,a.id)&&originals[a.id]===a.launchURL;}
 function prepare(actions,platform){if(platform!=='ps5')return actions;const r=require('../docs/host-runtime-builds.json').runtimes.find(r=>r.id==='ps5-umtx');return actions.map(a=>{
+ if(isTrustedOriginal(a))return {...a,browserHost:true,launchLabel:'Load',format:'Original PS5 browser host'};
  if(a.id==='built-in-ps5-umtx')return {...a,browserHost:true,launchLabel:'Load',launchURL:r.runEntry,requirements:['Load on a supported PS5 browser. Progress appears in the console log.']};
  if(a.id==='ps5-elfldr')return {...a,category:'payloads',categories:(a.categories||[]).filter(c=>c!=='loaders')};return a;
 });}
@@ -22,4 +25,4 @@ function refresh(root){
  r.files.sort((a,b)=>a.path.localeCompare(b.path));r.entryFlow={type:'console-browser-load',runEntry:r.runEntry,request:'One-use same-tab session request; exact detected firmware required.',progress:'Original PS5 console log; original native retry behavior retained.'};
  fs.writeFileSync(path.join(dir,'build.json'),JSON.stringify(r,null,2)+'\n');fs.writeFileSync(file,JSON.stringify(doc,null,2)+'\n');
 }
-module.exports={prepare,refresh};
+module.exports={prepare,refresh,isTrustedOriginal,originals};

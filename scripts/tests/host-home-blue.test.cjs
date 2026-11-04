@@ -15,3 +15,12 @@ test('homepage retains console/tool routes with one full trainer cover and no KA
 test('blue theme uses uncropped images and removes only the outer catalogue box, with readable desktop columns',()=>{
  const home=fs.readFileSync(path.join(root,'assets/host-home.css'),'utf8'),theme=fs.readFileSync(path.join(root,'assets/host-blue-theme.css'),'utf8');assert.match(home,/--bg:#11161f/);assert.match(home,/--accent:#99bdff/);assert.doesNotMatch(home,/object-fit:cover|overflow:hidden/);assert.match(home,/\.tool-art img\{[^}]*object-fit:contain/);assert.match(theme,/\.host-dashboard\.host-reset/);assert.doesNotMatch(theme,/body\.wwb-host-page \.host-dashboard,/);assert.match(theme,/object-fit:contain!important/);for(const count of [4,5,6])assert.match(theme,new RegExp('grid-template-columns:repeat\\('+count+',minmax\\(0,1fr\\)\\)'));assert.match(theme,/html\.host-console-browser/);assert.doesNotMatch(theme,/repeat\(7,/);assert.doesNotMatch(theme,/hosts\/runtime|<script|fetch\(/);
 });
+
+test('payload outlines and hidden media apply only to the payload view',()=>{
+ const theme=fs.readFileSync(path.join(root,'assets/host-blue-theme.css'),'utf8'),scope='body.wwb-host-page .host-catalog-grid[data-host-view="payloads"] ',rules=[...theme.replace(/\/\*[\s\S]*?\*\//g,'').matchAll(/([^{}]+)\{([^{}]*)\}/g)].filter(m=>m[1].includes('[data-host-view="payloads"]'));
+ assert.equal(rules.length,4);for(const rule of rules)assert.ok(rule[1].trim().startsWith(scope));
+ const card=rules.find(m=>m[1].trim().endsWith('.host-catalog-tile'))[2];assert.match(card,/padding:16px!important/);assert.match(card,/border:1px solid #344258!important/);assert.match(card,/min-height:76px/);
+ assert.ok(rules.some(m=>m[1].trim().endsWith('.host-catalog-tile__media')&&m[2].includes('display:none!important')));
+ assert.ok(rules.some(m=>m[1].includes(':hover')&&m[2].includes('border-color:#779cd8')));
+ assert.ok(rules.some(m=>m[1].includes(':focus-visible')&&m[2].includes('outline:3px solid #99bdff')));
+});

@@ -37,7 +37,7 @@ test('payload, utility and loader cards omit project images for both consoles wh
     assert.doesNotMatch(html,/<(?:figure|img)\b|host-action-with-art/,platform+' '+category);
     assert.ok(f.action.image,'Removing a rendered preview must not erase source metadata.');
     assert.equal(f.action.imageAlt,'Retained preview description');
-    assert.match(html,/Requirements/);
+    assert.match(html,/Details/);
     assert.match(html,/data-launch=/);
     if(category!=='loaders')assert.match(html,/data-download-action=/);
     assert.equal(f.sends.length,0);assert.equal(f.opened.length,0);assert.equal(f.checks.length,0);
